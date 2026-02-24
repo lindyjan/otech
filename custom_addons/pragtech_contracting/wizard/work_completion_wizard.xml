@@ -39,7 +39,7 @@
                                 <b>Select All</b>
 
                                 <field name="completion_task_line_ids">
-                                    <tree editable="bottom">
+                                    <list editable="bottom">
                                         <field name="workorder_id" readonly="1"/>
                                         <field name="workorder_line_id" readonly="1"/>
                                         <field name="group_id" readonly="1"/>
@@ -49,7 +49,7 @@
                                         <field name="labour_uom" readonly="1"/>
                                         <field name="labour_rate" readonly="1"/>
                                         <button string="Create/View" name="complete_task" type="object"/>
-                                    </tree>
+                                    </list>
                                 </field>
 
                                 <footer>

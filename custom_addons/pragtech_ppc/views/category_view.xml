@@ -15,10 +15,10 @@
                         </group>
 
                         <field name="sub_category_ids">
-                            <tree create="false" delete="false">
+                            <list create="false" delete="false">
                                 <field name="name" readonly="True"/>
                                 <field name="description" readonly="True"/>
-                            </tree>
+                            </list>
                         </field>
                     </sheet>
                 </form>
@@ -30,10 +30,10 @@
             <field name="model">task.category</field>
             <field name="type">list</field>
             <field name="arch" type="xml">
-                <tree>
+                <list>
                     <field name="name"/>
                     <field name="description"/>
-                </tree>
+                </list>
             </field>
         </record>
 
@@ -83,11 +83,11 @@
             <field name="model">task.sub.category</field>
             <field name="type">list</field>
             <field name="arch" type="xml">
-                <tree>
+                <list>
                     <field name="name"/>
                     <field name="category_id"/>
                     <field name="description"/>
-                </tree>
+                </list>
             </field>
         </record>
 
@@ -126,10 +126,10 @@
                         </group>
 
                         <field name="sub_category_ids">
-                            <tree create="false" delete="false">
+                            <list create="false" delete="false">
                                 <field name="name" readonly="True"/>
                                 <field name="description" readonly="True"/>
-                            </tree>
+                            </list>
                         </field>
                     </sheet>
                 </form>
@@ -141,10 +141,10 @@
             <field name="model">labour.category</field>
             <field name="type">list</field>
             <field name="arch" type="xml">
-                <tree>
+                <list>
                     <field name="name"/>
                     <field name="description"/>
-                </tree>
+                </list>
             </field>
         </record>
 
@@ -198,11 +198,11 @@
             <field name="model">labour.sub.category</field>
             <field name="type">list</field>
             <field name="arch" type="xml">
-                <tree>
+                <list>
                     <field name="name"/>
                     <field name="category_id"/>
                     <field name="description"/>
-                </tree>
+                </list>
             </field>
         </record>
 

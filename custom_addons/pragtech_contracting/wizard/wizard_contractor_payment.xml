@@ -27,7 +27,7 @@
                         </div>
 
                         <field name="order_line">
-                            <tree editable="bottom" create="false" delete="false">
+                            <list editable="bottom" create="false" delete="false">
                                 <field name="workorder_id" readonly="True"/>
                                 <field name="partner_id" readonly="True"/>
                                 <field name="project_id" readonly="True"/>
@@ -36,7 +36,7 @@
                                 <field name="bill_created" readonly="True"/>
                                 <field name="bill_paid" readonly="True"/>
                                 <field name="bill_balance" readonly="True"/>
-                            </tree>
+                            </list>
                         </field>
                     </sheet>
 

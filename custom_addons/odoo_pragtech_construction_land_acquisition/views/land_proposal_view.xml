@@ -50,12 +50,12 @@
             <field name="name">land_proposal.tree</field>
             <field name="model">land.proposal</field>
             <field name="arch" type="xml">
-                <tree string="Properties">
+                <list string="Properties">
                     <field name="name"/>
                     <field name="acquisition_id"/>
                     <field name="partner_id"/>
                     <field name="state"/>
-                </tree>
+                </list>
             </field>
         </record>
 

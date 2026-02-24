@@ -6,14 +6,14 @@
             <field name="name">work.completion.tree</field>
             <field name="model">work.completion</field>
             <field name="arch" type="xml">
-                <tree>
+                <list>
                     <field name="name"/>
                     <field name="task_id" context="{'form_view_ref':'pragtech_ppc.project_task_form'}"/>
                     <field name="total_percent"/>
                     <field name="project_id"/>
                     <field name="workorder_id"/>
                     <field name="contractor_id"/>
-                </tree>
+                </list>
             </field>
         </record>
 
@@ -21,7 +21,7 @@
             <field name="name">work.completion.line.tree</field>
             <field name="model">work.completion.line</field>
             <field name="arch" type="xml">
-                <tree>
+                <list>
                     <field name="sequence" readonly="True"/>
                     <field name="date_of_completion" readonly="flag"/>
                     <field name="completion_qty" sum="Total Qty" readonly="flag"/>
@@ -31,7 +31,7 @@
                     <field name="bill" readonly="flag"/>
                     <field name="stage_id" readonly="flag"/>
                     <field name="flag" invisible="1"/>
-                </tree>
+                </list>
             </field>
         </record>
 
@@ -52,7 +52,7 @@
                     </group>
 
                     <field name="compl_line_mesge_ids" nolabel="1">
-                        <tree create="false">
+                        <list create="false">
                             <field name="date"/>
                             <field name="author_id"/>
                             <field name="to_stage"/>
@@ -60,7 +60,7 @@
                             <field name="res_id" invisible="1"/>
                             <field name="model" invisible="1"/>
                             <field name="is_use" invisible="1"/>
-                        </tree>
+                        </list>
                     </field>
                 </form>
             </field>
@@ -98,7 +98,7 @@
                         </group>
 
                         <field name="order_line" context="{'tree_view_ref':'pragtech_contracting.work_completion_line_tree'}">
-                            <tree editable="bottom" readonly="flag">
+                            <list editable="bottom" readonly="flag">
                                 <field name="sequence" readonly="True"/>
                                 <field name="date_of_completion" readonly="flag"/>
                                 <field name="completion_qty" sum="Total Qty" readonly="flag"/>
@@ -109,7 +109,7 @@
                                 <field name="stage_id" readonly="1"/>
                                 <field name="flag" invisible="1"/>
                                 <button id="change_state_line" string="Change Stage" name="change_state" type="object" class="oe_edit_only" invisible="flag"/>
-                            </tree>
+                            </list>
                         </field>
 
                         <group class="oe_subtotal_footer oe_right" colspan="4" name="sale_total">
@@ -122,11 +122,11 @@
                         </group>
 
                         <field name="mesge_ids">
-                            <tree>
+                            <list>
                                 <field name="date"/>
                                 <field name="write_uid"/>
                                 <field name="remark"/>
-                            </tree>
+                            </list>
                         </field>
                     </sheet>
 

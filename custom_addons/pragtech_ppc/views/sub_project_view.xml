@@ -26,16 +26,16 @@
                             </group>
 
                             <field name="wbs_id" context="{'form_view_ref' : 'pragtech_ppc.project_task_inherited_form_wbs1'}" readonly="1">
-                                <tree create="false" domain="[('is_wbs','=',1),('is_task','=',0),('is_group','=',0)]">
+                                <list create="false" domain="[('is_wbs','=',1),('is_task','=',0),('is_group','=',0)]">
                                     <field name="name"/>
                                     <field name="project_id"/>
                                     <field name="planed_start_date"/>
                                     <field name="planned_finish_date"/>
-                                </tree>
+                                </list>
                             </field>
 
                             <field name="mesge_ids" nolabel="1">
-                                <tree create="false">
+                                <list create="false">
                                     <field name="date"/>
                                     <field name="author_id"/>
                                     <field name="to_stage"/>
@@ -43,7 +43,7 @@
                                     <field name="res_id" invisible="1"/>
                                     <field name="model" invisible="1"/>
                                     <field name="is_use" invisible="1"/>
-                                </tree>
+                                </list>
                             </field>
 
                         </group>
@@ -57,11 +57,11 @@
             <field name="model">sub.project</field>
             <field name="type">list</field>
             <field name="arch" type="xml">
-                <tree>
+                <list>
                     <field name="name"/>
                     <field name="project_id"/>
                     <field name="budget_applicable"/>
-                </tree>
+                </list>
             </field>
         </record>
 

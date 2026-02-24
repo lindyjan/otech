@@ -37,10 +37,10 @@
                             <group string="Labour List">
                                 <div style="margin-top: 2px; margin-left: 10px;">
                                     <field name="labour_line" readonly="state == 'confirm'">
-                                        <tree create="false" delete="false" editable="bottom">
+                                        <list create="false" delete="false" editable="bottom">
                                             <field name="labour_id"/>
                                             <field name="is_labour"/>
-                                        </tree>
+                                        </list>
                                     </field>
 
                                 </div>
@@ -49,10 +49,10 @@
                             <group string="Contractor List">
                                 <div style="margin-top: 2px;margin-left: 10px;">
                                     <field name="contractor_line" readonly="state == 'confirm'">
-                                        <tree create="false" delete="false" editable="bottom">
+                                        <list create="false" delete="false" editable="bottom">
                                             <field name="contractor_id"/>
                                             <field name="is_contractor"/>
-                                        </tree>
+                                        </list>
                                     </field>
                                 </div>
                             </group>
@@ -67,7 +67,7 @@
                         <group string="Labour Quotation Details">
                             <div>
                                 <field name="labour_quotation_details">
-                                    <tree create="false" delete="false" editable="bottom">
+                                    <list create="false" delete="false" editable="bottom">
                                         <field name="is_use" readonly="0"/>
                                         <field name="contractor_id"/>
                                         <field name="name"/>
@@ -81,7 +81,7 @@
                                         <field name="tax"/>
                                         <field name="negotiated_rate"/>
                                         <field name="price_subtotal"/>
-                                    </tree>
+                                    </list>
                                 </field>
                             </div>
                         </group>
@@ -98,13 +98,13 @@
                         <group string="Labour Particulars">
                             <div style="margin-top: 15px;margin-right: 10px">
                                 <field name="labour_quotation_comp_particular" nolabel="1" readonly="state == 'confirm'">
-                                    <tree create="false" delete="false" editable="bottom">
+                                    <list create="false" delete="false" editable="bottom">
                                         <field name="is_approve"/>
                                         <field name="labour_id" readonly="1"/>
                                         <field name="price_expt" readonly="1"/>
                                         <field name="labour_qty"/>
                                         <field name="labour_uom" readonly="1"/>
-                                    </tree>
+                                    </list>
                                 </field>
                             </div>
                         </group>
@@ -116,25 +116,25 @@
                                 <group>
                                     <group>
                                         <field name="quotation_comp_contractor1" nolabel="1" readonly="state == 'confirm'">
-                                            <tree create="false" delete="false" editable="bottom" colors="blue:is_approve==True">
+                                            <list create="false" delete="false" editable="bottom" colors="blue:is_approve==True">
                                                 <field name="is_approve" invisible="0"/>
                                                 <field name="labour_id" invisible="1"/>
                                                 <field name="contractor_id" invisible="1"/>
                                                 <field name="negotiated_rate"/>
                                                 <field name="tax_id" invisible="1"/>
                                                 <field name="amount" readonly="1"/>
-                                            </tree>
+                                            </list>
                                         </field>
                                     </group>
 
                                     <group>
                                         <field name="labour_quotation_comp_tax_details1" nolabel="1" readonly="state == 'confirm'">
-                                            <tree create="false" delete="false" editable="bottom">
+                                            <list create="false" delete="false" editable="bottom">
                                                 <field name="contractor_id" invisible="1"/>
                                                 <field name="labour_id" invisible="1"/>
                                                 <field name="tax_id" widget="many2many_tags" domain="[('type_tax_use', '=', 'purchase')]" context="{'default_type_tax_use': 'purchase'}"/>
                                                 <field name="tax"/>
-                                            </tree>
+                                            </list>
                                         </field>
                                     </group>
 
@@ -155,23 +155,23 @@
                                     <field name="contractor2" nolabel="1" readonly="1"/>
                                 </h2>
                                 <field name="quotation_comp_contractor2" readonly="state == 'confirm'">
-                                    <tree create="false" delete="false" editable="bottom" colors="blue:is_approve==True">
+                                    <list create="false" delete="false" editable="bottom" colors="blue:is_approve==True">
                                         <field name="is_approve"/>
                                         <field name="labour_id" invisible="1"/>
                                         <field name="contractor_id" invisible="1"/>
                                         <field name="negotiated_rate"/>
                                         <field name="tax_id" invisible="1"/>
                                         <field name="amount" readonly="1"/>
-                                    </tree>
+                                    </list>
                                 </field>
 
                                 <field name="labour_quotation_comp_tax_details2" nolabel="1" readonly="state == 'confirm'">
-                                    <tree create="false" delete="false" editable="bottom">
+                                    <list create="false" delete="false" editable="bottom">
                                         <field name="contractor_id" invisible="1"/>
                                         <field name="labour_id" invisible="1"/>
                                         <field name="tax_id" widget="many2many_tags" domain="[('type_tax_use', '=', 'purchase')]" context="{'default_type_tax_use': 'purchase'}"/>
                                         <field name="tax"/>
-                                    </tree>
+                                    </list>
                                 </field>
 
                                 <group class="oe_subtotal_footer oe_right">
@@ -201,12 +201,12 @@
             <field name="name">labour.quotation.comparison.tree</field>
             <field name="model">labour.quotation.comparison</field>
             <field name="arch" type="xml">
-                <tree>
+                <list>
                     <field name="sequence_name"/>
                     <field name="project_wbs_id"/>
                     <field name="project_id"/>
                     <field name="state"/>
-                </tree>
+                </list>
             </field>
         </record>
 
@@ -278,14 +278,14 @@
             <field name="name">labour.contractor.tree.view</field>
             <field name="model">labour.contractorinfo</field>
             <field name="arch" type="xml">
-                <tree default_order='create_date desc'>
+                <list default_order='create_date desc'>
                     <field name="name"/>
                     <field name="labour_id"/>
                     <field name="min_qty"/>
                     <field name="price" string="Price"/>
                     <field name="date"/>
                     <field name="is_active" readonly="1"/>
-                </tree>
+                </list>
             </field>
         </record>
 

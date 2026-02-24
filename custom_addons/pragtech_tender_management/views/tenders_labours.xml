@@ -25,13 +25,13 @@
             <field name="name">tenders.labours.tree.view</field>
             <field name="model">tenders.labour</field>
             <field name="arch" type="xml">
-                <tree string="Labours Project">
+                <list string="Labours Project">
                     <field name="labour_description"/>
                     <field name="labour_qty"/>
                     <field name="product_uom"/>
                     <field name="labour_last_price"/>
                     <field name="labour_your_price"/>
-                </tree>
+                </list>
             </field>
         </record>
 

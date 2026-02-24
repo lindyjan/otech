@@ -6,12 +6,12 @@
             <field name="name">debit.view.tree</field>
             <field name="model">debit.recovery</field>
             <field name="arch" type="xml">
-                <tree>
+                <list>
                     <field name="project_id"/>
                     <field name="sub_project"/>
                     <field name="workorder_id"/>
                     <field name="contractor_id"/>
-                </tree>
+                </list>
             </field>
         </record>
 
@@ -48,7 +48,7 @@
                             </div>
 
                             <field name="debit_line_ids">
-                                <tree editable="bottom" create="false" delete="false">
+                                <list editable="bottom" create="false" delete="false">
                                     <field name="is_use"/>
                                     <field name="debit_id" readonly="1"/>
                                     <field name="project_id" readonly="1"/>
@@ -63,7 +63,7 @@
                                     <field name="bank_name" invisible="payment_mode == 'cash'"/>
                                     <field name="payment_refrence" readonly="1"/>
                                     <field name="transaction_date" readonly="1"/>
-                                </tree>
+                                </list>
                             </field>
 
                             <notebook>
@@ -72,7 +72,7 @@
                                         <group>
                                             <div>
                                                 <field name="mesge_ids" nolabel="1">
-                                                    <tree create="false">
+                                                    <list create="false">
                                                         <field name="date"/>
                                                         <field name="author_id"/>
                                                         <field name="to_stage"/>
@@ -80,7 +80,7 @@
                                                         <field name="res_id" invisible="1"/>
                                                         <field name="model" invisible="1"/>
                                                         <field name="is_use" invisible="1"/>
-                                                    </tree>
+                                                    </list>
                                                 </field>
                                             </div>
                                         </group>

@@ -41,7 +41,7 @@
                     </div>
 
                     <field name="scheduler_line_ids">
-                        <tree string="Scheduler Task" editable="bottom">
+                        <list string="Scheduler Task" editable="bottom">
                             <field name="update_action" invisible="1"/>
                             <field name="is_use"/>
                             <field name="task_id" readonly="1" context="{'form_view_ref': 'pragtech_ppc.project_task_form'}"/>
@@ -54,7 +54,7 @@
                             <field name="actual_start_date"/>
                             <field name="actual_finish_date"/>
                             <field name="completion_percent"/>
-                        </tree>
+                        </list>
                     </field>
 
                     <group>
@@ -82,14 +82,14 @@
             <field name="name">task.scheduler.tree</field>
             <field name="model">task.scheduler</field>
             <field name="arch" type="xml">
-                <tree>
+                <list>
                     <field name="project_id"/>
                     <field name="project_wbs" context="{'form_view_ref': 'pragtech_ppc.project_task_inherited_form_wbs1'}"/>
                     <field name="task_category"/>
                     <field name="task_sub_category"/>
                     <field name="status"/>
                     <field name="tasks_having"/>
-                </tree>
+                </list>
             </field>
         </record>
 

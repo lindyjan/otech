@@ -84,7 +84,7 @@
             <field name="model">labour.master</field>
             <field name="type">list</field>
             <field name="arch" type="xml">
-                <tree>
+                <list>
                     <field name="name"/>
                     <field name="category_id"/>
                     <field name="sub_category_id"/>
@@ -92,7 +92,7 @@
                     <field name="type"/>
                     <field name="rate"/>
                     <field name="unit_no"/>
-                </tree>
+                </list>
             </field>
         </record>
 
@@ -143,7 +143,7 @@
             <field name="model">labour.master</field>
             <field name="field_parent">child_ids2</field>
             <field name="arch" type="xml">
-                <tree>
+                <list>
                     <field name="name"/>
                     <field name="category_id"/>
                     <field name="sub_category_id"/>
@@ -151,7 +151,7 @@
                     <field name="type"/>
                     <field name="rate"/>
                     <field name="unit_no"/>
-                </tree>
+                </list>
             </field>
         </record>
 
@@ -190,9 +190,9 @@
             <field name="model">labour.work.classification</field>
             <field name="type">list</field>
             <field name="arch" type="xml">
-                <tree>
+                <list>
                     <field name="name"/>
-                </tree>
+                </list>
             </field>
         </record>
 
@@ -237,12 +237,12 @@
             <field name="model">labour.rate.master</field>
             <field name="type">list</field>
             <field name="arch" type="xml">
-                <tree>
+                <list>
                     <field name="name"/>
                     <field name="status"/>
                     <field name="date" invisible="1"/>
                     <field name="user" invisible="1"/>
-                </tree>
+                </list>
             </field>
         </record>
 

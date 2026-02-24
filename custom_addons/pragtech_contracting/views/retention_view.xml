@@ -40,7 +40,7 @@
                         </div>
 
                         <field name="release_line_ids" readonly="state == 'paid'">
-                            <tree editable="bottom" create="0">
+                            <list editable="bottom" create="0">
                                 <field name="is_use" nolabel="1"/>
                                 <field name="project_id" readonly="1"/>
                                 <field name="sub_project" domain="[('project_id','=',project_id)]" readonly="1"/>
@@ -52,13 +52,13 @@
                                 <field name="release_till_date" readonly="1"/>
                                 <field name="balance_retention" readonly="1"/>
                                 <field name="current_release_amt"/>
-                            </tree>
+                            </list>
                         </field>
 
                         <notebook>
                             <page string="Audit Trail">
                                 <field name="mesge_ids" nolabel="1">
-                                    <tree create="false">
+                                    <list create="false">
                                         <field name="date"/>
                                         <field name="author_id"/>
                                         <field name="to_stage"/>
@@ -66,7 +66,7 @@
                                         <field name="res_id" invisible="1"/>
                                         <field name="model" invisible="1"/>
                                         <field name="is_use" invisible="1"/>
-                                    </tree>
+                                    </list>
                                 </field>
                             </page>
                         </notebook>
@@ -106,14 +106,14 @@
             <field name="name">Retention.view.tree</field>
             <field name="model">retention.release</field>
             <field name="arch" type="xml">
-                <tree>
+                <list>
                     <field name="name"/>
                     <field name="project_id"/>
                     <field name="sub_project"/>
                     <field name="workorder_id"/>
                     <field name="contractor_id"/>
                     <field name="state"/>
-                </tree>
+                </list>
             </field>
         </record>
 

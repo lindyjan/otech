@@ -41,12 +41,12 @@
             <field name="model">stage.master</field>
             <field name="type">list</field>
             <field name="arch" type="xml">
-                <tree create="0" delete="0" multi_edit="0" edit="0">
+                <list create="0" delete="0" multi_edit="0" edit="0">
                     <field name="name"/>
                     <field name="draft"/>
                     <field name="approved"/>
                     <field name="foreclosed"/>
-                </tree>
+                </list>
             </field>
         </record>
 
@@ -101,11 +101,11 @@
             <field name="model">stage.transaction</field>
             <field name="type">list</field>
             <field name="arch" type="xml">
-                <tree>
+                <list>
                     <field name="from_stage"/>
                     <field name="to_stage"/>
                     <field name="model"/>
-                </tree>
+                </list>
             </field>
         </record>
 

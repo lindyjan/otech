@@ -39,7 +39,7 @@
                         <notebook>
                             <page string="Labour Quotation">
                                 <field name="order_line">
-                                    <tree>
+                                    <list>
                                         <field name="labour_category"/>
                                         <field name="labour_id"/>
                                         <field name="labour_qty"/>
@@ -50,7 +50,7 @@
                                         <field name="taxes_id" widget="many2many_tags" domain="[('type_tax_use','=','purchase')]" context="{'default_type_tax_use': 'purchase'}"/>
                                         <field name="taxed_amount"/>
                                         <field name="net_rate"/>
-                                    </tree>
+                                    </list>
 
                                     <form string="Labour Order Line">
                                         <sheet>
@@ -100,7 +100,7 @@
                                             <group>
                                                 <div>
                                                     <field name="mesge_ids" nolabel="1">
-                                                        <tree create="false">
+                                                        <list create="false">
                                                             <field name="date"/>
                                                             <field name="author_id"/>
                                                             <field name="to_stage"/>
@@ -108,7 +108,7 @@
                                                             <field name="res_id" invisible="1"/>
                                                             <field name="model" invisible="1"/>
                                                             <field name="is_use" invisible="1"/>
-                                                        </tree>
+                                                        </list>
                                                     </field>
                                                 </div>
                                             </group>
@@ -152,7 +152,7 @@
             <field name="name">labour.quotation.tree</field>
             <field name="model">labour.quotation</field>
             <field name="arch" type="xml">
-                <tree>
+                <list>
                     <field name="name" string="Reference"/>
                     <field name="date_order"/>
                     <field name="partner_id"/>
@@ -161,7 +161,7 @@
                     <field name="amount_untaxed"/>
                     <field name="amount_total"/>
                     <field name="state"/>
-                </tree>
+                </list>
             </field>
         </record>
 
@@ -169,7 +169,7 @@
             <field name="name">labour.quotation.line.tree</field>
             <field name="model">labour.quotation.line</field>
             <field name="arch" type="xml">
-                <tree create="false">
+                <list create="false">
                     <field name="order_id"/>
                     <field name="labour_id"/>
                     <field name="price_unit"/>
@@ -181,7 +181,7 @@
                     <field name="labour_uom"/>
                     <field name="price_subtotal" widget="monetary"/>
                     <field name="date_planned" widget="date"/>
-                </tree>
+                </list>
             </field>
         </record>
 
