@@ -55,7 +55,7 @@
         <record id="sub_project_tree_view" model="ir.ui.view">
             <field name="name">sub.project.tree</field>
             <field name="model">sub.project</field>
-            <field name="type">tree</field>
+            <field name="type">list</field>
             <field name="arch" type="xml">
                 <tree>
                     <field name="name"/>

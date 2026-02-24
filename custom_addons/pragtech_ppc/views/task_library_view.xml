@@ -65,7 +65,7 @@
         <record id="project_task_library_tree" model="ir.ui.view">
             <field name="name">project_task.library.tree</field>
             <field name="model">project.task.library</field>
-            <field name="type">tree</field>
+            <field name="type">list</field>
             <field name="arch" type="xml">
                 <tree>
                     <field name="name"/>
@@ -153,7 +153,7 @@
         <record id="project_task_group_library_tree" model="ir.ui.view">
             <field name="name">project_task.library.tree</field>
             <field name="model">project.task.library</field>
-            <field name="type">tree</field>
+            <field name="type">list</field>
             <field name="arch" type="xml">
                 <tree>
                     <field name="name"/>

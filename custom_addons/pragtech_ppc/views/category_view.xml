@@ -28,7 +28,7 @@
         <record id="task_category_tree_view" model="ir.ui.view">
             <field name="name">task.category.tree</field>
             <field name="model">task.category</field>
-            <field name="type">tree</field>
+            <field name="type">list</field>
             <field name="arch" type="xml">
                 <tree>
                     <field name="name"/>
@@ -81,7 +81,7 @@
         <record id="task_sub_category_tree_view" model="ir.ui.view">
             <field name="name">task.sub.category.tree</field>
             <field name="model">task.sub.category</field>
-            <field name="type">tree</field>
+            <field name="type">list</field>
             <field name="arch" type="xml">
                 <tree>
                     <field name="name"/>
@@ -139,7 +139,7 @@
         <record id="labour_category_tree_view" model="ir.ui.view">
             <field name="name">labour.category.tree</field>
             <field name="model">labour.category</field>
-            <field name="type">tree</field>
+            <field name="type">list</field>
             <field name="arch" type="xml">
                 <tree>
                     <field name="name"/>
@@ -196,7 +196,7 @@
         <record id="labour_sub_category_tree_view" model="ir.ui.view">
             <field name="name">labour.sub.category.tree</field>
             <field name="model">labour.sub.category</field>
-            <field name="type">tree</field>
+            <field name="type">list</field>
             <field name="arch" type="xml">
                 <tree>
                     <field name="name"/>

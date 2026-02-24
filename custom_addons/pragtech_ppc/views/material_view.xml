@@ -102,7 +102,7 @@
         <record id="qa_procedure_tree_view" model="ir.ui.view">
             <field name="name">qa.procedure.tree</field>
             <field name="model">qa.procedure</field>
-            <field name="type">tree</field>
+            <field name="type">list</field>
             <field name="arch" type="xml">
                 <tree>
                     <field name="name"/>

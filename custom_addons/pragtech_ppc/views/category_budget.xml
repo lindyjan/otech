@@ -54,7 +54,7 @@
         <record id="category_budget_tree_view" model="ir.ui.view">
             <field name="name">category.budget.tree.view1</field>
             <field name="model">category.budget</field>
-            <field name="type">tree</field>
+            <field name="type">list</field>
             <field name="arch" type="xml">
                 <tree>
                     <field name="project_id"/>
@@ -113,7 +113,7 @@
         <record id="wbs_budget_tree_view" model="ir.ui.view">
             <field name="name">wbs.budget.tree.view1</field>
             <field name="model">wbs.budget</field>
-            <field name="type">tree</field>
+            <field name="type">list</field>
             <field name="arch" type="xml">
                 <tree>
                     <field name="project_id"/>

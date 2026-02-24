@@ -110,7 +110,7 @@
         <record id="wbs_task_group_tree" model="ir.ui.view">
             <field name="name">wbs.task.group.tree</field>
             <field name="model">wbs.task.group</field>
-            <field name="type">tree</field>
+            <field name="type">list</field>
             <field name="arch" type="xml">
                 <tree>
                     <field name="name"/>
@@ -144,7 +144,7 @@
         <record id="task_category_tree_view" model="ir.ui.view">
             <field name="name">task.category.tree</field>
             <field name="model">task.category</field>
-            <field name="type">tree</field>
+            <field name="type">list</field>
             <field name="arch" type="xml">
                 <tree>
                     <field name="name"/>
@@ -199,7 +199,7 @@
         <record id="task_sub_category_tree_view" model="ir.ui.view">
             <field name="name">task.sub.category.tree</field>
             <field name="model">task.sub.category</field>
-            <field name="type">tree</field>
+            <field name="type">list</field>
             <field name="arch" type="xml">
                 <tree>
                     <field name="name"/>
@@ -229,7 +229,7 @@
             <field name="name">project.task.tree</field>
             <!-- Please do not change name as access right are depends on name -->
             <field name="model">project.task</field>
-            <field name="type">tree</field>
+            <field name="type">list</field>
             <field name="arch" type="xml">
                 <tree>
                     <field name="name" string="Task Title"/>
@@ -244,7 +244,7 @@
         <record id="project_task_group_tree" model="ir.ui.view">
             <field name="name">project_task.tree</field>
             <field name="model">project.task</field>
-            <field name="type">tree</field>
+            <field name="type">list</field>
             <field name="arch" type="xml">
                 <tree>
                     <field name="name" string="Group Title"/>
@@ -501,7 +501,7 @@
         <record id="project_task_hierarchy_tree_wbs1" model="ir.ui.view">
             <field name="name">project.task.tree.hierarchy.wbs</field>
             <field name="model">project.task</field>
-            <field name="type">tree</field>
+            <field name="type">list</field>
             <field name="field_parent">child_ids2</field>
             <field name="arch" type="xml">
                 <tree string="Child Tasks">
