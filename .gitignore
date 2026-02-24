@@ -56,3 +56,8 @@ package.json
 !.env.example
 deploy/.env
 !deploy/.env.example
+
+# large binary files in custom_addons
+custom_addons/*.zip
+custom_addons/*.pdf
+custom_addons/**/*.pdf
