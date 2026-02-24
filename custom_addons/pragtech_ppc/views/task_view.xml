@@ -490,7 +490,7 @@
         </record>
 
         <record id="action_wbs_trees_view" model="ir.actions.act_window.view">
-            <field name="view_mode">tree</field>
+            <field name="view_mode">list</field>
             <field name="act_window_id" ref="act_project_task1"/>
             <field name="view_id" ref="project_task_inherited_tree_wbs1"/>
         </record>
@@ -549,7 +549,7 @@
         </record>
 
         <record id="action_task_tree" model="ir.actions.act_window.view">
-            <field name="view_mode">tree</field>
+            <field name="view_mode">list</field>
             <field name="act_window_id" ref="action_task_new_form"/>
             <field name="view_id" ref="project_task_tree"/>
         </record>
@@ -571,7 +571,7 @@
         </record>
 
         <record id="action_task_group_tree" model="ir.actions.act_window.view">
-            <field name="view_mode">tree</field>
+            <field name="view_mode">list</field>
             <field name="act_window_id" ref="action_task_group_new_form"/>
             <field name="view_id" ref="project_task_group_tree"/>
         </record>
