@@ -82,7 +82,7 @@
         <record id="labour_master_tree_view" model="ir.ui.view">
             <field name="name">labour.master.tree</field>
             <field name="model">labour.master</field>
-            <field name="type">tree</field>
+            <field name="type">list</field>
             <field name="arch" type="xml">
                 <tree>
                     <field name="name"/>
@@ -188,7 +188,7 @@
         <record id="labour_work_class_tree_view" model="ir.ui.view">
             <field name="name">labour.work.class.tree</field>
             <field name="model">labour.work.classification</field>
-            <field name="type">tree</field>
+            <field name="type">list</field>
             <field name="arch" type="xml">
                 <tree>
                     <field name="name"/>
@@ -235,7 +235,7 @@
         <record id="labour_work_class_tree_view" model="ir.ui.view">
             <field name="name">labour.rate.master.tree</field>
             <field name="model">labour.rate.master</field>
-            <field name="type">tree</field>
+            <field name="type">list</field>
             <field name="arch" type="xml">
                 <tree>
                     <field name="name"/>
