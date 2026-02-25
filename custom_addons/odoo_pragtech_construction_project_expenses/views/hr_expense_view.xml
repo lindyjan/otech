@@ -11,22 +11,6 @@
 				<xpath expr="//field[@name='product_id']" position="attributes">
       				<attribute name="string">Product</attribute>
 				</xpath>
-				<xpath expr="//field[@name='reference']" position="attributes">
-      				<attribute name="groups"></attribute>
-      				<attribute name="attrs"></attribute>
-				</xpath>
-				<!-- <xpath expr="//form//sheet//group//group[3]" position="attributes">
-				    <attribute name="attrs"></attribute>
-				</xpath> -->
-				<xpath expr="//field[@name='unit_amount']" position="attributes">
-				    <attribute name="attrs"></attribute>
-				</xpath>
-				<xpath expr="//label[@for='quantity']" position="attributes">
-				    <attribute name="attrs"></attribute>
-				</xpath>
-				<xpath expr="//div" position="attributes">
-				    <attribute name="attrs"></attribute>
-				</xpath>
 			</field>
 		</record>
         <record id="inherit_hr_expense_view_expenses_analysis_tree_view" model="ir.ui.view">
