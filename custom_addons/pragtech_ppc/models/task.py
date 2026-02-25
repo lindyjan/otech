@@ -329,7 +329,6 @@ class Task(models.Model):
 
     # Percentage validated between 0 to 100 on create.....
     @api.model_create_multi
-    @api.returns('self', lambda value: value.id)
     def create(self, vals_lists):
         for vals_list in vals_lists:
             if vals_list.get('percentage'):
@@ -367,9 +366,9 @@ class Task(models.Model):
 
                             for o in child_task[2]['task_ids']:
                                 prj_task = self.browse(o[1])
-                                self._cr.execute("select id, name from project_task where name='%s' order by id asc" % prj_task.name)
+                                self._cr.execute("select id, name from project_task where name=%s order by id asc", (prj_task.name,))
                                 data = self._cr.fetchall()
-                                self._cr.execute("update project_task set parent_id=%s where id=%s" % (res.id, data[0][0]))
+                                self._cr.execute("update project_task set parent_id=%s where id=%s", (res.id, data[0][0]))
                                 task_ids.append(data[0][0])
 
                 for i in self.env['project.task'].search([('id', 'in', task_ids)]):

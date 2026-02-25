@@ -76,7 +76,6 @@ class ResPartnerBank(models.Model):
     mesge_ids = fields.One2many('mail.messages', 'res_id', string='Massage', domain=lambda self: [('model', '=', self._name)], auto_join=True, readonly=True)
 
     @api.model_create_multi
-    @api.returns('self', lambda value: value.id)
     def create(self, vals_list):
         for vals in vals_list:
             remark = vals.copy()

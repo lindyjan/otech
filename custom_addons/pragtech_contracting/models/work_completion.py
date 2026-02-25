@@ -96,7 +96,6 @@ class WorkCompletionLine(models.Model):
     _description = 'Work Completion Line'
 
     @api.model_create_multi
-    @api.returns('self', lambda value: value.id)
     def create(self, vals_list):
         for vals in vals_list:
             existing_stage = []

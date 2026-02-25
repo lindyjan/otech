@@ -450,8 +450,7 @@ class WorkOrderLine(models.Model):
             return
 
         part = self.order_id.partner_id
-        query = "select category_id from partner_labour_category_rel where partner_id={}".format(part.id)
-        self.env.cr.execute(query)
+        self.env.cr.execute("select category_id from partner_labour_category_rel where partner_id=%s", (part.id,))
 
         result = self._cr.fetchall()
         for i in result:
