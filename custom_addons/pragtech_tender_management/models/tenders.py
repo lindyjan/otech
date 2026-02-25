@@ -2,10 +2,8 @@
 
 from odoo import api, fields, models
 from odoo.exceptions import UserError
-try:
-    from odoo.addons.http_routing.models.ir_http import slug
-except ImportError:
-    from odoo.addons.website.models.ir_http import slug
+from odoo.addons.http_routing.models.ir_http import IrHttp
+slug = IrHttp._slug
 
 
 class TendersTenders(models.Model):
