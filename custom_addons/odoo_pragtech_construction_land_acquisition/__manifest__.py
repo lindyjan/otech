@@ -5,7 +5,7 @@
     'author': 'Pragmatic TechSoft Pvt Ltd.',
     "website": "http://www.pragtech.co.in",
     'category': 'Land',
-    'summary': 'Odoo Construction Land Acquisition odoo land acquisition land, Property Details,Land Property ,Land Proposal,Land Owners,land management, odoo land, land,construction land',
+    'summary': 'Manage land acquisition, property details, land proposals, and owner tracking for construction projects.',
     'description': """  
 Odoo Construction Land Acquisition
 ==================================

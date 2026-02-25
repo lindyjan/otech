@@ -5,7 +5,7 @@
     'author': 'Pragmatic TechSoft Pvt Ltd.',
     "website": "http://www.pragtech.co.in",
     'category': 'Expense',
-    'summary': 'Pragtech hr Expense construction management construction app construction module project expenses project expenses odoo construction construction project odoo expenses expenses management',
+    'summary': 'Track project and non-project expenses for construction projects at project and company level.',
     'description': """  
 Pragtech hr Expense    
 ====================

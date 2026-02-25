@@ -4,7 +4,7 @@
     'author': 'Pragmatic TechSoft Pvt Ltd.',
     'website': "www.pragtech.co.in",
     'category': 'Construction',
-    'summary': 'Odoo Tender Management System odoo tender management app tender management software odoo tender',
+    'summary': 'Create and manage tenders, bidder eligibility, bid comparison, and automated top bidder selection.',
     'description': """
 Odoo Tender Management System
 =============================
