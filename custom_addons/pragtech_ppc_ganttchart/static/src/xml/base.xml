@@ -3,239 +3,13 @@
 	<t t-name="GanttView1">
 		<div id="a">
 			<div id="GanttView_chart">
-				<t t-js="vvv">
-					console.log("ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc")
-					var script = document.createElement('script');
-
-					script.src = "/pragtech_ppc_ganttchart/static/src/js/libs/jquery/jquery.livequery.1.1.1.min.js";
-
-					document.head.appendChild(script)
-
-				</t>
-
-                <t t-js="cccd">
-					console.log("ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc")
-					var script = document.createElement('script');
-
-					script.src = "/pragtech_ppc_ganttchart/static/src/js/libs/jquery/jquery.livequery.1.1.1.min.js";
-
-					document.head.appendChild(script)
-
-				</t>
-
-                <t t-js="bbbcd">
-					console.log("qqqqqqqqqqqqqqqqqqqqqqqqqqqq")
-					var script = document.createElement('script');
-
-					script.src = "/pragtech_ppc_ganttchart/static/src/js/libs/utilities.js";
-
-					document.head.appendChild(script)
-
-				</t>
-
-                <t t-js="jklj">
-					console.log("qqqqqqqqqqqqqqqqqqqqqqqqqqqq")
-					var script = document.createElement('script');
-
-					script.src = "/pragtech_ppc_ganttchart/static/src/js/libs/forms.js";
-
-					document.head.appendChild(script)
-
-				</t>
-
-                <t t-js="ttgh">
-					console.log("qqqqqqqqqqqqqqqqqqqqqqqqqqqq")
-					var script = document.createElement('script');
-
-					script.src = "/pragtech_ppc_ganttchart/static/src/js/libs/date.js";
-
-					document.head.appendChild(script)
-
-				</t>
-
-                <t t-js="ttgd">
-					console.log("qqqqqqqqqqqqqqqqqqqqqqqqqqqq")
-					var script = document.createElement('script');
-
-					script.src = "/pragtech_ppc_ganttchart/static/src/js/libs/dialogs.js";
-
-					document.head.appendChild(script)
-
-				</t>
-
-                <t t-js="ttga">
-					console.log("qqqqqqqqqqqqqqqqqqqqqqqqqqqq")
-					var script = document.createElement('script');
-
-					script.src = "/pragtech_ppc_ganttchart/static/src/js/libs/layout.js";
-
-					document.head.appendChild(script)
-
-				</t>
-
-                <t t-js="ttgb">
-					console.log("qqqqqqqqqqqqqqqqqqqqqqqqqqqq")
-					var script = document.createElement('script');
-
-					script.src = "/pragtech_ppc_ganttchart/static/src/js/libs/i18nJs.js";
-
-					document.head.appendChild(script)
-
-				</t>
-
-                <t t-js="ttcf">
-					console.log("qqqqqqqqqqqqqqqqqqqqqqqqqqqq")
-					var script = document.createElement('script');
-
-					script.src = "/pragtech_ppc_ganttchart/static/src/js/libs/jquery/dateField/jquery.dateField.js";
-
-					document.head.appendChild(script)
-
-				</t>
-
-                <t t-js="ttgd">
-					console.log("qqqqqqqqqqqqqqqqqqqqqqqqqqqq")
-					var script = document.createElement('script');
-
-					script.src = "/pragtech_ppc_ganttchart/static/src/js/libs/jquery/JST/jquery.JST.js";
-
-					document.head.appendChild(script)
-
-				</t>
-
-                <t t-js="ab">
-					console.log("qqqqqqqqqqqqqqqqqqqqqqqqqqqq")
-					var script = document.createElement('script');
-
-					script.src = "/pragtech_ppc_ganttchart/static/src/js/libs/jquery/svg/jquery.svg.min.js";
-
-					document.head.appendChild(script)
-
-				</t>
-
-                <t t-js="abcd">
-					console.log("qqqqqqqqqqqqqqqqqqqqqqqqqqqq")
-					var script = document.createElement('script');
-
-					script.src = "/pragtech_ppc_ganttchart/static/src/js/libs/jquery/svg/jquery.svgdom.1.8.js";
-
-					document.head.appendChild(script)
-
-				</t>
-
-                <t t-js="abcded">
-					console.log("qqqqqqqqqqqqqqqqqqqqqqqqqqqq")
-					var script = document.createElement('script');
-
-					script.src = "/pragtech_ppc_ganttchart/static/src/js/ganttUtilities.js";
-
-					document.head.appendChild(script)
-
-				</t>
-
-                <t t-js="head">
-					console.log("qqqqqqqqqqqqqqqqqqqqqqqqqqqq")
-					var script = document.createElement('script');
-
-					script.src = "/pragtech_ppc_ganttchart/static/src/js/ganttTask.js";
-
-					document.head.appendChild(script)
-
-				</t>
-
-                <t t-js="docum">
-					console.log("qqqqqqqqqqqqqqqqqqqqqqqqqqqq")
-					var script = document.createElement('script');
-
-					script.src = "/pragtech_ppc_ganttchart/static/src/js/ganttDrawerSVG.js";
-
-					document.head.appendChild(script)
-
-				</t>
-
-                <t t-js="documentdeax">
-					console.log("qqqqqqqqqqqqqqqqqqqqqqqqqqqq")
-					var script = document.createElement('script');
-
-					script.src = "/pragtech_ppc_ganttchart/static/src/js/ganttGridEditor.js";
-
-					document.head.appendChild(script)
-
-				</t>
-
-                <t t-js="documentdcd">
-					console.log("qqqqqqqqqqqqqqqqqqqqqqqqqqqq")
-					var script = document.createElement('script');
-
-					script.src = "/pragtech_ppc_ganttchart/static/src/js/ganttMaster.js";
-
-					document.head.appendChild(script)
-
-				</t>
-
-                <t t-js="cccdefsrfss">
-					console.log("ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc")
-					var script = document.createElement('script');
-
-					script.src = "/pragtech_ppc_ganttchart/static/src/js/libs/jquery/jquery.timers.js";
-
-					document.head.appendChild(script)
-
-				</t>
-
-                <link rel="stylesheet" href="/pragtech_ppc_ganttchart/static/src/css/platform.css" type="text/css"/>
-                <link rel="stylesheet" href="/pragtech_ppc_ganttchart/static/src/css/jquery.dateField.css" type="text/css"/>
-                <link rel="stylesheet" href="/pragtech_ppc_ganttchart/static/src/css/gantt.css" type="text/css"/>
-                <link rel="stylesheet" href="/pragtech_ppc_ganttchart/static/src/css/ganttPrint.css" type="text/css" media="print"/>
-
 			</div>
 
             <div id="workSpace" style="padding: 0px; overflow-y: auto; overflow-x: hidden; border: 1px solid #e5e5e5; position: relative; margin: 0 5px"></div>
 
-            <style>
-				.resEdit {
-					padding: 15px;
-				}
-
-				.resLine {
-					width: 95%;
-					padding: 3px;
-					margin: 5px;
-					border: 1px solid #d0d0d0;
-				}
-
-				body {
-					overflow: hidden;
-				}
-
-				.ganttButtonBar h1 {
-					color: #000000;
-					font-weight: bold;
-					font-size: 28px;
-					margin-left: 10px;
-				}
-			</style>
-
-            <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE"/>
-            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-
             <form id="gimmeBack" style="display: none;" action="../gimmeBack.jsp" method="post" target="_blank">
 				<input type="hidden" name="prj" id="gimBaPrj"/>
 			</form>
-
-            <script>console.log('Calling init jsssssssssssssszzzzzzzzzzzzzzzzzzzzzzzzzzzzzz')</script>
-
-            <script type="text/javascript" src="/pragtech_ppc_ganttchart/static/src/js/initialization.js"></script>
-
-            <t t-js="documentdcddwdwdwds">
-				console.log("qqqqqqqqqqqqqqqqqqqqqqqqqqqq111111111111111111111")
-				var script = document.createElement('script');
-
-				script.src = "/pragtech_ppc_ganttchart/static/src/js/initialization.js";
-
-				document.head.appendChild(script)
-
-			</t>
 
             <div id="gantEditorTemplates" style="display: none;">
 				<div class="__template__" type="GANTBUTTONS">
@@ -367,8 +141,8 @@
                             <td class="gdfCell" style="width:50px">
 								<input type="text" name="duration" autocomplete="off" value="(#=obj.duration#)"></input>
 							</td>
-                            
-                             
+
+
 							 &lt;td
                             class=&quot;gdfCell&quot;style="width:50px" &gt; &lt;input type=&quot;text&quot;
                             name=&quot;progress&quot; class=&quot;validated&quot;
@@ -461,7 +235,7 @@
                                               onclick="$(this).dateField({inputField:$(this).prevAll(':input:first'),isSearchField:false});">m</span>
 									</div>
 								</td>
-                                <td nowrap=""><label for="end">End</label> <!-- &nbsp;&nbsp;&nbsp;&nbsp; -->
+                                <td nowrap=""><label for="end">End</label>
                                     <input type="checkbox" id="endIsMilestone" name="endIsMilestone" value="yes"></input>
                                     <label for="endIsMilestone">is
 										milestone</label>
@@ -559,19 +333,6 @@
 
 			</div>
 
-            <script type="text/javascript" src="/pragtech_ppc_ganttchart/static/src/js/assingment.js"></script>
-
-            <t t-js="documentdcddwdwdwddcsccdscs">
-				console.log("qqqqqqqqqqqqqqqqqqqqqqqqqqqq11111111111111111111122222222222222")
-				var script = document.createElement('script');
-
-				script.src = "/pragtech_ppc_ganttchart/static/src/js/assingment.js";
-
-				document.head.appendChild(script)
-
-			</t>
-
 		</div>
 	</t>
 </templates>
-
