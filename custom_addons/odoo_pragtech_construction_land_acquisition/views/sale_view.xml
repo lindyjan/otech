@@ -35,31 +35,6 @@
                     <attribute name="invisible">1</attribute>
                 </xpath>
 
-                <xpath expr="//field[@name='order_line']/form/group/group/field[@name='product_id']" position="after">
-                    <field name="is_lease" invisible="1"/>
-                    <field name="is_sale" invisible="1"/>
-                    <field name="proposal_id"/>
-                    <field name="from_date"/>
-                    <field name="to_date"/>
-                    <field name="unit"/>
-                </xpath>
-
-                <xpath expr="//field[@name='order_line']/form/group/group/field[@name='product_id']" position="attributes">
-                    <attribute name="invisible">1</attribute>
-                </xpath>
-
-                <xpath expr="//field[@name='order_line']/form/field[@name='name']" position="attributes">
-                    <attribute name="invisible">1</attribute>
-                </xpath>
-
-                <xpath expr="//field[@name='order_line']/form/label[@for='name']" position="attributes">
-                    <attribute name="invisible">1</attribute>
-                </xpath>
-
-                <xpath expr="//field[@name='order_line']/form/group/group/div[1]" position="attributes">
-                    <attribute name="invisible">1</attribute>
-                </xpath>
-
                 <xpath expr="//field[@name='order_line']/list/field[@name='product_uom']" position="attributes">
                     <attribute name="invisible">1</attribute>
                 </xpath>
