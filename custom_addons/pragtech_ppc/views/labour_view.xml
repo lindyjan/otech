@@ -141,7 +141,6 @@
         <record id="view_labour_group_hierarchy" model="ir.ui.view">
             <field name="name">labour.group.hierarchy</field>
             <field name="model">labour.master</field>
-            <field name="field_parent">child_ids2</field>
             <field name="arch" type="xml">
                 <list>
                     <field name="name"/>

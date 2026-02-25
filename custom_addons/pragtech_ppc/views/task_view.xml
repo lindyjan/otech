@@ -502,7 +502,6 @@
             <field name="name">project.task.tree.hierarchy.wbs</field>
             <field name="model">project.task</field>
             <field name="type">list</field>
-            <field name="field_parent">child_ids2</field>
             <field name="arch" type="xml">
                 <list string="Child Tasks">
                     <field name="sequence" invisible="not context.get('seq_visible', False)"/>
@@ -579,7 +578,6 @@
         <record id="view_project_task_hierarchy" model="ir.ui.view">
             <field name="name">project.task.hierarchy</field>
             <field name="model">project.task</field>
-            <field name="field_parent">child_ids2</field>
             <field name="arch" type="xml">
                 <list string="Project Task Hierarchy">
                     <field name="name"/>
