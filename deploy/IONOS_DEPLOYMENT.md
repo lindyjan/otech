@@ -155,17 +155,131 @@ sudo -u postgres psql -l
 
 ---
 
-## 5. Multisite Nginx Setup
+## 5. Multisite Setup
 
-The server runs multiple domains through a single Odoo instance, each with its
-own nginx server block. The config is at `/etc/nginx/sites-available/odoo`.
+All domains are served by a **single Odoo instance** using **one database**
+(`odoo18prod`). Odoo's built-in multi-website module routes each domain to
+the correct website content/theme within that database.
 
-### How It Works
+### Architecture
 
-- All domains proxy to `127.0.0.1:8069` (Odoo) and `127.0.0.1:8072` (websocket/longpolling)
-- Each domain has an HTTP block (port 80) that redirects to HTTPS
-- Each domain has an HTTPS block (port 443) with its own SSL certificate
-- Odoo uses `dbfilter = %d` to serve the right database per domain
+```
+                     ┌─────────────┐
+  i84mobile.com ────>│             │
+  morelmediastudio ─>│   Nginx     │──> 127.0.0.1:8069 ──> Odoo 18
+  ovoco.co ─────────>│  (SSL/TLS)  │──> 127.0.0.1:8072 ──> (websocket)
+  books.ovoco.co ───>│             │
+  property.ovoco.co─>│             │         │
+                     └─────────────┘         ▼
+                                        odoo18prod DB
+                                     (multi-website module)
+```
+
+### Key Config Settings
+
+| Setting | Value | Purpose |
+|---------|-------|---------|
+| `db_name` | `odoo18prod` | Lock to single database |
+| `dbfilter` | `^odoo18prod$` | Prevent other DB access |
+| `proxy_mode` | `True` | Trust Nginx forwarded headers |
+| `list_db` | `False` | Hide database manager |
+
+### Config Files in This Repo
+
+| File | Deploys to | Purpose |
+|------|-----------|---------|
+| `deploy/odoo-server.conf` | `/etc/odoo.conf` | Odoo config with multisite dbfilter |
+| `deploy/nginx-multisite.conf` | `/etc/nginx/sites-available/odoo` | All domain server blocks |
+| `deploy/setup-multisite.sh` | Run on VPS as root | Automated setup (SSL + Nginx + Odoo) |
+
+### Quick Setup (Automated)
+
+```bash
+# From your local machine, copy the script to VPS
+scp deploy/setup-multisite.sh root@YOUR_VPS_IP:/tmp/
+
+# SSH in and run it
+ssh root@YOUR_VPS_IP
+chmod +x /tmp/setup-multisite.sh
+CERTBOT_EMAIL=your@email.com /tmp/setup-multisite.sh
+```
+
+The script handles: Nginx config, SSL certificates, Odoo config, and restarts.
+
+### Manual Setup
+
+#### Step 1: DNS Records
+
+Point all domains to your VPS IP in your registrar's DNS settings:
+
+| Domain | Record Type | Value |
+|--------|-------------|-------|
+| `i84mobile.com` | A | YOUR_VPS_IP |
+| `www.i84mobile.com` | A | YOUR_VPS_IP |
+| `morelmediastudio.com` | A | YOUR_VPS_IP |
+| `www.morelmediastudio.com` | A | YOUR_VPS_IP |
+| `ovoco.co` | A | YOUR_VPS_IP |
+| `www.ovoco.co` | A | YOUR_VPS_IP |
+| `books.ovoco.co` | A | YOUR_VPS_IP |
+| `property.ovoco.co` | A | YOUR_VPS_IP |
+
+#### Step 2: Deploy Configs
+
+```bash
+# Copy Odoo config
+scp deploy/odoo-server.conf root@YOUR_VPS_IP:/etc/odoo.conf
+
+# Copy Nginx config
+scp deploy/nginx-multisite.conf root@YOUR_VPS_IP:/etc/nginx/sites-available/odoo
+
+# On the VPS: symlink and test
+ssh root@YOUR_VPS_IP
+ln -sf /etc/nginx/sites-available/odoo /etc/nginx/sites-enabled/odoo
+nginx -t && systemctl reload nginx
+```
+
+#### Step 3: SSL Certificates
+
+```bash
+# Get certs for each domain group
+certbot --nginx -d i84mobile.com -d www.i84mobile.com
+certbot --nginx -d morelmediastudio.com -d www.morelmediastudio.com
+certbot --nginx -d ovoco.co -d www.ovoco.co
+certbot --nginx -d books.ovoco.co
+certbot --nginx -d property.ovoco.co
+```
+
+#### Step 4: Restart Services
+
+```bash
+chown odoo:odoo /etc/odoo.conf
+chmod 640 /etc/odoo.conf
+systemctl restart odoo
+systemctl reload nginx
+```
+
+#### Step 5: Configure Websites in Odoo
+
+1. Log in at `https://ovoco.co/web?debug=1`
+2. Go to **Apps** > search **Website** > **Install**
+3. After install, go to **Settings** > **Website**
+4. Click **Websites** in the top menu bar
+5. Create websites:
+
+| Website Name | Domain |
+|-------------|--------|
+| Ovoco | `ovoco.co` |
+| i84 Mobile | `i84mobile.com` |
+| Morel Media Studio | `morelmediastudio.com` |
+
+6. For each website, configure:
+   - **Domain**: the exact domain (e.g., `i84mobile.com`)
+   - **Company**: assign to the correct company (if multi-company)
+   - **Homepage**: set the landing page
+   - **Theme**: pick a theme per site
+
+7. Use the **website switcher** (top-right of Website Builder) to edit
+   content for each site independently.
 
 ### Editing the Nginx Config
 
@@ -176,87 +290,21 @@ nano /etc/nginx/sites-available/odoo
 ### After Making Changes
 
 ```bash
-# Test the config for syntax errors
-nginx -t
-
-# If the test passes, reload nginx
-systemctl reload nginx
+nginx -t && systemctl reload nginx
 ```
 
 ### Adding a New Domain
 
-1. Point the domain's DNS A record to your VPS IP address (in IONOS DNS settings or your registrar)
-2. Add server blocks to the nginx config:
-
-```nginx
-# HTTP -> HTTPS redirect
-server {
-    listen 80;
-    server_name newdomain.com www.newdomain.com;
-    return 301 https://$server_name$request_uri;
-}
-
-# HTTPS server block
-server {
-    listen 443 ssl http2;
-    server_name newdomain.com www.newdomain.com;
-
-    # SSL certs (certbot will fill these in)
-    ssl_certificate /etc/letsencrypt/live/newdomain.com/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/newdomain.com/privkey.pem;
-    include /etc/letsencrypt/options-ssl-nginx.conf;
-    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
-
-    proxy_read_timeout 720s;
-    proxy_connect_timeout 720s;
-    proxy_send_timeout 720s;
-
-    proxy_set_header X-Forwarded-Host $host;
-    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-    proxy_set_header X-Forwarded-Proto $scheme;
-    proxy_set_header X-Real-IP $remote_addr;
-
-    access_log /var/log/nginx/newdomain.access.log;
-    error_log /var/log/nginx/newdomain.error.log;
-
-    location /websocket {
-        proxy_pass http://127.0.0.1:8072;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection "upgrade";
-    }
-
-    location / {
-        proxy_redirect off;
-        proxy_pass http://127.0.0.1:8069;
-    }
-
-    location ~* /web/static/ {
-        proxy_cache_valid 200 90m;
-        proxy_buffering on;
-        expires 864000;
-        proxy_pass http://127.0.0.1:8069;
-    }
-
-    gzip_types text/css text/plain text/xml application/xml application/javascript application/json;
-    gzip on;
-
-    client_max_body_size 200m;
-}
-```
-
+1. Point the domain's DNS A record to your VPS IP
+2. Add HTTP redirect + HTTPS server blocks to the Nginx config
+   (see `deploy/nginx-multisite.conf` for the pattern)
 3. Get an SSL certificate:
-
-```bash
-certbot --nginx -d newdomain.com -d www.newdomain.com
-```
-
-4. Test and reload:
-
-```bash
-nginx -t && systemctl reload nginx
-```
-
-5. Create a new Odoo database for the domain (or use the same one).
+   ```bash
+   certbot --nginx -d newdomain.com -d www.newdomain.com
+   ```
+4. Test and reload: `nginx -t && systemctl reload nginx`
+5. In Odoo: **Settings** > **Website** > **Websites** > create a new website
+   with the domain set to `newdomain.com`
 
 ---
 
