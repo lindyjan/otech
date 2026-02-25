@@ -12,7 +12,7 @@
                     <field name="proposal_id" invisible="1"/>
                 </field>
 
-                <xpath expr="/form/sheet/notebook/page/field[@name='invoice_line_ids']/tree/field[@name='quantity']"
+                <xpath expr="/form/sheet/notebook/page/field[@name='invoice_line_ids']/list/field[@name='quantity']"
                        position="before">
                     <field name="is_lease" invisible="1"/>
                     <field name="is_sale" invisible="1"/>
