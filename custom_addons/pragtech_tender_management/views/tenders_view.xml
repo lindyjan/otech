@@ -182,7 +182,7 @@
         <record id="tenders_form_action" model="ir.actions.act_window">
             <field name="name">Tenders</field>
             <field name="res_model">tenders.tenders</field>
-            <field name="view_mode">tree,form,kanban</field>
+            <field name="view_mode">list,form,kanban</field>
         </record>
 
         <menuitem id="tenders_menu" name="Tenders"/>
@@ -218,7 +218,7 @@
         <record id="dept_action" model="ir.actions.act_window">
             <field name="name">Department</field>
             <field name="res_model">res.department</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">list,form</field>
             <field name="help" type="html">
                 <p class="oe_view_nocontent_create">Click to define a new Department.</p>
             </field>
@@ -260,7 +260,7 @@
             <field name="name">Questionnaire</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">tender.questions</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">list,form</field>
             <field name="help" type="html">
                 <p class="oe_view_nocontent_create">Click to define a new Rating Qustionnaire.</p>
             </field>
@@ -298,7 +298,7 @@
             <field name="name">Job Type</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">job.type</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">list,form</field>
             <field name="help" type="html">
                 <p class="oe_view_nocontent_create">Click to define a new Department.</p>
             </field>
@@ -375,7 +375,7 @@
         <record id="enquiry_form_action" model="ir.actions.act_window">
             <field name="name">Enquiry</field>
             <field name="res_model">tender.enquiries</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">list,form</field>
         </record>
 
         <menuitem
@@ -389,7 +389,7 @@
             <field name="name">Contractor</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">res.partner</field>
-            <field name="view_mode">kanban,tree,form</field>
+            <field name="view_mode">kanban,list,form</field>
         </record>
 
         <menuitem
@@ -476,7 +476,7 @@
             <field name="name">Estimation</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">tender.estimation</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">list,form</field>
         </record>
 
         <menuitem

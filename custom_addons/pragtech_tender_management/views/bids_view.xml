@@ -126,7 +126,7 @@
             <field name="name">Bids</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">bids.bids</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">list,form</field>
         </record>
 
         <menuitem id="bids_main_menu" parent="tenders_menu" name="Bids Main Menu" action="bids_form_action_update" sequence="2"/>

@@ -114,7 +114,7 @@
         <record id="qa_procedure_action" model="ir.actions.act_window">
             <field name="name">Qa Procedure</field>
             <field name="res_model">qa.procedure</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">list,form</field>
         </record>
 
     </data>

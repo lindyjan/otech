@@ -235,7 +235,7 @@
         <record id="labour_quotation_comparison_action" model="ir.actions.act_window">
             <field name="name">Labour Quotation Comparison</field>
             <field name="res_model">labour.quotation.comparison</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">list,form</field>
         </record>
 
         <menuitem id="labour_quotation_comparison_id" parent="pragtech_contracting.labour_menu_id" sequence="2" name="Labour Quotation Comparison" action="labour_quotation_comparison_action"/>
@@ -337,7 +337,7 @@
         <record id="labour_price_trend_action" model="ir.actions.act_window">
             <field name="name">Labour Price Trend</field>
             <field name="res_model">labour.contractorinfo</field>
-            <field name="view_mode">tree,form,search,graph,pivot</field>
+            <field name="view_mode">list,form,search,graph,pivot</field>
         </record>
 
         <menuitem name="Labour Price Trend" id="labour_price_trend" parent="labour_menu_id" action="labour_price_trend_action" sequence="7"/>
