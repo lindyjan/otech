@@ -333,7 +333,7 @@ class LabourRequisition(models.TransientModel):
         return {
             'name': 'Labour Requisitions',
             'view_mode': action.view_mode,
-            'views': [(view_id, 'tree')],
+            'views': [(view_id, 'list')],
             'res_model': 'labour.requisition',
             'view_id': view_id,
             'type': 'ir.actions.act_window',

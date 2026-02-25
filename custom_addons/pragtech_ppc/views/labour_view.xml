@@ -110,7 +110,7 @@
         <record id="labour_action" model="ir.actions.act_window">
             <field name="name">Labour Master</field>
             <field name="res_model">labour.master</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">list,form</field>
             <field name="context">{'default_type':'labour','default_is_labour':1}</field>
             <field name="domain">[('is_labour','=',1)]</field>
         </record>
@@ -125,7 +125,7 @@
         <record id="labour_group_action" model="ir.actions.act_window">
             <field name="name">Labour Master</field>
             <field name="res_model">labour.master</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">list,form</field>
             <field name="view_id" ref="labour_group_form_view"/>
             <field name="context">{'default_type':'group','default_is_labour':0'}</field>
             <field name="domain">[('is_labour','!=',1)]</field>
@@ -208,7 +208,7 @@
         <record id="labour_work_classification_action" model="ir.actions.act_window">
             <field name="name">Labour Work Classification</field>
             <field name="res_model">labour.work.classification</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">list,form</field>
         </record>
         <!-- end labour work class -->
 
@@ -258,7 +258,7 @@
         <record id="labour_rate_master_action" model="ir.actions.act_window">
             <field name="name">Labour Rate Master</field>
             <field name="res_model">labour.rate.master</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">list,form</field>
         </record>
 
         <menuitem id="labour_rate_master_header_child" parent="labour_header" name="Labour Rate Master" action='labour_rate_master_action'/>
@@ -266,7 +266,7 @@
         <record id="open_labour_from_hierarchy" model="ir.actions.act_window">
             <field name="name">Project Complete</field>
             <field name="res_model">labour.master</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">list,form</field>
             <field name="view_id" ref="view_labour_group_hierarchy"/>
             <field name="search_view_id" ref="labour_master_search_view"/>
             <field name="domain">[('id','=',active_id)]</field>

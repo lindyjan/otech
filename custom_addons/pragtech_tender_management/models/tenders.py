@@ -69,11 +69,11 @@ class TendersTenders(models.Model):
                 'name': self.name,
                 'res_model': 'bids.bids',
                 'type': 'ir.actions.act_window',
-                'view_mode': 'tree',
+                'view_mode': 'list',
                 'view_id': tree_view_id,
                 'domain': [('tender_id', '=', bids)],
                 'views': [
-                    (tree_view_id, 'tree'),
+                    (tree_view_id, 'list'),
                     (form_view_id, 'form'),
                 ],
                 'res_id': False,

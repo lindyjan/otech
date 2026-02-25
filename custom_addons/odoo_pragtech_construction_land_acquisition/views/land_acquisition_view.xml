@@ -203,7 +203,7 @@
             <field name="name">Land Property</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">land.acquisition</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">list,form</field>
             <field name="context">{}</field>
             <field name="domain">[]</field>
         </record>

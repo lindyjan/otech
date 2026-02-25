@@ -238,7 +238,7 @@
         <record id="project_category_action" model="ir.actions.act_window">
             <field name="name">project Category</field>
             <field name="res_model">project.category</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">list,form</field>
         </record>
 
         <record id="stage_master_form_view" model="ir.ui.view">
@@ -292,7 +292,7 @@
         <record id="stage_master_action" model="ir.actions.act_window">
             <field name="name">Stages Master</field>
             <field name="res_model">stage.master</field>
-            <field name="view_mode">tree,form,search</field>
+            <field name="view_mode">list,form,search</field>
         </record>
 
         <menuitem action="stage_master_action" id="menu_state_master" name="Stages Master" parent="master_header"/>
@@ -344,13 +344,13 @@
         <record id="stage_transaction_action" model="ir.actions.act_window">
             <field name="name">Stages Transaction</field>
             <field name="res_model">stage.transaction</field>
-            <field name="view_mode">tree,form,search</field>
+            <field name="view_mode">list,form,search</field>
         </record>
 
         <record id="1open_view_project_all" model="ir.actions.act_window">
             <field name="name">Projects</field>
             <field name="res_model">project.project</field>
-            <field name="view_mode">tree,kanban,form</field>
+            <field name="view_mode">list,kanban,form</field>
             <field name="view_id" ref="project.edit_project"/>
             <field name="context">{'search_default_Current': 1}</field>
             <field name="help" type="html">

@@ -166,7 +166,7 @@
         <record id="task_category_action" model="ir.actions.act_window">
             <field name="name">Task Category</field>
             <field name="res_model">task.category</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">list,form</field>
         </record>
         <!-- End task Category -->
 
@@ -222,7 +222,7 @@
         <record id="task_sub_category_action" model="ir.actions.act_window">
             <field name="name">Task Sub Category</field>
             <field name="res_model">task.sub.category</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">list,form</field>
         </record>
 
         <record id="project_task_tree" model="ir.ui.view">
@@ -462,7 +462,7 @@
             <field name="name">Project Wbs</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">project.task</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">list,form</field>
             <field name="context">{'default_is_task': False,'wbs_action': True, 'default_is_wbs': True}</field>
             <field name="domain">[('is_wbs', '=' ,1), ('is_task', '=', 0)]</field>
             <field name="view_id" ref="project_task_inherited_form_wbs1"/>
@@ -471,13 +471,13 @@
         <record id="category_budget_action_menu1" model="ir.actions.act_window">
             <field name="name">Category Budget</field>
             <field name="res_model">category.budget</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">list,form</field>
         </record>
 
         <record id="wbs_budget_action_menu1" model="ir.actions.act_window">
             <field name="name">Wbs Budget</field>
             <field name="res_model">wbs.budget</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">list,form</field>
         </record>
 
         <!-- Category Budget-menu and action starts -->
@@ -515,7 +515,7 @@
         <record id="action_project_wbs_hierarchy" model="ir.actions.act_window">
             <field name="name">Project WBS Group Hierarchy</field>
             <field name="res_model">project.task</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">list,form</field>
             <field name="domain">[('parent_task_id', '=', False), ('parent_group_id', '=', False), ('parent_id', '=', False)]
             </field>
         </record>
@@ -538,7 +538,7 @@
         <record id="action_task_new_form" model="ir.actions.act_window">
             <field name="name">Tasks</field>
             <field name="res_model">project.task</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">list,form</field>
             <field name="view_id" ref="project_task_form"/>
             <field name="context">{'default_is_task': True, 'default_min_qty': 1}</field>
             <field name="domain">[('is_task', '=', 1)]</field>
@@ -556,7 +556,7 @@
         <record id="action_task_group_new_form" model="ir.actions.act_window">
             <field name="name">Project Tasks Group</field>
             <field name="res_model">project.task</field>
-            <field name="view_mode">form,tree,gantt</field>
+            <field name="view_mode">form,list,gantt</field>
 
             <!--<field name="sequence" eval="3"/>
             <field name="view_mode">form</field>-->
@@ -597,7 +597,7 @@
         <record id="open_project_task_from_hierarchy" model="ir.actions.act_window">
             <field name="name">Project Complete</field>
             <field name="res_model">project.task</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">list,form</field>
             <field name="view_id" ref="view_project_task_hierarchy"/>
             <field name="domain">[('id', '=', active_id)]</field>
             <field name="context">{}</field>
