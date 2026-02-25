@@ -127,7 +127,7 @@
             <field name="name">Only authorized users can rw ra_bill_line Executive</field>
             <field name="model_id" ref="pragtech_contracting.model_ra_bill_line"/>
             <field name="groups" eval="[(4,ref('pragtech_contracting.group_user'))]"></field>
-            <field name="domain_force">[("task_category", "in", [c.id for c in user.task_category_ids])]</field>
+            <field name="domain_force">[("category_id", "in", [c.id for c in user.task_category_ids])]</field>
             <field name="perm_read">0</field>
             <field name="perm_write">0</field>
             <field name="perm_unlink">1</field>
@@ -149,7 +149,7 @@
             <field name="name">Only authorized users can rw ra_bill_line asst Manager</field>
             <field name="model_id" ref="pragtech_contracting.model_ra_bill_line"/>
             <field name="groups" eval="[(4,ref('pragtech_contracting.group_asst_manager'))]"></field>
-            <field name="domain_force">[("task_category", "in", [c.id for c in user.task_category_ids])]</field>
+            <field name="domain_force">[("category_id", "in", [c.id for c in user.task_category_ids])]</field>
             <field name="perm_read">0</field>
             <field name="perm_write">0</field>
             <field name="perm_unlink">1</field>
@@ -160,7 +160,7 @@
             <field name="name">Only authorized users can ra_bill_line Manager</field>
             <field name="model_id" ref="pragtech_contracting.model_ra_bill_line"/>
             <field name="groups" eval="[(4,ref('pragtech_contracting.group_manager'))]"></field>
-            <field name="domain_force">[("task_category", "in", [c.id for c in user.task_category_ids])]</field>
+            <field name="domain_force">[("category_id", "in", [c.id for c in user.task_category_ids])]</field>
             <field name="perm_read">0</field>
             <field name="perm_write">0</field>
             <field name="perm_unlink">1</field>
@@ -183,7 +183,7 @@
             <field name="name">Only authorized users can rw labour_requisition Sr.Executive</field>
             <field name="model_id" ref="pragtech_contracting.model_labour_requisition"/>
             <field name="groups" eval="[(4,ref('pragtech_contracting.group_sr_user'))]"></field>
-            <field name="domain_force">[("category_id", "in", [c.id for c in user.task_category_ids])]</field>
+            <field name="domain_force">[("task_category", "in", [c.id for c in user.task_category_ids])]</field>
             <field name="perm_read">0</field>
             <field name="perm_write">0</field>
             <field name="perm_unlink">1</field>
