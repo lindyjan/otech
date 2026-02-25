@@ -33,6 +33,7 @@ odoo construction
         ],
         'web.assets_frontend': [
             'pragtech_ppc_ganttchart/static/src/js/initialization_copy.js',
+            'pragtech_ppc_ganttchart/static/src/xml/login_user_switch.xml',
         ],
     },
 
