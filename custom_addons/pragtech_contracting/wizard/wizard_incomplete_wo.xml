@@ -26,7 +26,7 @@
                         </div>
 
                         <field name="order_line">
-                            <tree editable="bottom" create="false" delete="false">
+                            <list editable="bottom" create="false" delete="false">
                                 <field name="name" readonly="True"/>
                                 <field name="date_order" readonly="True"/>
                                 <field name="partner_id" readonly="True"/>
@@ -34,7 +34,7 @@
                                 <field name="sub_project" readonly="True"/>
                                 <field name="project_wbs" readonly="True" context="{'form_view_ref':'pragtech_ppc.project_task_inherited_form_wbs1'}"/>
                                 <field name="completion_id" readonly="True"/>
-                            </tree>
+                            </list>
                         </field>
                     </sheet>
 

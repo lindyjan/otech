@@ -55,11 +55,11 @@
                     <field name="brand_ids"/>
                     <separator string="Conversion Factor"/>
                     <field name="conversion_uom_ids" nolabel="1">
-                        <tree editable="bottom">
+                        <list editable="bottom">
                             <field name="from_uom_id" options="{'no_open': True}"/>
                             <field name="to_uom_id" options="{'no_open': True}"/>
                             <field name="conversion_factor"/>
-                        </tree>
+                        </list>
                     </field>
                 </xpath>
 
@@ -104,10 +104,10 @@
             <field name="model">qa.procedure</field>
             <field name="type">list</field>
             <field name="arch" type="xml">
-                <tree>
+                <list>
                     <field name="name"/>
                     <field name="description"/>
-                </tree>
+                </list>
             </field>
         </record>
 

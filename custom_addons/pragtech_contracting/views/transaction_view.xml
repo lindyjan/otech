@@ -6,14 +6,14 @@
             <field name="name">Transaction.view.tree</field>
             <field name="model">transaction.transaction</field>
             <field name="arch" type="xml">
-                <tree>
+                <list>
                     <field name="name" readonly="1"/>
                     <field name="transaction_type"/>
                     <field name="amount"/>
                     <field name="project_id"/>
                     <field name="work_order_id"/>
                     <field name="partner_id"/>
-                </tree>
+                </list>
             </field>
         </record>
 
@@ -107,7 +107,7 @@
                         <notebook>
                             <page string="Audit Trail">
                                 <field name="mesge_ids" nolabel="1">
-                                    <tree create="false">
+                                    <list create="false">
                                         <field name="date"/>
                                         <field name="author_id"/>
                                         <field name="to_stage"/>
@@ -115,7 +115,7 @@
                                         <field name="res_id" invisible="1"/>
                                         <field name="model" invisible="1"/>
                                         <field name="is_use" invisible="1"/>
-                                    </tree>
+                                    </list>
                                 </field>
                             </page>
                         </notebook>

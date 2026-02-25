@@ -25,7 +25,7 @@
                         <notebook>
                             <page string="Category Budget Line">
                                 <field name="category_line_ids" context="{'default_quantity': builtup_area}">
-                                    <tree editable="bottom">
+                                    <list editable="bottom">
                                         <field name="task_category"/>
                                         <field name="quantity" sum="Quantity"/>
                                         <field name="rate" sum="Rate"/>
@@ -42,7 +42,7 @@
                                         <field name="stage_id" readonly="1"/>
                                         <field name="flag" invisible="1"/>
                                         <button string="Change Stage" name="change_state" type="object" class="oe-hielight" invisible="flag"/>
-                                    </tree>
+                                    </list>
                                 </field>
                             </page>
                         </notebook>
@@ -56,11 +56,11 @@
             <field name="model">category.budget</field>
             <field name="type">list</field>
             <field name="arch" type="xml">
-                <tree>
+                <list>
                     <field name="project_id"/>
                     <field name="sub_project"/>
                     <field name="project_wbs" context="{'form_view_ref': 'pragtech_ppc.project_task_inherited_form_wbs1'}"/>
-                </tree>
+                </list>
             </field>
         </record>
 
@@ -95,13 +95,13 @@
                     <notebook>
                         <page string="Wbs Budget Line">
                             <field name="wbs_budget_line_ids">
-                                <tree editable="bottom">
+                                <list editable="bottom">
                                     <field name="quantity"/>
                                     <field name="rate"/>
                                     <field name="amount"/>
                                     <field name="labour_percent"/>
                                     <field name="material_percent"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                     </notebook>
@@ -115,10 +115,10 @@
             <field name="model">wbs.budget</field>
             <field name="type">list</field>
             <field name="arch" type="xml">
-                <tree>
+                <list>
                     <field name="project_id"/>
                     <field name="project_wbs" context="{'form_view_ref':'pragtech_ppc.project_task_inherited_form_wbs1'}"/>
-                </tree>
+                </list>
             </field>
         </record>
     </data>

@@ -40,7 +40,7 @@
                                 <b>Select All</b>
 
                                 <field name="requisition_line_ids">
-                                    <tree editable="bottom">
+                                    <list editable="bottom">
                                         <field name="is_use" readonly="False"/>
                                         <field name="labour_id" readonly="True"/>
                                         <field name="group_id" readonly="True"/>
@@ -58,7 +58,7 @@
                                         <field name="estimation_id" readonly="True"/>
                                         <field name="current_req_qty" readonly="not is_use"/>
                                         <field name="specification" readonly="not is_use"/>
-                                    </tree>
+                                    </list>
                                 </field>
 
                                 <footer>
@@ -91,7 +91,7 @@
             <field name="name">labour.requisition.wizard.tree</field>
             <field name="model">labour.requisition.wizard.line</field>
             <field name="arch" type="xml">
-                <tree>
+                <list>
                     <field name="is_use"/>
                     <field name="labour_id"/>
                     <field name="group_id"/>
@@ -102,7 +102,7 @@
                     <field name="Requisition_as_on_date"/>
                     <field name="specification"/>
                     <field name="current_req_qty"/>
-                </tree>
+                </list>
             </field>
         </record>
 
@@ -147,7 +147,7 @@
                                 <b>Select All</b>
 
                                 <field name="requisition_line_ids">
-                                    <tree editable="bottom" colors="#FF0000:is_red==True">
+                                    <list editable="bottom" colors="#FF0000:is_red==True">
                                         <field name="is_use"/>
                                         <field name="requisition_name" readonly="True"/>
                                         <field name="labour_id" readonly="True"/>
@@ -163,7 +163,7 @@
                                         <field name="current_order_qty" readonly="not is_use"/>
                                         <field name="specification" readonly="not is_use"/>
                                         <field name="is_red" invisible="1"/>
-                                    </tree>
+                                    </list>
                                 </field>
 
                                 <group>

@@ -29,7 +29,7 @@
                         </div>
 
                         <field name="order_line">
-                            <tree editable="bottom" create="false" delete="false">
+                            <list editable="bottom" create="false" delete="false">
                                 <field name="name" readonly="True"/>
                                 <field name="date_order" readonly="True"/>
                                 <field name="partner_id" readonly="True"/>
@@ -40,7 +40,7 @@
                                 <field name="untaxed_amount" readonly="True"/>
                                 <field name="taxes" readonly="True"/>
                                 <field name="total" readonly="True"/>
-                            </tree>
+                            </list>
                         </field>
                     </sheet>
 

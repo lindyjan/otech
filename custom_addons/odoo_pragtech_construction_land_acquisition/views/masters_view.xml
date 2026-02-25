@@ -30,9 +30,9 @@
             <field name="name">location.tree</field>
             <field name="model">locations</field>
             <field name="arch" type="xml">
-                <tree string="Location">
+                <list string="Location">
                     <field name="name"/>
-                </tree>
+                </list>
             </field>
         </record>
 
@@ -81,10 +81,10 @@
             <field name="name">area.tree</field>
             <field name="model">areas</field>
             <field name="arch" type="xml">
-                <tree string="Area">
+                <list string="Area">
                     <field name="name"/>
                     <field name="location_id"/>
-                </tree>
+                </list>
             </field>
         </record>
 
@@ -131,9 +131,9 @@
             <field name="name">property.type.tree</field>
             <field name="model">property.type</field>
             <field name="arch" type="xml">
-                <tree string="Property Type">
+                <list string="Property Type">
                     <field name="name"/>
-                </tree>
+                </list>
             </field>
         </record>
 
@@ -181,9 +181,9 @@
             <field name="name">Document.type.tree</field>
             <field name="model">document.type</field>
             <field name="arch" type="xml">
-                <tree string="Document Type">
+                <list string="Document Type">
                     <field name="name"/>
-                </tree>
+                </list>
             </field>
         </record>
 
@@ -231,9 +231,9 @@
             <field name="name">place.type.tree</field>
             <field name="model">place.type</field>
             <field name="arch" type="xml">
-                <tree string="Place Type">
+                <list string="Place Type">
                     <field name="name"/>
-                </tree>
+                </list>
             </field>
         </record>
 
@@ -271,9 +271,9 @@
             <field name="name">view.type.tree</field>
             <field name="model">view.type</field>
             <field name="arch" type="xml">
-                <tree string="View Type">
+                <list string="View Type">
                     <field name="name"/>
-                </tree>
+                </list>
             </field>
         </record>
 

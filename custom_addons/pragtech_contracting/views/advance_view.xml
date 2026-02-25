@@ -6,14 +6,14 @@
             <field name="name">advance.view.tree</field>
             <field name="model">advance.recovery</field>
             <field name="arch" type="xml">
-                <tree>
+                <list>
                     <field name="name" readonly="1"/>
                     <field name="company_id"/>
                     <field name="project_id"/>
                     <field name="sub_project"/>
                     <field name="workorder_id"/>
                     <field name="contractor_id"/>
-                </tree>
+                </list>
             </field>
         </record>
 
@@ -49,7 +49,7 @@
                         </group>
 
                         <field name="advance_line_ids">
-                            <tree editable="bottom" create="false" delete="false">
+                            <list editable="bottom" create="false" delete="false">
                                 <field name="is_use"/>
                                 <field name="advance_id" readonly="1"/>
                                 <field name="project_id" readonly="1"/>
@@ -64,7 +64,7 @@
                                 <field name="bank_name" invisible="payment_mode == 'cash'"/>
                                 <field name="payment_refrence" readonly="payment_mode == 'cash'"/>
                                 <field name="transaction_date" readonly="1"/>
-                            </tree>
+                            </list>
                         </field>
                         <group>
                             <group>
@@ -76,7 +76,7 @@
                         <div class="clearfix"/>
 
                         <field name="debit_adv_line_ids">
-                            <tree editable="bottom" create="false" delete="false">
+                            <list editable="bottom" create="false" delete="false">
                                 <field name="is_use"/>
                                 <field name="debit_id" readonly="1"/>
                                 <field name="project_id" readonly="1"/>
@@ -92,7 +92,7 @@
                                 <field name="bank_name" invisible="payment_mode == 'cash'"/>
                                 <field name="payment_refrence" readonly="payment_mode == 'cash'"/>
                                 <field name="transaction_date" readonly="1"/>
-                            </tree>
+                            </list>
                         </field>
                         <group>
                             <group>
@@ -107,7 +107,7 @@
                         <notebook>
                             <page string="Audit Trail">
                                 <field name="mesge_ids" nolabel="1">
-                                    <tree create="false">
+                                    <list create="false">
                                         <field name="date"/>
                                         <field name="author_id"/>
                                         <field name="to_stage"/>
@@ -115,7 +115,7 @@
                                         <field name="res_id" invisible="1"/>
                                         <field name="model" invisible="1"/>
                                         <field name="is_use" invisible="1"/>
-                                    </tree>
+                                    </list>
                                 </field>
                             </page>
                         </notebook>

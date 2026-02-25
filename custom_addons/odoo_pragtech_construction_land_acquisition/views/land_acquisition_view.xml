@@ -90,11 +90,11 @@
                             <page string="Nearest Places">
                                 <separator string="Nearest Places"/>
                                 <field name="nearby_ids" nolabel="1" readonly="state != 'new_draft'">
-                                    <tree editable="bottom">
+                                    <list editable="bottom">
                                         <field name="name"/>
                                         <field name="type"/>
                                         <field name="distance"/>
-                                    </tree>
+                                    </list>
 
                                     <form string="Documents">
                                         <group>
@@ -110,11 +110,11 @@
                             <page string="Photos &amp; Documents" name="Photos and Documents">
                                 <separator string="Photos"/>
                                 <field name="property_photo_ids" nolabel="1" readonly="state != 'new_draft'">
-                                    <tree string="Photos" editable="bottom">
+                                    <list string="Photos" editable="bottom">
                                         <field name="photos_description"/>
                                         <field name="doc_name" readonly="False" invisible="1"/>
                                         <field name="photos" filename="doc_name" style="width:70%" widget="binary"/>
-                                    </tree>
+                                    </list>
                                     <form string="Documents">
                                         <group>
                                             <field name="photos_description"/>
@@ -129,11 +129,11 @@
                                 <group>
                                     <separator string="Documents"/>
                                     <field name="contract_attachment_ids" nolabel="1" readonly="state != 'new_draft'">
-                                        <tree string="Documents" editable="bottom">
+                                        <list string="Documents" editable="bottom">
                                             <field name="photos_description"/>
                                             <field name="doc_name" readonly="False" invisible="1"/>
                                             <field name="photos" filename="doc_name" style="width:70%" widget="binary"/>
-                                        </tree>
+                                        </list>
                                         <form string="Documents">
                                             <group>
                                                 <field name="photos_description"/>
@@ -149,19 +149,19 @@
                             <page string="Similar Properties">
                                 <field name="similar_property_ids" nolabel="1"
                                        readonly="state != 'new_draft'">
-                                    <tree string="similar property" editable="bottom">
+                                    <list string="similar property" editable="bottom">
                                         <field name="ref_name"/>
                                         <field name="name" string="Property Name"/>
-                                    </tree>
+                                    </list>
                                 </field>
                             </page>
 
                             <page string="Land Owners">
                                 <field name="owner_ids" readonly="state != 'new_draft'">
-                                    <tree string="Land Owners" editable="bottom">
+                                    <list string="Land Owners" editable="bottom">
                                         <field name="partner_id" domain="([('is_owner','=',True)])"/>
                                         <field name="partnership"/>
-                                    </tree>
+                                    </list>
                                 </field>
                             </page>
 
@@ -190,11 +190,11 @@
             <field name="name">land_acquisition.tree</field>
             <field name="model">land.acquisition</field>
             <field name="arch" type="xml">
-                <tree string="Properties">
+                <list string="Properties">
                     <field name="ref_name"/>
                     <field name="name" string="Property Name"/>
                     <field name="state"/>
-                </tree>
+                </list>
             </field>
         </record>
 

@@ -58,7 +58,7 @@
                         </group>
 
                         <field name="rabill_line_ids">
-                            <tree create="0" editable="bottom">
+                            <list create="0" editable="bottom">
                                 <field name="contractor_id" readonly="1"/>
                                 <field name="task_id" readonly="1" context="{'form_view_ref':'pragtech_ppc.project_task_form'}"/>
                                 <field name="labour_id" readonly="1"/>
@@ -74,7 +74,7 @@
                                 <field name="completed_qty" readonly="1"/>
                                 <field name="amt_to_release" readonly="1"/>
                                 <field name="this_bill_amount" readonly="1"/>
-                            </tree>
+                            </list>
                         </field>
 
                         <group col="6" class="mt-2 mt-md-0" style="margin-bottom: 20px;">
@@ -88,11 +88,11 @@
                         </group>
 
                         <field name="tax_line_ids">
-                            <tree editable="bottom" create="0" delete="0">
+                            <list editable="bottom" create="0" delete="0">
                                 <field name="name"/>
                                 <field name="base_amount"/>
                                 <field name="amount" sum="sum"/>
-                            </tree>
+                            </list>
                         </field>
 
                         <group col="6" class="mt-2 mt-md-0">
@@ -107,7 +107,7 @@
                         <notebook>
                             <page string="Audit Trail">
                                 <field name="mesge_ids" nolabel="1">
-                                    <tree create="false">
+                                    <list create="false">
                                         <field name="date"/>
                                         <field name="author_id"/>
                                         <field name="to_stage"/>
@@ -115,7 +115,7 @@
                                         <field name="res_id" invisible="1"/>
                                         <field name="model" invisible="1"/>
                                         <field name="is_use" invisible="1"/>
-                                    </tree>
+                                    </list>
                                 </field>
                             </page>
                         </notebook>
@@ -248,14 +248,14 @@
             <field name="name">RA Bill</field>
             <field name="model">ra.bill</field>
             <field name="arch" type="xml">
-                <tree>
+                <list>
                     <field name="name"/>
                     <field name="project_id"/>
                     <field name="sub_project" domain="[('project_id','=',project_id)]"/>
                     <field name="project_wbs" domain="[('project_id','=',project_id)]"/>
                     <field name="workorder_id" domain="[('project_id','=',project_id)]"/>
                     <field name="final_total_payable"/>
-                </tree>
+                </list>
             </field>
         </record>
 

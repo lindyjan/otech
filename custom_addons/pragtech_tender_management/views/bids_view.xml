@@ -17,9 +17,9 @@
                     <sheet>
                         <group>
                             <field name="tender_id" style="width:40%" readonly="True">
-                                <tree editable="bottom">
+                                <list editable="bottom">
                                     <field name="tender_name"/>
-                                </tree>
+                                </list>
                             </field>
 
                             <field name="name_of_bidder" style="width:40%" readonly="True"/>
@@ -45,7 +45,7 @@
                         <notebook>
                             <page name="pag1" string="Material">
                                 <field name="bids_line_id">
-                                    <tree editable="bottom">
+                                    <list editable="bottom">
                                         <field name="bids_product_id" readonly="True"/>
                                         <field name="bids_description" readonly="True"/>
                                         <field name="bids_product_uom_qty" readonly="True"/>
@@ -54,13 +54,13 @@
                                         <field name="mat_last_price" readonly="True"/>
                                         <field name="mat_note" readonly="True"/>
                                         <field name="mat_amount" readonly="True"/>
-                                    </tree>
+                                    </list>
                                 </field>
                             </page>
 
                             <page name="pag2" string="Labour">
                                 <field name="bids_labour_id">
-                                    <tree editable="bottom">
+                                    <list editable="bottom">
                                         <field name="labour_id" readonly="True"/>
                                         <field name="bids_labour_description" readonly="True"/>
                                         <field name="bids_labour_qty" readonly="True"/>
@@ -69,13 +69,13 @@
                                         <field name="bids_labour_last_price" readonly="True"/>
                                         <field name="bids_labour_note" readonly="True"/>
                                         <field name="bids_labour_amount" readonly="True"/>
-                                    </tree>
+                                    </list>
                                 </field>
                             </page>
 
                             <page name="pag3" string="Overhead">
                                 <field name="bids_overhead_id">
-                                    <tree editable="bottom">
+                                    <list editable="bottom">
                                         <field name="overhead_id" readonly="True"/>
                                         <field name="bids_overhead_description" readonly="True"/>
                                         <field name="bids_overhead_qty" readonly="True"/>
@@ -84,16 +84,16 @@
                                         <field name="bids_overhead_last_price" readonly="True"/>
                                         <field name="bids_overhead_note" readonly="True"/>
                                         <field name="bids_overhead_amount" readonly="True"/>
-                                    </tree>
+                                    </list>
                                 </field>
                             </page>
 
                             <page name="pag5" string="Bids Questionnaires">
                                 <field name="bids_question_ids">
-                                    <tree editable="bottom">
+                                    <list editable="bottom">
                                         <field name="question"/>
                                         <field name="answer"/>
-                                    </tree>
+                                    </list>
                                 </field>
                             </page>
                         </notebook>
@@ -107,7 +107,7 @@
             <field name="name">bids.tree.view</field>
             <field name="model">bids.bids</field>
             <field name="arch" type="xml">
-                <tree string="Tenders Tender">
+                <list string="Tenders Tender">
                     <field name="bids_name"/>
                     <field name="bids_city"/>
                     <field name="bids_country_id"/>
@@ -118,7 +118,7 @@
                     <field name="bids_all_total"/>
                     <field name="bids_top_rank"/>
                     <field name="state"/>
-                </tree>
+                </list>
             </field>
         </record>
 

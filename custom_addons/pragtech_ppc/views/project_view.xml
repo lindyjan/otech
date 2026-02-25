@@ -19,7 +19,7 @@
                 <xpath expr="//form//sheet//notebook//page[1]" position="after">
                     <page string="Message">
                         <field name="mesge_ids" nolabel="1">
-                            <tree create="false">
+                            <list create="false">
                                 <field name="date"/>
                                 <field name="author_id"/>
                                 <field name="to_stage"/>
@@ -27,7 +27,7 @@
                                 <field name="res_id" invisible="1"/>
                                 <field name="model" invisible="1"/>
                                 <field name="is_use" invisible="1"/>
-                            </tree>
+                            </list>
                         </field>
                     </page>
 
@@ -69,9 +69,9 @@
 
                     <page string="Sub Project Information">
                         <field name="subproject_ids" readonly="1">
-                            <tree>
+                            <list>
                                 <field name="name"/>
-                            </tree>
+                            </list>
                         </field>
                     </page>
 
@@ -174,10 +174,10 @@
             <field name="model">sanction.date</field>
             <field name="type">list</field>
             <field name="arch" type="xml">
-                <tree>
+                <list>
                     <field name="sanction_date"/>
                     <field name="sanction_no"/>
-                </tree>
+                </list>
             </field>
         </record>
 
@@ -199,9 +199,9 @@
             <field name="model">transaction.status</field>
             <field name="type">list</field>
             <field name="arch" type="xml">
-                <tree string="Transaction Status Details">
+                <list string="Transaction Status Details">
                     <field name="name"/>
-                </tree>
+                </list>
             </field>
         </record>
 
@@ -228,10 +228,10 @@
             <field name="model">project.category</field>
             <field name="type">list</field>
             <field name="arch" type="xml">
-                <tree>
+                <list>
                     <field name="name"/>
                     <field name="description"/>
-                </tree>
+                </list>
             </field>
         </record>
 
@@ -280,12 +280,12 @@
             <field name="model">stage.master</field>
             <field name="type">list</field>
             <field name="arch" type="xml">
-                <tree create="0" delete="0" multi_edit="0" edit="0">
+                <list create="0" delete="0" multi_edit="0" edit="0">
                     <field name="name"/>
                     <field name="draft"/>
                     <field name="approved"/>
                     <field name="foreclosed"/>
-                </tree>
+                </list>
             </field>
         </record>
 
@@ -333,11 +333,11 @@
             <field name="model">stage.transaction</field>
             <field name="type">list</field>
             <field name="arch" type="xml">
-                <tree>
+                <list>
                     <field name="from_stage"/>
                     <field name="to_stage"/>
                     <field name="model"/>
-                </tree>
+                </list>
             </field>
         </record>
 

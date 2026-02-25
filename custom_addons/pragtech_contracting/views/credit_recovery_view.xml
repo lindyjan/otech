@@ -6,14 +6,14 @@
             <field name="name">credit.view.tree</field>
             <field name="model">credit.recovery</field>
             <field name="arch" type="xml">
-                <tree>
+                <list>
                     <field name="name" readonly="1"/>
                     <field name="company_id"/>
                     <field name="project_id"/>
                     <field name="sub_project"/>
                     <field name="workorder_id"/>
                     <field name="contractor_id"/>
-                </tree>
+                </list>
             </field>
         </record>
 
@@ -58,7 +58,7 @@
                         <br/>
 
                         <field name="credit_line_ids" readonly="flag">
-                            <tree editable="bottom" create="false" delete="false">
+                            <list editable="bottom" create="false" delete="false">
                                 <field name="is_use"/>
                                 <field name="credit_id" readonly="1"/>
                                 <field name="project_id" readonly="1"/>
@@ -74,13 +74,13 @@
                                 <field name="bank_name" invisible="payment_mode == 'cash'"/>
                                 <field name="payment_refrence" readonly="payment_mode == 'cash'"/>
                                 <field name="transaction_date" readonly="1"/>
-                            </tree>
+                            </list>
                         </field>
 
                         <notebook>
                             <page string="Audit Trail">
                                 <field name="mesge_ids" nolabel="1">
-                                    <tree create="false">
+                                    <list create="false">
                                         <field name="date"/>
                                         <field name="author_id"/>
                                         <field name="to_stage"/>
@@ -88,7 +88,7 @@
                                         <field name="res_id" invisible="1"/>
                                         <field name="model" invisible="1"/>
                                         <field name="is_use" invisible="1"/>
-                                    </tree>
+                                    </list>
                                 </field>
                             </page>
                         </notebook>
