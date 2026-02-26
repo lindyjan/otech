@@ -42,8 +42,27 @@ This is a multi-website, multi-company Odoo deployment. Each website belongs to 
 | Server Path | GitHub Repo | Branch | Contains |
 |---|---|---|---|
 | `/opt/odoo/odoo18/` | `lindyjan/otech` | `17.0` | Odoo 18 core source, `odoo-bin`, standard `addons/` |
-| `/opt/odoo/ovoco/` | `lindyjan/ovoco` | `main` | `custom_addons/` (custom modules), `deploy/` (config templates) |
+| `/opt/odoo/ovoco/` | `lindyjan/ovoco` | `claude/setup-odoo-windows-dev-fGEfs` | `custom_addons/` (custom modules), `deploy/` (config templates) |
 | `/opt/odoo/venv/` | — | — | Python virtual environment for Odoo |
+
+### Git Authentication
+- **Method**: SSH keys (password auth is not supported by GitHub)
+- **SSH key**: ed25519 key at `~/.ssh/id_ed25519` on the VPS
+- **Remote URLs** (SSH format):
+  - otech: `git@github.com:lindyjan/otech.git`
+  - ovoco: `git@github.com:lindyjan/ovoco.git`
+- **GitHub user**: `lindyjan`
+
+### Git Push Commands
+```bash
+# Push otech (Odoo core)
+cd /opt/odoo/odoo18
+git push -u origin 17.0
+
+# Push ovoco (custom modules)
+cd /opt/odoo/ovoco
+git push -u origin claude/setup-odoo-windows-dev-fGEfs
+```
 
 ### VPS Maintenance Commands
 ```bash
