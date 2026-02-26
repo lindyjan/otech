@@ -8,7 +8,8 @@
                    <t t-call="Many2ManyBinaryField.attachment_preview"/>
                 </t>
             </div>
-            <div t-if="!props.readonly" class="oe_add">
+            <div t-if="!props.readonly &amp;&amp; (!props.numberOfFiles or files.length &lt; props.numberOfFiles)"
+                 class="oe_add">
                 <FileInput
                     acceptedFileExtensions="props.acceptedFileExtensions"
                     multiUpload="true"
@@ -26,7 +27,7 @@
 
 <t t-name="Many2ManyBinaryField.attachment_preview">
     <t t-set="editable" t-value="!props.readonly"/>
-    <div t-attf-class="o_attachment o_attachment_many2many #{ editable ? 'o_attachment_editable' : '' } #{upload ? 'o_attachment_uploading' : ''}" t-att-title="file.name">
+    <div name="attachment" t-attf-class="o_attachment o_attachment_many2many #{ editable ? 'o_attachment_editable' : '' } #{upload ? 'o_attachment_uploading' : ''}" t-att-title="file.name">
         <div class="o_attachment_wrap">
             <t t-set="ext" t-value="getExtension(file)"/>
             <t t-set="url" t-value="getUrl(file.id)"/>

@@ -1,24 +1,27 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # 	* mail_bot
-# 
+#
 # Translators:
-# Alina Lisnenko <alina.lisnenko@erp.co.ua>, 2023
 # Wil Odoo, 2023
-# 
+# Alina Lisnenko <alina.lisnenko@erp.co.ua>, 2024
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-26 21:55+0000\n"
+"POT-Creation-Date: 2025-12-29 18:37+0000\n"
 "PO-Revision-Date: 2023-10-26 23:09+0000\n"
-"Last-Translator: Wil Odoo, 2023\n"
+"Last-Translator: Alina Lisnenko <alina.lisnenko@erp.co.ua>, 2024\n"
 "Language-Team: Ukrainian (https://app.transifex.com/odoo/teams/41243/uk/)\n"
+"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: uk\n"
-"Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != 11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
+"Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != "
+"11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % "
+"100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || "
+"(n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
 
 #. module: mail_bot
 #. odoo-python
@@ -82,13 +85,15 @@ msgstr "Хммм..."
 #: code:addons/mail_bot/models/mail_bot.py:0
 #, python-format
 msgid ""
-"I am a simple bot, but if that's a dog, he is the cutest 😊 "
-"<br/>Congratulations, you finished this tour. You can now <b>close this chat"
-" window</b>. Enjoy discovering Odoo."
+"I am a simple bot, but if that's a dog, he is the cutest 😊 <br/"
+">Congratulations, you finished this tour. You can now <b>close this "
+"conversation</b> or start the tour again with typing <span "
+"class=\"o_odoobot_command\">start the tour</span>. Enjoy discovering Odoo!"
 msgstr ""
-"Я простий бот, але якщо це собака, то вона дуже мила 😊 <br/>Вітаємо, ви "
-"завершили ознайомчий тур. Тепер ви можете <b>закрити це вікно чату</b>. "
-"Насолоджуйтесь  Odoo."
+"Я простий бот, але якщо це собака, то він наймиліший 😊 <br/>Вітаємо, ви "
+"закінчили цей тур. Тепер ви можете <b>закрити цю розмову</b> або розпочати "
+"тур заново, ввівши <span class=\"o_odoobot_command\">start the tour</span>. "
+"Насолоджуйтесь відкриттям Odoo!"
 
 #. module: mail_bot
 #. odoo-python
@@ -140,12 +145,12 @@ msgstr "Не ініціалізовано"
 #: code:addons/mail_bot/models/mail_bot.py:0
 #, python-format
 msgid ""
-"Not sure what you are doing. Please, type <span "
-"class=\"o_odoobot_command\">/</span> and wait for the propositions. Select "
-"<span class=\"o_odoobot_command\">help</span> and press enter"
+"Not sure what you are doing. Please, type <span class=\"o_odoobot_command\">/"
+"</span> and wait for the propositions. Select <span "
+"class=\"o_odoobot_command\">help</span> and press enter"
 msgstr ""
-"Не впевнений, що ви робите. Введіть <span "
-"class=\"o_odoobot_command\">/</span> та очікуйте пропозиції. Оберіть <span "
+"Не впевнений, що ви робите. Введіть <span class=\"o_odoobot_command\">/</"
+"span> та очікуйте пропозиції. Оберіть <span "
 "class=\"o_odoobot_command\">help</span> та натисніть enter"
 
 #. module: mail_bot
@@ -225,8 +230,8 @@ msgstr "Це не добре! Я бот, але у мене є почуття...
 #: code:addons/mail_bot/models/mail_bot.py:0
 #, python-format
 msgid ""
-"To <b>send an attachment</b>, click on the <i class=\"fa fa-paperclip\" "
-"aria-hidden=\"true\"></i> icon and select a file."
+"To <b>send an attachment</b>, click on the <i class=\"fa fa-paperclip\" aria-"
+"hidden=\"true\"></i> icon and select a file."
 msgstr ""
 "Щоб <b>надіслати прикріплення</b>, натисніть іконку <i class=\"fa fa-"
 "paperclip\" aria-hidden=\"true\"></i> та оберіть файл."
@@ -251,16 +256,14 @@ msgstr "Спробуйте надіслати мені емоджи"
 #, python-format
 msgid ""
 "Unfortunately, I'm just a bot 😞 I don't understand! If you need help "
-"discovering our product, please check <a "
-"href=\"https://www.odoo.com/documentation\" target=\"_blank\">our "
-"documentation</a> or <a href=\"https://www.odoo.com/slides\" "
-"target=\"_blank\">our videos</a>."
+"discovering our product, please check <a href=\"https://www.odoo.com/"
+"documentation\" target=\"_blank\">our documentation</a> or <a href=\"https://"
+"www.odoo.com/slides\" target=\"_blank\">our videos</a>."
 msgstr ""
 "На жаль, я лише бот 😞 Я не розумію! Якщо вам потрібна допомога, щоб "
-"дізнатися більше про наш продукт, перевірте <a "
-"href=\"https://www.odoo.com/documentation\" target=\"_blank\">нашу "
-"документацію</a> або <a href=\"https://www.odoo.com/slides\" "
-"target=\"_blank\">наші відео</a>."
+"дізнатися більше про наш продукт, перевірте <a href=\"https://www.odoo.com/"
+"documentation\" target=\"_blank\">нашу документацію</a> або <a "
+"href=\"https://www.odoo.com/slides\" target=\"_blank\">наші відео</a>."
 
 #. module: mail_bot
 #: model:ir.model,name:mail_bot.model_res_users
@@ -276,8 +279,8 @@ msgid ""
 "attention. <b>Try to ping me using</b> <span "
 "class=\"o_odoobot_command\">@OdooBot</span> in a sentence."
 msgstr ""
-"Вау, ви справжній!<br/>Позначте когось через @username, щоби привернути його"
-" увагу. <b>Спробуйте позначити мене, використовуючи</b> <span "
+"Вау, ви справжній!<br/>Позначте когось через @username, щоби привернути його "
+"увагу. <b>Спробуйте позначити мене, використовуючи</b> <span "
 "class=\"o_odoobot_command\">@OdooBot</span> у реченні."
 
 #. module: mail_bot
@@ -285,11 +288,11 @@ msgstr ""
 #: code:addons/mail_bot/models/mail_bot.py:0
 #, python-format
 msgid ""
-"Yep, I am here! 🎉 <br/>Now, try <b>sending an attachment</b>, like a picture"
-" of your cute dog..."
+"Yep, I am here! 🎉 <br/>Now, try <b>sending an attachment</b>, like a "
+"picture of your cute dog..."
 msgstr ""
-"Так, я тут! 🎉 <br/>Тепер спробуйте <b>надіслати прикріплення</b>, наприклад,"
-" зображення вашого милого пса..."
+"Так, я тут! 🎉 <br/>Тепер спробуйте <b>надіслати прикріплення</b>, "
+"наприклад, зображення вашого милого пса..."
 
 #. module: mail_bot
 #. odoo-python

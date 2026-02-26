@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+from odoo import Command
 from odoo.addons.stock.tests.common2 import TestStockCommon
 from odoo.tests import Form
 from odoo.exceptions import UserError
@@ -11,7 +12,7 @@ class TestWarehouse(TestStockCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.partner = cls.env['res.partner'].create({'name': 'Deco Addict'})
+        cls.partner = cls.env['res.partner'].create({'name': 'Acme Corporation'})
 
     def test_inventory_product(self):
         self.product_1.type = 'product'
@@ -460,6 +461,48 @@ class TestWarehouse(TestStockCommon):
         # Ensure there still no quants in distribution warehouse
         self.assertEqual(sum(self.env['stock.quant']._gather(product, warehouse_distribution_wavre.lot_stock_id).mapped('quantity')), 0)
 
+    def test_add_resupply_warehouse_one_by_one(self):
+        """ Checks that selecting a warehouse as a resupply warehouse one after another correctly sets the routes as well.
+        """
+        warehouse_A, warehouse_B, warehouse_C = self.env['stock.warehouse'].create([{
+            'name': code,
+            'code': code,
+        } for code in ['WH_A', 'WH_B', 'WH_C']])
+        warehouse_A.resupply_wh_ids = [Command.link(warehouse_B.id)]
+        # Assign Warehouse B as supplier warehouse
+        self.assertEqual(len(warehouse_A.resupply_route_ids), 1)
+        self.assertEqual(warehouse_A.resupply_route_ids.supplier_wh_id, warehouse_B)
+        # Assign Warehouse C as supplier warehouse
+        warehouse_A.resupply_wh_ids = [Command.link(warehouse_C.id)]
+        self.assertEqual(len(warehouse_A.resupply_route_ids), 2)
+        self.assertRecordValues(warehouse_A.resupply_route_ids.sorted('id'), [
+            {'supplier_wh_id': warehouse_B.id},
+            {'supplier_wh_id': warehouse_C.id},
+        ])
+
+    def test_toggle_resupply_warehouse(self):
+        """ Checks that selecting then unselecting a warehouse as resupply correctly archives/unarchives the related route.
+        """
+        warehouse_A = self.env['stock.warehouse'].create({
+            'name': 'Warehouse A',
+            'code': 'WH_A',
+        })
+        warehouse_B = self.env['stock.warehouse'].create({
+            'name': 'Warehouse B',
+            'code': 'WH_B',
+            'resupply_wh_ids': [Command.set(warehouse_A.ids)],
+        })
+        resupply_route = warehouse_B.resupply_route_ids
+        self.assertTrue(resupply_route.active, 'Route should be active')
+        # Un-select Warehouse A as a resupply warehouse
+        warehouse_B.resupply_wh_ids = [Command.set([])]
+        self.assertFalse(warehouse_B.resupply_route_ids)
+        self.assertFalse(resupply_route.active, 'Route should now be inactive')
+        # Re-select Warehouse A as a resupply warehouse
+        warehouse_B.resupply_wh_ids = [Command.set(warehouse_A.ids)]
+        self.assertEqual(warehouse_B.resupply_route_ids, resupply_route)
+        self.assertTrue(resupply_route.active, 'Route should now be active')
+
     def test_noleak(self):
         # non-regression test to avoid company_id leaking to other warehouses (see blame)
         partner = self.env['res.partner'].create({'name': 'Chicago partner'})
@@ -661,3 +704,26 @@ class TestWarehouse(TestStockCommon):
         test_warehouse.sequence = 100
         location._compute_warehouse_id()
         self.assertEqual(location.warehouse_id, test_warehouse)
+
+    def test_modified_global_route(self):
+        """ Ensure that _find_or_create_global_route, if called multiple time, only creates the route once
+
+        If a global route was renamed, and has a company setup,
+          then the system would create multiple duplicates with the new name when creating a new warehouse;
+          one duplicate for each call _find_or_create_global_route.
+        """
+        company_2 = self.env["res.company"].create({"name": "Company 2"})
+
+        mto_route = self.warehouse_1.mto_pull_id.route_id
+        mto_route.rule_ids.unlink()  # Quick patch to be able to set a company on the route
+        mto_route.write({"name": "New Name (MTO)", "company_id": self.warehouse_1.company_id.id})
+
+        self.env["stock.warehouse"].with_company(company_2).create({"name": "Warehouse 2", "code": "2"})
+
+        route_sudo = self.env["stock.route"].sudo().with_context(active_test=False)
+        renamed_route_count = route_sudo.search_count([("name", "=", "New Name (MTO)")])
+        self.assertEqual(renamed_route_count, 1)
+
+        new_mto_route = route_sudo.search([("name", "=", "Replenish on Order (MTO)")])
+        self.assertEqual(len(new_mto_route), 1)
+        self.assertEqual(new_mto_route.company_id.id, company_2.id)

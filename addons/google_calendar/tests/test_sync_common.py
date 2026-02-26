@@ -7,7 +7,13 @@ from odoo.addons.google_calendar.utils.google_calendar import GoogleCalendarServ
 from odoo.addons.google_account.models.google_service import GoogleService
 from odoo.addons.google_calendar.models.res_users import User
 from odoo.addons.google_calendar.models.google_sync import GoogleSync
+from odoo.addons.mail.tests.common import mail_new_test_user
 from odoo.tests.common import HttpCase
+from freezegun import freeze_time
+from contextlib import contextmanager
+
+from odoo.tools import mute_logger
+
 
 def patch_api(func):
     @patch.object(GoogleSync, '_google_insert', MagicMock(spec=GoogleSync._google_insert))
@@ -19,11 +25,28 @@ def patch_api(func):
 
 @patch.object(User, '_get_google_calendar_token', lambda user: 'dummy-token')
 class TestSyncGoogle(HttpCase):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.google_service = GoogleCalendarService(cls.env['google.service'])
+        cls.env.user.sudo().unpause_google_synchronization()
+        cls.organizer_user = mail_new_test_user(cls.env, login="organizer_user")
+        cls.attendee_user = mail_new_test_user(cls.env, login='attendee_user')
 
-    def setUp(self):
-        super().setUp()
-        self.google_service = GoogleCalendarService(self.env['google.service'])
-        self.env.user.sudo().unpause_google_synchronization()
+        m = mute_logger('odoo.addons.auth_signup.models.res_users')
+        mute_logger.__enter__(m)  # noqa: PLC2801
+        cls.addClassCleanup(mute_logger.__exit__, m, None, None, None)
+
+    @contextmanager
+    def mock_datetime_and_now(self, mock_dt):
+        """
+        Used when synchronization date (using env.cr.now()) is important
+        in addition to standard datetime mocks. Used mainly to detect sync
+        issues.
+        """
+        with freeze_time(mock_dt), \
+                patch.object(self.env.cr, 'now', lambda: mock_dt):
+            yield
 
     def assertGoogleEventDeleted(self, google_id):
         GoogleSync._google_delete.assert_called()
@@ -37,6 +60,15 @@ class TestSyncGoogle(HttpCase):
         expected_args = (values,)
         expected_kwargs = {'timeout': timeout} if timeout else {}
         GoogleSync._google_insert.assert_called_once()
+        args, kwargs = GoogleSync._google_insert.call_args
+        args[1:][0].pop('conferenceData', None)
+        self.assertEqual(args[1:], expected_args) # skip Google service arg
+        self.assertEqual(kwargs, expected_kwargs)
+
+    def assertGoogleEventInsertedMultiTime(self, values, timeout=None):
+        expected_args = (values,)
+        expected_kwargs = {'timeout': timeout} if timeout else {}
+        GoogleSync._google_insert.assert_called()
         args, kwargs = GoogleSync._google_insert.call_args
         args[1:][0].pop('conferenceData', None)
         self.assertEqual(args[1:], expected_args) # skip Google service arg

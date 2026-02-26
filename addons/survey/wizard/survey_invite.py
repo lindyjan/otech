@@ -25,7 +25,7 @@ class SurveyInvite(models.TransientModel):
     # composer content
     attachment_ids = fields.Many2many(
         'ir.attachment', 'survey_mail_compose_message_ir_attachments_rel', 'wizard_id', 'attachment_id',
-        string='Attachments')
+        string='Attachments', compute='_compute_attachment_ids', store=True, readonly=False)
     # origin
     author_id = fields.Many2one(
         'res.partner', 'Author', index=True,
@@ -155,8 +155,8 @@ class SurveyInvite(models.TransientModel):
     @api.depends('template_id', 'partner_ids')
     def _compute_subject(self):
         for invite in self:
-            if invite.subject:
-                continue
+            if invite.template_id and invite.template_id.subject:
+                invite.subject = invite.template_id.subject
             else:
                 invite.subject = _("Participate to %(survey_name)s", survey_name=invite.survey_id.display_name)
 
@@ -167,6 +167,18 @@ class SurveyInvite(models.TransientModel):
             if len(langs) == 1:
                 invite = invite.with_context(lang=langs.pop())
             super(SurveyInvite, invite)._compute_body()
+
+    @api.depends('template_id')
+    def _compute_attachment_ids(self):
+        """
+        'OnChange-like' behavior used for template selection: not intended to update records when
+            individual attachments get added
+        """
+        for invite in self:
+            if invite.template_id:
+                invite.attachment_ids = invite.template_id.attachment_ids
+            else:
+                invite.attachment_ids = False
 
     # ------------------------------------------------------
     # Wizard validation and send

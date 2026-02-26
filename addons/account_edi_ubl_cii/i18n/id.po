@@ -1,36 +1,43 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* account_edi_ubl_cii
-# 
+# * account_edi_ubl_cii
+#
 # Translators:
-# Wil Odoo, 2023
-# Abe Manyo, 2024
-# 
+# Wil Odoo, 2025
+# Abe Manyo, 2025
+#
+# Weblate <noreply-mt-weblate@weblate.org>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-05 12:31+0000\n"
-"PO-Revision-Date: 2023-10-26 23:09+0000\n"
-"Last-Translator: Abe Manyo, 2024\n"
-"Language-Team: Indonesian (https://app.transifex.com/odoo/teams/41243/id/)\n"
+"POT-Creation-Date: 2026-02-20 18:36+0000\n"
+"PO-Revision-Date: 2026-02-21 17:01+0000\n"
+"Last-Translator: Weblate <noreply-mt-weblate@weblate.org>\n"
+"Language-Team: Indonesian <https://translate.odoo.com/projects/odoo-17/"
+"account_edi_ubl_cii/id/>\n"
+"Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: id\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 5.14.3\n"
 
 #. module: account_edi_ubl_cii
 #. odoo-python
 #: code:addons/account_edi_ubl_cii/models/account_edi_xml_ubl_bis3.py:0
-#: code:addons/account_edi_ubl_cii/models/account_edi_xml_ubl_bis3.py:0
 #, python-format
 msgid ""
-"%s should have a KVK or OIN number: the Peppol e-address (EAS) should be "
-"'0106' or '0190'."
+"%s should have a KVK or OIN number set in Company ID field or as Peppol e-"
+"address (EAS code 0106 or 0190)."
 msgstr ""
-"%s harusnya memiliki nomor KVK atau OIN: alamat elektronik Peppol (EAS) "
-"harusnya '0106' atau '0190'."
+"%s seharusnya memiliki angka KVK atau OIN yang ditetapkan di field Company "
+"ID atau sebagai Peppol e-address (EAS code 0106 atau 0190)."
+
+#. module: account_edi_ubl_cii
+#: model:ir.actions.server,name:account_edi_ubl_cii.action_group_ungroup_lines_by_tax
+msgid "(Un)Group lines by tax"
+msgstr ""
 
 #. module: account_edi_ubl_cii
 #: model:ir.model.fields.selection,name:account_edi_ubl_cii.selection__res_partner__peppol_eas__0002
@@ -128,11 +135,9 @@ msgstr "0190 - Dutch Originator's Identification Number"
 #. module: account_edi_ubl_cii
 #: model:ir.model.fields.selection,name:account_edi_ubl_cii.selection__res_partner__peppol_eas__0191
 msgid ""
-"0191 - Centre of Registers and Information Systems of the Ministry of "
-"Justice"
+"0191 - Centre of Registers and Information Systems of the Ministry of Justice"
 msgstr ""
-"0191 - Centre of Registers and Information Systems of the Ministry of "
-"Justice"
+"0191 - Centre of Registers and Information Systems of the Ministry of Justice"
 
 #. module: account_edi_ubl_cii
 #: model:ir.model.fields.selection,name:account_edi_ubl_cii.selection__res_partner__peppol_eas__0192
@@ -152,8 +157,7 @@ msgstr "0195 - Singapore UEN identifier"
 #. module: account_edi_ubl_cii
 #: model:ir.model.fields.selection,name:account_edi_ubl_cii.selection__res_partner__peppol_eas__0196
 msgid "0196 - Kennitala - Iceland legal id for individuals and legal entities"
-msgstr ""
-"0196 - Kennitala - Iceland legal id for individuals and legal entities"
+msgstr "0196 - Kennitala - Iceland legal id for individuals and legal entities"
 
 #. module: account_edi_ubl_cii
 #: model:ir.model.fields.selection,name:account_edi_ubl_cii.selection__res_partner__peppol_eas__0198
@@ -226,9 +230,19 @@ msgid "0216 - OVTcode"
 msgstr "0216 - OVTcode"
 
 #. module: account_edi_ubl_cii
+#: model:ir.model.fields.selection,name:account_edi_ubl_cii.selection__res_partner__peppol_eas__0218
+msgid "0218 - Unified registration number (Latvia)"
+msgstr ""
+
+#. module: account_edi_ubl_cii
 #: model:ir.model.fields.selection,name:account_edi_ubl_cii.selection__res_partner__peppol_eas__0221
 msgid "0221 - The registered number of the qualified invoice issuer (Japan)"
 msgstr "0221 - Nomor terdaftar untuk penerbit faktur yang berijazah (Jepang)"
+
+#. module: account_edi_ubl_cii
+#: model:ir.model.fields.selection,name:account_edi_ubl_cii.selection__res_partner__peppol_eas__0225
+msgid "0225 - FRCTC Electronic Address (France)"
+msgstr ""
 
 #. module: account_edi_ubl_cii
 #: model:ir.model.fields.selection,name:account_edi_ubl_cii.selection__res_partner__peppol_eas__0230
@@ -236,14 +250,19 @@ msgid "0230 - National e-Invoicing Framework (Malaysia)"
 msgstr "0230 - National e-Invoicing Framework (Malaysia)"
 
 #. module: account_edi_ubl_cii
+#: model:ir.model.fields.selection,name:account_edi_ubl_cii.selection__res_partner__peppol_eas__0235
+msgid "0235 - UAE Tax Identification Number (TIN)"
+msgstr ""
+
+#. module: account_edi_ubl_cii
+#: model:ir.model.fields.selection,name:account_edi_ubl_cii.selection__res_partner__peppol_eas__0240
+msgid "0240 - Register of legal persons (France)"
+msgstr ""
+
+#. module: account_edi_ubl_cii
 #: model_terms:ir.ui.view,arch_db:account_edi_ubl_cii.account_invoice_pdfa_3_facturx_metadata
 msgid "1.0"
 msgstr "1.0"
-
-#. module: account_edi_ubl_cii
-#: model_terms:ir.ui.view,arch_db:account_edi_ubl_cii.account_invoice_facturx_export_22
-msgid "42"
-msgstr "42"
 
 #. module: account_edi_ubl_cii
 #: model:ir.model.fields.selection,name:account_edi_ubl_cii.selection__res_partner__peppol_eas__9901
@@ -273,11 +292,9 @@ msgstr "9915 - Österreichisches Verwaltungs bzw. Organisationskennzeichen"
 #. module: account_edi_ubl_cii
 #: model:ir.model.fields.selection,name:account_edi_ubl_cii.selection__res_partner__peppol_eas__9918
 msgid ""
-"9918 - SOCIETY FOR WORLDWIDE INTERBANK FINANCIAL, TELECOMMUNICATION "
-"S.W.I.F.T"
+"9918 - SOCIETY FOR WORLDWIDE INTERBANK FINANCIAL, TELECOMMUNICATION S.W.I.F.T"
 msgstr ""
-"9918 - SOCIETY FOR WORLDWIDE INTERBANK FINANCIAL, TELECOMMUNICATION "
-"S.W.I.F.T"
+"9918 - SOCIETY FOR WORLDWIDE INTERBANK FINANCIAL, TELECOMMUNICATION S.W.I.F.T"
 
 #. module: account_edi_ubl_cii
 #: model:ir.model.fields.selection,name:account_edi_ubl_cii.selection__res_partner__peppol_eas__9919
@@ -443,8 +460,8 @@ msgstr "9951 - Nomor PPN San Marino"
 
 #. module: account_edi_ubl_cii
 #: model:ir.model.fields.selection,name:account_edi_ubl_cii.selection__res_partner__peppol_eas__9952
-msgid "9952 - Turkey VAT number"
-msgstr "9952 - Nomor PPN Turki"
+msgid "9952 - Türkiye VAT number"
+msgstr "9952 - nomor PPN Türkiye"
 
 #. module: account_edi_ubl_cii
 #: model:ir.model.fields.selection,name:account_edi_ubl_cii.selection__res_partner__peppol_eas__9953
@@ -483,9 +500,36 @@ msgid "A payment of %s was detected."
 msgstr "Pembayaran sebesar %s dideteksi."
 
 #. module: account_edi_ubl_cii
+#. odoo-python
+#: code:addons/account_edi_ubl_cii/models/account_edi_common.py:0
+#, python-format
+msgid "A rounding amount of %s was detected."
+msgstr "Pembulatan sejumlah %s dideteksi."
+
+#. module: account_edi_ubl_cii
 #: model:ir.model,name:account_edi_ubl_cii.model_account_edi_xml_ubl_a_nz
 msgid "A-NZ BIS Billing 3.0"
 msgstr "A-NZ BIS Billing 3.0"
+
+#. module: account_edi_ubl_cii
+#: model:ir.model.fields.selection,name:account_edi_ubl_cii.selection__res_partner__peppol_eas__an
+msgid "AN - O.F.T.P. (ODETTE File Transfer Protocol)"
+msgstr ""
+
+#. module: account_edi_ubl_cii
+#: model:ir.model.fields.selection,name:account_edi_ubl_cii.selection__res_partner__peppol_eas__aq
+msgid "AQ - X.400 address for mail text"
+msgstr ""
+
+#. module: account_edi_ubl_cii
+#: model:ir.model.fields.selection,name:account_edi_ubl_cii.selection__res_partner__peppol_eas__as
+msgid "AS - AS2 exchange"
+msgstr ""
+
+#. module: account_edi_ubl_cii
+#: model:ir.model.fields.selection,name:account_edi_ubl_cii.selection__res_partner__peppol_eas__au
+msgid "AU - File Transfer Protocol"
+msgstr ""
 
 #. module: account_edi_ubl_cii
 #: model:ir.model,name:account_edi_ubl_cii.model_account_move_send
@@ -494,7 +538,6 @@ msgstr "Kirim Account Move"
 
 #. module: account_edi_ubl_cii
 #. odoo-python
-#: code:addons/account_edi_ubl_cii/models/account_edi_common.py:0
 #: code:addons/account_edi_ubl_cii/models/account_edi_common.py:0
 #, python-format
 msgid "Articles 226 items 11 to 15 Directive 2006/112/EN"
@@ -535,6 +578,13 @@ msgid "BIS3 DE (XRechnung)"
 msgstr "BIS3 DE (XRechnung)"
 
 #. module: account_edi_ubl_cii
+#. odoo-python
+#: code:addons/account_edi_ubl_cii/models/account_move.py:0
+#, python-format
+msgid "Cannot find the origin file, try by importing it again"
+msgstr ""
+
+#. module: account_edi_ubl_cii
 #: model:ir.model.fields,field_description:account_edi_ubl_cii.field_account_move_send__checkbox_ubl_cii_label
 msgid "Checkbox Ubl Cii Label"
 msgstr "Checkbox Ubl Cii Label"
@@ -549,17 +599,19 @@ msgstr "Checkbox Ubl Cii Xml"
 #: model:ir.model.fields,help:account_edi_ubl_cii.field_res_users__peppol_eas
 msgid ""
 "Code used to identify the Endpoint for BIS Billing 3.0 and its derivatives.\n"
-"             List available at https://docs.peppol.eu/poacc/billing/3.0/codelist/eas/"
+"             List available at https://docs.peppol.eu/poacc/billing/3.0/"
+"codelist/eas/"
 msgstr ""
-"Kode yang digunakan untuk mengidentifikasi Endpoint untuk BIS Billing 3.0 dan derivatif-nya.\n"
-"             Daftar tersedia pada https://docs.peppol.eu/poacc/billing/3.0/codelist/eas/"
+"Kode yang digunakan untuk mengidentifikasi Endpoint untuk BIS Billing 3.0 "
+"dan derivatif-nya.\n"
+"             Daftar tersedia pada https://docs.peppol.eu/poacc/billing/3.0/"
+"codelist/eas/"
 
 #. module: account_edi_ubl_cii
 #: model:ir.model,name:account_edi_ubl_cii.model_account_edi_common
 msgid ""
 "Common functions for EDI documents: generate the data, the constraints, etc"
-msgstr ""
-"Fungsi umum untuk dokumen EDI: generate the data, the constraints, etc"
+msgstr "Fungsi umum untuk dokumen EDI: generate the data, the constraints, etc"
 
 #. module: account_edi_ubl_cii
 #: model:ir.model,name:account_edi_ubl_cii.model_res_company
@@ -567,8 +619,12 @@ msgid "Companies"
 msgstr "Perusahaan"
 
 #. module: account_edi_ubl_cii
+#: model:ir.model.fields,field_description:account_edi_ubl_cii.field_account_move_send__show_ubl_company_warning
+msgid "Company warning"
+msgstr ""
+
+#. module: account_edi_ubl_cii
 #. odoo-python
-#: code:addons/account_edi_ubl_cii/models/account_edi_xml_ubl_20.py:0
 #: code:addons/account_edi_ubl_cii/models/account_edi_xml_ubl_20.py:0
 #, python-format
 msgid "Conditional cash/payment discount"
@@ -590,15 +646,14 @@ msgstr "Kontak"
 #: code:addons/account_edi_ubl_cii/models/account_edi_xml_ubl_20.py:0
 #, python-format
 msgid ""
-"Could not retrieve currency: %s. Did you enable the multicurrency option and"
-" activate the currency?"
+"Could not retrieve currency: %s. Did you enable the multicurrency option and "
+"activate the currency?"
 msgstr ""
 "Tidak dapat menemukan mata uang: %s. Apakah Anda mengaktifkan opsi "
 "multicurrency option dan mengaktifkan mata uang tersebut?"
 
 #. module: account_edi_ubl_cii
 #. odoo-python
-#: code:addons/account_edi_ubl_cii/models/account_edi_common.py:0
 #: code:addons/account_edi_ubl_cii/models/account_edi_common.py:0
 #, python-format
 msgid "Could not retrieve the tax: %s %% for line '%s'."
@@ -621,6 +676,11 @@ msgstr "E-FFF (BE)"
 #: model_terms:ir.ui.view,arch_db:account_edi_ubl_cii.res_partner_view_tree
 msgid "EDI Format"
 msgstr "Format EDI"
+
+#. module: account_edi_ubl_cii
+#: model:ir.model.fields.selection,name:account_edi_ubl_cii.selection__res_partner__peppol_eas__em
+msgid "EM - Electronic mail"
+msgstr ""
 
 #. module: account_edi_ubl_cii
 #: model_terms:ir.ui.view,arch_db:account_edi_ubl_cii.account_invoice_pdfa_3_facturx_metadata
@@ -660,7 +720,7 @@ msgstr "Aktifkan Ubl Cii Xml"
 
 #. module: account_edi_ubl_cii
 #. odoo-python
-#: code:addons/account_edi_ubl_cii/models/account_move_send.py:0
+#: code:addons/account_edi_ubl_cii/wizard/account_move_send.py:0
 #, python-format
 msgid "Errors occurred while creating the EDI document (format: %s):"
 msgstr "Errors terjadi saat membuat dokumen EDI (format: %s):"
@@ -684,7 +744,6 @@ msgstr "Factur-x/XRechnung CII 2.2.0"
 
 #. module: account_edi_ubl_cii
 #. odoo-python
-#: code:addons/account_edi_ubl_cii/models/account_edi_xml_ubl_bis3.py:0
 #: code:addons/account_edi_ubl_cii/models/account_edi_xml_ubl_bis3.py:0
 #, python-format
 msgid ""
@@ -718,6 +777,19 @@ msgstr "Format yang digunakan untuk mengimpor faktur: %s"
 #: model:ir.model.fields,field_description:account_edi_ubl_cii.field_res_company__invoice_is_ubl_cii
 msgid "Generate Peppol format by default"
 msgstr "Buat format Peppol secara default"
+
+#. module: account_edi_ubl_cii
+#. odoo-python
+#: code:addons/account_edi_ubl_cii/models/account_move.py:0
+#, python-format
+msgid "Grouped lines by tax"
+msgstr ""
+
+#. module: account_edi_ubl_cii
+#: model:ir.model.fields,field_description:account_edi_ubl_cii.field_res_partner__hide_peppol_fields
+#: model:ir.model.fields,field_description:account_edi_ubl_cii.field_res_users__hide_peppol_fields
+msgid "Hide Peppol Fields"
+msgstr ""
 
 #. module: account_edi_ubl_cii
 #. odoo-python
@@ -757,6 +829,38 @@ msgid "Odoo"
 msgstr "Odoo"
 
 #. module: account_edi_ubl_cii
+#: model:ir.model.fields,field_description:account_edi_ubl_cii.field_account_move_send__ubl_partner_warning
+msgid "Partner warning"
+msgstr ""
+
+#. module: account_edi_ubl_cii
+#. odoo-python
+#: code:addons/account_edi_ubl_cii/models/res_partner.py:0
+#, python-format
+msgid ""
+"Peppol EAS code 9901 is deprecated. Please use a different Danish EAS code "
+"instead."
+msgstr ""
+"Peppol EAS code 9901 is deprecated. Please use a different Danish EAS code "
+"instead."
+
+#. module: account_edi_ubl_cii
+#. odoo-python
+#: code:addons/account_edi_ubl_cii/models/res_partner.py:0
+#, python-format
+msgid "Peppol EAS code 9955 is deprecated. Please use 0007 instead."
+msgstr "Peppol EAS code 9955 sudah tidak digunakan. Silakan gunakan 0007."
+
+#. module: account_edi_ubl_cii
+#. odoo-python
+#: code:addons/account_edi_ubl_cii/models/res_partner.py:0
+#, python-format
+msgid ""
+"Peppol EAS codes 0037, 0212, 0213, 0215 are deprecated. Please use 0216 "
+"instead."
+msgstr ""
+
+#. module: account_edi_ubl_cii
 #: model:ir.model.fields,field_description:account_edi_ubl_cii.field_res_partner__peppol_endpoint
 #: model:ir.model.fields,field_description:account_edi_ubl_cii.field_res_users__peppol_endpoint
 msgid "Peppol Endpoint"
@@ -772,6 +876,27 @@ msgstr "Peppol e-address (EAS)"
 #: model:ir.model.fields,field_description:account_edi_ubl_cii.field_res_config_settings__invoice_is_ubl_cii
 msgid "Peppol format"
 msgstr "Format Peppol"
+
+#. module: account_edi_ubl_cii
+#: model_terms:ir.ui.view,arch_db:account_edi_ubl_cii.account_move_send_form
+msgid ""
+"Please fill in Peppol EAS and Peppol Endpoint in your company form to "
+"generate a complete file."
+msgstr ""
+"Mohon isi Peppol EAS dan Peppol Endpoint di formulir perusahaan Anda untuk "
+"membuat file lengkap."
+
+#. module: account_edi_ubl_cii
+#: model:ir.model,name:account_edi_ubl_cii.model_ir_actions_report
+msgid "Report Action"
+msgstr "Report Action"
+
+#. module: account_edi_ubl_cii
+#. odoo-python
+#: code:addons/account_edi_ubl_cii/models/account_edi_common.py:0
+#, python-format
+msgid "Rounding"
+msgstr "Pembulatan"
 
 #. module: account_edi_ubl_cii
 #: model:ir.model,name:account_edi_ubl_cii.model_account_edi_xml_ubl_sg
@@ -794,9 +919,19 @@ msgstr "Pajak '%s' tidak valid: %s"
 #. odoo-python
 #: code:addons/account_edi_ubl_cii/models/res_partner.py:0
 #, python-format
-msgid "The Peppol endpoint is not valid. The expected format is: 0239843188"
+msgid ""
+"The Peppol endpoint is not valid. It should contain exactly 10 digits "
+"(Company Registry number).The expected format is: 1234567890"
 msgstr ""
-"Endpoint Peppol tidak valid. Format yang diharapkan adalah: 0239843188"
+"Endpoint Peppol tidak valid. Ini harus memiliki tepat 10 digit (Nomor "
+"Registrasi Perusahaan). Format yang diharapkan adalah: 1234567890"
+
+#. module: account_edi_ubl_cii
+#. odoo-python
+#: code:addons/account_edi_ubl_cii/models/res_partner.py:0
+#, python-format
+msgid "The Peppol endpoint is not valid. The expected format is: 0239843188"
+msgstr "Endpoint Peppol tidak valid. Format yang diharapkan adalah: 0239843188"
 
 #. module: account_edi_ubl_cii
 #. odoo-python
@@ -827,6 +962,13 @@ msgstr "PPN dari %s harus diberikan awalan kode negara yang sesuai."
 
 #. module: account_edi_ubl_cii
 #. odoo-python
+#: code:addons/account_edi_ubl_cii/models/account_edi_xml_ubl_bis3.py:0
+#, python-format
+msgid "The country is required for the %s."
+msgstr "Negara dibutuhkan untuk %s."
+
+#. module: account_edi_ubl_cii
+#. odoo-python
 #: code:addons/account_edi_ubl_cii/models/account_edi_xml_cii_facturx.py:0
 #: code:addons/account_edi_ubl_cii/models/account_edi_xml_ubl_20.py:0
 #, python-format
@@ -835,7 +977,6 @@ msgstr "Mata uang '%s' tidak aktif."
 
 #. module: account_edi_ubl_cii
 #. odoo-python
-#: code:addons/account_edi_ubl_cii/models/account_edi_common.py:0
 #: code:addons/account_edi_ubl_cii/models/account_edi_common.py:0
 #, python-format
 msgid "The element %s is required on %s."
@@ -852,20 +993,28 @@ msgstr "Field %s dibutuhkan pada %s."
 #. odoo-python
 #: code:addons/account_edi_ubl_cii/models/account_edi_xml_cii_facturx.py:0
 #, python-format
-msgid ""
-"The field 'Sanitized Account Number' is required on the Recipient Bank."
+msgid "The field 'Sanitized Account Number' is required on the Recipient Bank."
 msgstr "Field 'Sanitized Account Number' diperlukan pada Bank Penerima."
 
 #. module: account_edi_ubl_cii
 #. odoo-python
-#: code:addons/account_edi_ubl_cii/models/account_edi_xml_ubl_bis3.py:0
+#: code:addons/account_edi_ubl_cii/models/account_edi_common.py:0
+#, python-format
+msgid "The following bank account numbers got retrieved during the import : %s"
+msgstr "Nomor akun bank berikut diambil selama proses impor : %s"
+
+#. module: account_edi_ubl_cii
+#. odoo-python
+#: code:addons/account_edi_ubl_cii/wizard/account_move_send.py:0
 #, python-format
 msgid ""
-"The invoice contains line(s) with a negative unit price, which is not "
-"allowed. You might need to set a negative quantity instead."
+"The following partners are missing Peppol EAS or Peppol Endpoint field: %s. "
+"Please check those in their Accounting tab. Otherwise, the generated files "
+"will be incomplete."
 msgstr ""
-"Faktur memiliki baris dengan satuan harga yang negatif, ini tidak diizinkan."
-" Alih-alih, Anda mungkin harus menetapkan kuantitas yang negatif."
+"Partner-partner berikut tidak memiliki field Peppol EAS atau Peppol "
+"Endpoint: %s. Silakan periksa mereka di tab Akuntansi. Bila tidak, file yang "
+"dibuat tidak akan lengkap."
 
 #. module: account_edi_ubl_cii
 #. odoo-python
@@ -881,11 +1030,14 @@ msgstr ""
 
 #. module: account_edi_ubl_cii
 #. odoo-python
-#: code:addons/account_edi_ubl_cii/models/account_edi_xml_ubl_bis3.py:0
-#: code:addons/account_edi_ubl_cii/models/account_edi_xml_ubl_bis3.py:0
+#: code:addons/account_edi_ubl_cii/wizard/account_move_send.py:0
 #, python-format
-msgid "The supplier %s must have a Bronnoysund company registry."
-msgstr "Pemasok %s harus memiliki registry perusahaan Bronnoysund."
+msgid ""
+"This partner is missing Peppol EAS or Peppol Endpoint field. Please check "
+"those in its Accounting tab or the generated file will be incomplete."
+msgstr ""
+"Partner ini tidak memiliki field Peppol EAS atau Peppol Endpoint. Silakan "
+"periksa di tab Akuntansi. Bila tidak, file yang dibuat tidak akan lengkap"
 
 #. module: account_edi_ubl_cii
 #: model:ir.model,name:account_edi_ubl_cii.model_account_edi_xml_ubl_20
@@ -910,14 +1062,42 @@ msgid "UBL/CII File"
 msgstr "File UBL/CII"
 
 #. module: account_edi_ubl_cii
+#. odoo-python
+#: code:addons/account_edi_ubl_cii/models/account_move.py:0
+#, python-format
+msgid "Ungrouped lines from %s"
+msgstr ""
+
+#. module: account_edi_ubl_cii
 #: model:ir.model.fields,help:account_edi_ubl_cii.field_res_partner__peppol_endpoint
 #: model:ir.model.fields,help:account_edi_ubl_cii.field_res_users__peppol_endpoint
 msgid ""
 "Unique identifier used by the BIS Billing 3.0 and its derivatives, also "
 "known as 'Endpoint ID'."
 msgstr ""
-"Pengidentifikasi Unik yang digunakan oleh BIS Billing 3.0 dan derivatif-nya,"
-" dikenal juga sebagai 'Endpoint ID'."
+"Pengidentifikasi Unik yang digunakan oleh BIS Billing 3.0 dan derivatif-nya, "
+"dikenal juga sebagai 'Endpoint ID'."
+
+#. module: account_edi_ubl_cii
+#. odoo-python
+#: code:addons/account_edi_ubl_cii/models/account_move.py:0
+#, python-format
+msgid "Unknown partner"
+msgstr ""
+
+#. module: account_edi_ubl_cii
+#. odoo-python
+#: code:addons/account_edi_ubl_cii/wizard/account_move_send.py:0
+#, python-format
+msgid "Unsupported file type via %s"
+msgstr ""
+
+#. module: account_edi_ubl_cii
+#. odoo-python
+#: code:addons/account_edi_ubl_cii/models/account_move.py:0
+#, python-format
+msgid "Untaxed"
+msgstr "Sebelum Pajak"
 
 #. module: account_edi_ubl_cii
 #. odoo-python
@@ -937,26 +1117,43 @@ msgstr "XRechnung CIUS"
 
 #. module: account_edi_ubl_cii
 #. odoo-python
+#: code:addons/account_edi_ubl_cii/models/account_move.py:0
+#, python-format
+msgid "You can only (un)group lines of a draft invoice"
+msgstr ""
+
+#. module: account_edi_ubl_cii
+#. odoo-python
+#: code:addons/account_edi_ubl_cii/models/account_move.py:0
+#, python-format
+msgid "You can only (un)group lines of a incoming invoice (vendor bill)"
+msgstr ""
+
+#. module: account_edi_ubl_cii
+#. odoo-python
+#: code:addons/account_edi_ubl_cii/models/account_move.py:0
+#, python-format
+msgid ""
+"You can only (un)group lines of an invoice not linked to a purchase order"
+msgstr ""
+
+#. module: account_edi_ubl_cii
+#. odoo-python
 #: code:addons/account_edi_ubl_cii/models/account_edi_xml_cii_facturx.py:0
 #, python-format
 msgid ""
 "You should include at least one tax per invoice line. [BR-CO-04]-Each "
-"Invoice line (BG-25) shall be categorized with an Invoiced item VAT category"
-" code (BT-151)."
+"Invoice line (BG-25) shall be categorized with an Invoiced item VAT category "
+"code (BT-151)."
 msgstr ""
-"Anda harus memasukkan setidaknya satu pajak per baris faktur. [BR-"
-"CO-04]-Setiap baris Faktur (BG-25) akan dikategorikan dengan Invoiced item "
-"VAT category code (BT-151)."
+"Anda harus memasukkan setidaknya satu pajak per baris faktur. [BR-CO-04]-"
+"Setiap baris Faktur (BG-25) akan dikategorikan dengan Invoiced item VAT "
+"category code (BT-151)."
 
 #. module: account_edi_ubl_cii
 #: model_terms:ir.ui.view,arch_db:account_edi_ubl_cii.account_invoice_pdfa_3_facturx_metadata
 msgid "factur-x.xml"
 msgstr "factur-x.xml"
-
-#. module: account_edi_ubl_cii
-#: model_terms:ir.ui.view,arch_db:account_edi_ubl_cii.account_invoice_line_facturx_export_22
-msgid "false"
-msgstr "false"
 
 #. module: account_edi_ubl_cii
 #: model_terms:ir.ui.view,arch_db:account_edi_ubl_cii.account_invoice_pdfa_3_facturx_metadata

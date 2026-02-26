@@ -1,24 +1,28 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* delivery
-# 
+# * delivery
+#
 # Translators:
-# Wil Odoo, 2023
-# Thi Huong Nguyen, 2023
-# 
+# Thang Nguyen, 2024
+# Wil Odoo, 2024
+# Thi Huong Nguyen, 2025
+#
+# "Thi Huong Nguyen (thng)" <thng@odoo.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-05 12:31+0000\n"
-"PO-Revision-Date: 2023-10-26 23:09+0000\n"
-"Last-Translator: Thi Huong Nguyen, 2023\n"
-"Language-Team: Vietnamese (https://app.transifex.com/odoo/teams/41243/vi/)\n"
+"POT-Creation-Date: 2025-12-29 18:37+0000\n"
+"PO-Revision-Date: 2026-01-10 08:03+0000\n"
+"Last-Translator: \"Thi Huong Nguyen (thng)\" <thng@odoo.com>\n"
+"Language-Team: Vietnamese <https://translate.odoo.com/projects/odoo-17/"
+"delivery/vi/>\n"
+"Language: vi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: vi\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 5.14.3\n"
 
 #. module: delivery
 #. odoo-python
@@ -32,7 +36,7 @@ msgstr "Lỗi %(carrier)s "
 #: code:addons/delivery/models/delivery_carrier.py:0
 #, python-format
 msgid "%(old_name)s (copy)"
-msgstr ""
+msgstr "%(old_name)s (bản sao)"
 
 #. module: delivery
 #: model_terms:ir.ui.view,arch_db:delivery.choose_delivery_carrier_view_form
@@ -49,14 +53,16 @@ msgid ""
 "                </p>"
 msgstr ""
 "<p class=\"o_view_nocontent\">\n"
-"                    Hãy dùng gói Odoo doanh nghiệp để tính hợp với nhiều nhà cung cấp hơn.\n"
+"                    Hãy dùng gói Odoo doanh nghiệp để tính hợp với nhiều nhà "
+"cung cấp hơn.\n"
 "                </p>"
 
 #. module: delivery
 #: model_terms:ir.ui.view,arch_db:delivery.view_delivery_carrier_form
 msgid ""
 "<span class=\"o_stat_text o_warning_text fw-bold\">Test</span>\n"
-"                                <span class=\"o_stat_text\">Environment</span>"
+"                                <span class=\"o_stat_text\">Environment</"
+"span>"
 msgstr ""
 "<span class=\"o_stat_text o_warning_text fw-bold\">Môi trường</span>\n"
 "                                <span class=\"o_stat_text\">kiểm thử</span>"
@@ -75,10 +81,12 @@ msgstr "<span class=\"text-success\">Debug requests</span>"
 #: model_terms:ir.ui.view,arch_db:delivery.view_delivery_carrier_form
 msgid ""
 "<span class=\"text-success\">Production</span>\n"
-"                                <span class=\"o_stat_text\">Environment</span>"
+"                                <span class=\"o_stat_text\">Environment</"
+"span>"
 msgstr ""
 "<span class=\"text-success\">Môi trường</span>\n"
-"                                <span class=\"o_stat_text\">hoạt động thực tế</span>"
+"                                <span class=\"o_stat_text\">hoạt động thực "
+"tế</span>"
 
 #. module: delivery
 #: model_terms:ir.ui.view,arch_db:delivery.delivery_report_saleorder_document
@@ -99,7 +107,7 @@ msgstr ""
 #. module: delivery
 #: model:ir.model.fields,help:delivery.field_delivery_carrier__integration_level
 msgid "Action while validating Delivery Orders"
-msgstr "Hành động trong khi xác thực Đơn giao hàng"
+msgstr "Tác vụ trong khi xác thực Đơn giao hàng"
 
 #. module: delivery
 #: model:ir.model.fields,field_description:delivery.field_delivery_carrier__active
@@ -117,12 +125,12 @@ msgstr "Thêm"
 #: code:addons/delivery/wizard/choose_delivery_carrier.py:0
 #, python-format
 msgid "Add a shipping method"
-msgstr "Add a shipping method"
+msgstr "Thêm phương thức vận chuyển"
 
 #. module: delivery
 #: model_terms:ir.ui.view,arch_db:delivery.view_order_form_with_carrier
 msgid "Add shipping"
-msgstr "Add shipping"
+msgstr "Thêm vận chuyển"
 
 #. module: delivery
 #: model_terms:ir.ui.view,arch_db:delivery.view_delivery_carrier_form
@@ -240,7 +248,7 @@ msgstr "Gỡ lỗi đăng nhập"
 #: model:ir.model.fields,help:delivery.field_res_partner__property_delivery_carrier_id
 #: model:ir.model.fields,help:delivery.field_res_users__property_delivery_carrier_id
 msgid "Default delivery method used in sales orders."
-msgstr "Default delivery method used in sales orders."
+msgstr "Phương thức vận chuyển dùng mặc định trong đơn bán."
 
 #. module: delivery
 #: model_terms:ir.actions.act_window,help:delivery.action_delivery_carrier_form
@@ -279,7 +287,7 @@ msgstr "Phương thức giao hàng"
 #. module: delivery
 #: model:ir.model.fields,field_description:delivery.field_choose_delivery_carrier__delivery_price
 msgid "Delivery Price"
-msgstr "Delivery Price"
+msgstr "Phí vận chuyển"
 
 #. module: delivery
 #: model:ir.model,name:delivery.model_delivery_price_rule
@@ -310,7 +318,7 @@ msgstr "Tiền tố zip giao hàng"
 #: model:ir.model.fields,field_description:delivery.field_sale_order__recompute_delivery_price
 #: model:ir.model.fields,field_description:delivery.field_sale_order_line__recompute_delivery_price
 msgid "Delivery cost should be recomputed"
-msgstr "Delivery cost should be recomputed"
+msgstr "Phí vận chuyển nên được tính lại"
 
 #. module: delivery
 #: model_terms:ir.actions.act_window,help:delivery.action_delivery_zip_prefix_list
@@ -357,7 +365,8 @@ msgid ""
 "            to each method."
 msgstr ""
 "Mỗi hãng vận chuyển (vd: UPS) có thể có nhiều phương thức vận chuyển (VD:\n"
-"             UPS Express, UPS Standard) với những quy tắc tính phí vận chuyển được đính kèm\n"
+"             UPS Express, UPS Standard) với những quy tắc tính phí vận "
+"chuyển được đính kèm\n"
 "             cho mỗi phương thức."
 
 #. module: delivery
@@ -368,28 +377,38 @@ msgstr "Môi trường"
 #. module: delivery
 #. odoo-python
 #: code:addons/delivery/models/delivery_carrier.py:0
-#: code:addons/delivery/models/delivery_carrier.py:0
 #, python-format
 msgid "Error: this delivery method is not available for this address."
 msgstr "Lỗi: phương thức vận chuyển không hỗ trợ cho địa chỉ này."
 
 #. module: delivery
+#. odoo-python
+#: code:addons/delivery/models/delivery_carrier.py:0
+#, python-format
+msgid "Error: this delivery method is not available."
+msgstr "Lỗi: phương thức vận chuyển này không khả dụng."
+
+#. module: delivery
 #: model:ir.model.fields,help:delivery.field_delivery_carrier__invoice_policy
 msgid ""
 "Estimated Cost: the customer will be invoiced the estimated cost of the "
-"shipping."
+"shipping.\n"
+"Real Cost: the customer will be invoiced the real cost of the shipping, the "
+"cost of theshipping will be updated on the SO after the delivery."
 msgstr ""
+"Phí dự tính: khách hàng sẽ nhận được hóa đơn phí giao hàng dự tính.\n"
+"Phí thực tế: khách hàng sẽ nhận được hóa đơn phí giao hàng thực tế, phí vận "
+"chuyển sẽ được cập nhật trong đơn bán hàng sau khi giao hàng. "
 
 #. module: delivery
 #: model:ir.model.fields.selection,name:delivery.selection__delivery_carrier__invoice_policy__estimated
 msgid "Estimated cost"
-msgstr "Estimated cost"
+msgstr "Phí ước tính"
 
 #. module: delivery
 #: model:ir.model.fields,help:delivery.field_sale_order__carrier_id
 msgid "Fill this field if you plan to invoice the shipping based on picking."
-msgstr ""
-"Điền vào trường này nếu bạn muốn xuất hoá đơn vận chuyển khi giao hàng."
+msgstr "Điền vào trường này nếu bạn muốn lập hoá đơn vận chuyển khi giao hàng."
 
 #. module: delivery
 #: model_terms:ir.ui.view,arch_db:delivery.view_delivery_carrier_form
@@ -397,8 +416,8 @@ msgid ""
 "Filling this form allows you to filter delivery carriers according to the "
 "delivery address of your customer."
 msgstr ""
-"Điền thông tin ở đây sẽ giúp lọc ra những đơn vị vận chuyển dựa theo địa chỉ"
-" giao hàng của khách hàng của bạn."
+"Điền thông tin ở đây sẽ giúp lọc ra những đơn vị vận chuyển dựa theo địa chỉ "
+"giao hàng của khách hàng của bạn."
 
 #. module: delivery
 #: model:ir.model.fields,field_description:delivery.field_delivery_carrier__fixed_margin
@@ -416,7 +435,7 @@ msgstr "Giá cố định"
 #: code:addons/delivery/models/sale_order.py:0
 #, python-format
 msgid "Free Shipping"
-msgstr "Miễn phí giao hàng"
+msgstr "Miễn phí vận chuyển"
 
 #. module: delivery
 #: model:ir.model.fields,field_description:delivery.field_delivery_carrier__free_over
@@ -426,7 +445,7 @@ msgstr "Miễn phí nếu giá trị đặt hàng lớn hơn"
 #. module: delivery
 #: model:ir.model.fields,field_description:delivery.field_delivery_carrier__return_label_on_delivery
 msgid "Generate Return Label"
-msgstr "Generate Return Label"
+msgstr "Tạo nhãn trả hàng"
 
 #. module: delivery
 #: model:ir.model.fields.selection,name:delivery.selection__delivery_carrier__integration_level__rate
@@ -478,7 +497,7 @@ msgstr "Cấp độ tích hợp"
 #. module: delivery
 #: model:ir.model.fields,field_description:delivery.field_choose_delivery_carrier__invoicing_message
 msgid "Invoicing Message"
-msgstr "Invoicing Message"
+msgstr "Lời nhắn lập hoá đơn"
 
 #. module: delivery
 #: model:ir.model.fields,field_description:delivery.field_delivery_carrier__invoice_policy
@@ -622,6 +641,11 @@ msgid "Pricing Rules"
 msgstr "Quy tắc giá"
 
 #. module: delivery
+#: model:ir.model,name:delivery.model_product_category
+msgid "Product Category"
+msgstr "Danh mục sản phẩm"
+
+#. module: delivery
 #: model:ir.model.fields,field_description:delivery.field_sale_order_line__product_qty
 msgid "Product Qty"
 msgstr "SL sản phẩm"
@@ -642,7 +666,7 @@ msgstr "Số lượng"
 #. module: delivery
 #: model:ir.model.fields,field_description:delivery.field_delivery_carrier__get_return_label_from_portal
 msgid "Return Label Accessible from Customer Portal"
-msgstr "Return Label Accessible from Customer Portal"
+msgstr "Nhãn trả hàng tự in được từ cổng khách hàng"
 
 #. module: delivery
 #: model:ir.model.fields,field_description:delivery.field_delivery_price_rule__list_base_price
@@ -673,7 +697,7 @@ msgstr "Trình tự"
 #. module: delivery
 #: model:ir.model.fields,field_description:delivery.field_sale_order__is_all_service
 msgid "Service Product"
-msgstr "Service Product"
+msgstr "Sản phẩm dịch vụ"
 
 #. module: delivery
 #: model:ir.model.fields,help:delivery.field_delivery_carrier__prod_environment
@@ -685,7 +709,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:delivery.field_choose_delivery_carrier__carrier_id
 #: model_terms:ir.ui.view,arch_db:delivery.view_delivery_carrier_form
 msgid "Shipping Method"
-msgstr "Shipping Method"
+msgstr "Phương thức vận chuyển"
 
 #. module: delivery
 #: model:ir.actions.act_window,name:delivery.action_delivery_carrier_form
@@ -693,7 +717,7 @@ msgstr "Shipping Method"
 #: model:ir.ui.menu,name:delivery.sale_menu_action_delivery_carrier_form
 #: model_terms:ir.ui.view,arch_db:delivery.res_config_settings_view_form
 msgid "Shipping Methods"
-msgstr "Shipping Methods"
+msgstr "Phương thức vận chuyển"
 
 #. module: delivery
 #: model:ir.model.fields,field_description:delivery.field_sale_order__shipping_weight
@@ -706,8 +730,8 @@ msgid ""
 "Shipping insurance is a service which may reimburse senders whose parcels "
 "are lost, stolen, and/or damaged in transit."
 msgstr ""
-"Bảo hiểm vận chuyển là một dịch vụ có thể bồi hoàn cho người gửi có bưu kiện"
-" bị mất, bị đánh cắp và/hoặc bị hư hỏng trong quá trình vận chuyển."
+"Bảo hiểm vận chuyển là một dịch vụ có thể bồi hoàn cho người gửi có bưu kiện "
+"bị mất, bị đánh cắp và/hoặc bị hư hỏng trong quá trình vận chuyển."
 
 #. module: delivery
 #: model_terms:ir.ui.view,arch_db:delivery.view_delivery_carrier_form
@@ -744,13 +768,12 @@ msgstr "The Poste"
 #: model:ir.model.fields,help:delivery.field_delivery_carrier__get_return_label_from_portal
 msgid ""
 "The return label can be downloaded by the customer from the customer portal."
-msgstr ""
-"The return label can be downloaded by the customer from the customer portal."
+msgstr "Khách hàng có thể tự in nhãn trả hàng từ cổng khách hàng"
 
 #. module: delivery
 #: model:ir.model.fields,help:delivery.field_delivery_carrier__return_label_on_delivery
 msgid "The return label is automatically generated at the delivery."
-msgstr "The return label is automatically generated at the delivery."
+msgstr "Nhãn trả hàng được tự động tạo khi giao hàng."
 
 #. module: delivery
 #: model:ir.model.constraint,message:delivery.constraint_delivery_carrier_shipping_insurance_is_percentage
@@ -762,7 +785,7 @@ msgstr "Bảo hiểm vận chuyển phải là tỷ lệ phần trăm từ 0 đ�
 #: code:addons/delivery/models/delivery_carrier.py:0
 #, python-format
 msgid "The shipping is free since the order amount exceeds %.2f."
-msgstr "The shipping is free since the order amount exceeds %.2f."
+msgstr "Vận chuyển miễn phí khi tổng đơn hàng vượt %.2f."
 
 #. module: delivery
 #: model_terms:ir.actions.act_window,help:delivery.action_delivery_carrier_form
@@ -773,7 +796,7 @@ msgid ""
 msgstr ""
 "Các phương thức này cho phép tự động tính toán phí giao hàng\n"
 "                dựa theo cài đặt của bạn; cho đơn bán hàng (dựa theo\n"
-"                báo giá) hoặc hóa đơn (dựa theo phiếu xuất kho)."
+"                báo giá) hoặc hóa đơn (dựa theo lệnh giao hàng)."
 
 #. module: delivery
 #: model:ir.model.fields,help:delivery.field_delivery_carrier__fixed_margin
@@ -801,7 +824,7 @@ msgstr "Cập nhật"
 #: model_terms:ir.ui.view,arch_db:delivery.view_order_form_with_carrier
 #, python-format
 msgid "Update shipping cost"
-msgstr "Update shipping cost"
+msgstr "Cập nhật phí vận chuyển"
 
 #. module: delivery
 #: model:ir.model.fields,field_description:delivery.field_delivery_price_rule__variable
@@ -841,9 +864,11 @@ msgstr "Tên đơn vị tính khối lượng"
 #: code:addons/delivery/models/sale_order.py:0
 #, python-format
 msgid ""
-"You can not update the shipping costs on an order where it was already invoiced!\n"
+"You can not update the shipping costs on an order where it was already "
+"invoiced!\n"
 "\n"
-"The following delivery lines (product, invoiced quantity and price) have already been processed:\n"
+"The following delivery lines (product, invoiced quantity and price) have "
+"already been processed:\n"
 "\n"
 msgstr ""
 "Bạn không thể cập nhật phí vận chuyển của đơn hàng đã được xuất hóa đơn!\n"
@@ -852,12 +877,15 @@ msgstr ""
 "\n"
 
 #. module: delivery
+#. odoo-python
 #: code:addons/delivery/models/product_category.py:0
 #, python-format
 msgid ""
 "You cannot delete the deliveries product category as it is used on the "
 "delivery carriers products."
 msgstr ""
+"Bạn không thể xóa danh mục sản phẩm vận chuyển vì nó được sử dụng cho các "
+"sản phẩm của đơn vị vận chuyển."
 
 #. module: delivery
 #: model:ir.actions.act_window,name:delivery.action_delivery_zip_prefix_list

@@ -11,7 +11,7 @@ import { jsonrpc } from "@web/core/network/rpc_service";
 var VariantMixin = {
     events: {
         'change .css_attribute_color input': '_onChangeColorAttribute',
-        'change .o_variant_pills input' :'_onChangePillsAttribute',
+        'click .o_variant_pills': '_onChangePillsAttribute',
         'change .main_product:not(.in_cart) input.js_quantity': 'onChangeAddQuantity',
         'change [data-attribute_exclusions]': 'onChangeVariant'
     },
@@ -535,8 +535,10 @@ var VariantMixin = {
         var $price = $parent.find(".oe_price:first .oe_currency_value");
         var $default_price = $parent.find(".oe_default_price:first .oe_currency_value");
         var $optional_price = $parent.find(".oe_optional:first .oe_currency_value");
-        $price.text(self._priceToStr(combination.price));
-        $default_price.text(self._priceToStr(combination.list_price));
+        const precision = combination.currency_precision;
+        $price.parent().addClass('decimal_precision').attr('data-precision', precision);
+        $price.text(self._priceToStr(combination.price, precision));
+        $default_price.text(self._priceToStr(combination.list_price, precision));
 
         var isCombinationPossible = true;
         if (typeof combination.is_combination_possible !== "undefined") {
@@ -615,12 +617,12 @@ var VariantMixin = {
      *
      * @private
      * @param {float} price
+     * @param {integer} precision
+     * @returns {string}
      */
-    _priceToStr: function (price) {
-        var precision = 2;
-
-        if ($('.decimal_precision').length) {
-            precision = parseInt($('.decimal_precision').last().data('precision'));
+    _priceToStr: function (price, precision) {
+        if (!Number.isInteger(precision)) {
+            precision = parseInt($('.decimal_precision:last').data('precision') ?? 2);
         }
         var formatted = price.toFixed(precision).split(".");
         const { thousandsSep, decimalPoint, grouping } = localization;
@@ -720,6 +722,8 @@ var VariantMixin = {
     },
 
     _onChangePillsAttribute: function (ev) {
+        const radio = ev.target.closest('.o_variant_pills').querySelector("input");
+        radio.click();  // Trigger onChangeVariant.
         var $parent = $(ev.target).closest('.js_product');
         $parent.find('.o_variant_pills')
             .removeClass("active")

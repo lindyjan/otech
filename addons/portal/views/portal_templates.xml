@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <template id="frontend_layout" name="Main Frontend Layout" inherit_id="web.frontend_layout">
+        <xpath expr="//html" position="attributes">
+            <attribute name="t-att-dir" add="request.env['res.lang']._lang_get_direction(request.env.lang)" separator=" "/>
+        </xpath>
         <xpath expr="//div[@id='wrapwrap']" position="attributes">
             <attribute name="t-attf-class" add="#{request.env['res.lang']._lang_get_direction(request.env.lang) == 'rtl' and 'o_rtl' or ''}" separator=" "/>
             <attribute name="t-attf-class" add="#{'o_portal' if is_portal else ''}" separator=" "/>
@@ -228,13 +231,7 @@
                     <div t-if="portal_service_category_enable" class="o_portal_category row g-2 mt-3" id="portal_service_category"/>
                     <div t-if="portal_vendor_category_enable" class="o_portal_category row g-2 mt-3" id="portal_vendor_category"/>
                     <div class="o_portal_category row g-2 mt-3" id="portal_common_category">
-                        <t t-call="portal.portal_docs_entry">
-                            <t t-set="icon" t-value="'/portal/static/src/img/portal-addresses.svg'"/>
-                            <t t-set="title">Addresses</t>
-                            <t t-set="text">Add, remove or modify your addresses</t>
-                            <t t-set="url" t-value="'/my/account'"/>
-                            <t t-set="config_card" t-value="True"/>
-                        </t>
+                        <t t-call="portal.portal_docs_entry" t-if="False"/>
                         <t t-call="portal.portal_docs_entry">
                             <t t-set="icon" t-value="'/portal/static/src/img/portal-connection.svg'"/>
                             <t t-set="title">Connection &amp; Security</t>
@@ -418,7 +415,7 @@
             <h4>Your contact</h4>
             <hr class="mt-1 mb0"/>
             <h6 class="mb-1"><b t-esc="sales_user.name"/></h6>
-            <div class="d-flex align-items-center mb-1">
+            <div t-if="sales_user.email_normalized" class="d-flex align-items-center mb-1">
                 <div class="fa fa-envelope fa-fw me-1"></div>
                 <a t-att-href="'mailto:'+sales_user.email" t-esc="sales_user.email"/>
             </div>
@@ -497,7 +494,7 @@
             <select name="country_id" t-attf-class="form-select #{error.get('country_id') and 'is-invalid' or ''}" t-att-disabled="None if partner_can_edit_vat else '1'">
                 <option value="">Country...</option>
                 <t t-foreach="countries or []" t-as="country">
-                    <option t-att-value="country.id" t-att-selected="country.id == int(country_id) if country_id else country.id == partner.country_id.id">
+                    <option t-att-value="country.id" t-att-selected="country.id == (False if country_id == 'False' else int(country_id)) if country_id else country.id == partner.country_id.id">
                         <t t-esc="country.name" />
                     </option>
                 </t>

@@ -525,6 +525,46 @@ class TestReportsRendering(TestReportsRenderingCommon):
         pages_contents = [[elem[1] for elem in page] for page in pages]
         self.assertEqual(pages_contents, expected_pages_contents)
 
+    def test_report_specific_paperformat_args(self):
+        """
+            Verify that the values defined in `specific_paperformat_args` take
+            precedence over those in the paperformat when building the wkhtmltopdf
+            command arguments.
+        """
+        command_args = self.env['ir.actions.report']._build_wkhtmltopdf_args(
+            self.env['report.paperformat'].new({
+                'format': 'A4',
+                'margin_top': 25,
+                'margin_left': 50,
+                'margin_bottom': 75,
+                'margin_right': 100,
+                'dpi': 90,
+                'header_spacing': 125,
+                'orientation': 'portrait'
+            }),
+            landscape=None,
+            specific_paperformat_args={
+                'data-report-landscape': True,
+                'data-report-margin-top': 0,
+                'data-report-margin-bottom': 0,
+                'data-report-header-spacing': 0,
+                'data-report-dpi': 96
+            })
+        self.assertEqual(command_args, [
+            '--disable-local-file-access',
+            '--quiet',
+            '--page-size', 'A4',
+            '--margin-top', '0',
+            '--dpi', '96',
+            '--zoom', '1.0',
+            '--header-spacing', '0',
+            '--margin-left', '50.0',
+            '--margin-bottom', '0',
+            '--margin-right', '100.0',
+            '--javascript-delay', '1000',
+            '--orientation', 'landscape',
+        ])
+
 
 @odoo.tests.tagged('post_install', '-at_install', '-standard', 'pdf_rendering')
 class TestReportsRenderingLimitations(TestReportsRenderingCommon):
@@ -554,3 +594,98 @@ class TestReportsRenderingLimitations(TestReportsRenderingCommon):
         header = page[0][0]
         content = page[1][0]
         self.assertGreaterEqual(content.top, header.end_top, "EXISTING LIMITATION: large header shouldn't overflow on body, but they do")
+
+
+@odoo.tests.tagged('post_install', '-at_install')
+class TestAggregatePdfReports(odoo.tests.HttpCase):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.partners = cls.env["res.partner"].create([{
+            "name": "Rodion Romanovich Raskolnikov"
+        }, {
+            "name": "Dmitri Prokofich Razumikhin"
+        }, {
+            "name": "Porfiry Petrovich"
+        }])
+
+        cls.env["ir.actions.report"].create({
+            "name": "test report",
+            "report_name": "base.test_report",
+            "model": "res.partner",
+        })
+
+    def test_aggregate_report_with_some_resources_reloaded_from_attachment(self):
+        """
+        Test for opw-3827700, which caused reports generated for multiple records to fail if there was a record in
+        the middle that had an attachment, and 'Reload from attachment' was enabled for the report. The misbehavior was
+        caused by an indexing issue.
+        """
+        self.env["ir.ui.view"].create({
+            "type": "qweb",
+            "name": "base.test_report",
+            "key": "base.test_report",
+            "arch": """
+                    <main>
+                        <div t-foreach="docs" t-as="user">
+                            <div class="article" data-oe-model="res.partner" t-att-data-oe-id="user.id">
+                                <span t-esc="user.display_name"/>
+                            </div>
+                        </div>
+                    </main>
+                    """
+        })
+        self.assert_report_creation("base.test_report", self.partners, self.partners[1])
+
+    def test_aggregate_report_with_some_resources_reloaded_from_attachment_with_multiple_page_report(self):
+        """
+        Same as @test_report_with_some_resources_reloaded_from_attachment, but tests the behavior for reports that
+        span multiple pages per record.
+        """
+        self.env["ir.ui.view"].create({
+            "type": "qweb",
+            "name": "base.test_report",
+            "key": "base.test_report",
+            "arch": """
+                    <main>
+                        <div t-foreach="docs" t-as="user">
+                            <div class="article" data-oe-model="res.partner" t-att-data-oe-id="user.id" >
+                                <!-- This headline helps report generation to split pdfs per record after it generates
+                                     the report in bulk by creating an outline. -->
+                                <h1>Name</h1>
+                                <!-- Make this a multipage report. -->
+                                <div t-foreach="range(100)" t-as="i">
+                                    <span t-esc="i"/> - <span t-esc="user.display_name"/>
+                                </div>
+                            </div>
+                        </div>
+                    </main>
+                    """
+        })
+        self.assert_report_creation("base.test_report", self.partners, self.partners[1])
+
+    def assert_report_creation(self, report_ref, records, record_to_report):
+        self.assertIn(record_to_report, records, "Record to report must be in records list")
+
+        reports = self.env['ir.actions.report'].with_context(force_report_rendering=True)
+
+        # Make sure attachments are created.
+        report = reports._get_report(report_ref)
+        if not report.attachment:
+            report.attachment = "object.name + '.pdf'"
+        report.attachment_use = True
+
+        # Generate report for chosen record to create an attachment.
+        record_report, content_type = reports._render_qweb_pdf(report_ref, res_ids=record_to_report.id)
+        self.assertEqual(content_type, "pdf", "Report is not a PDF")
+        self.assertTrue(record_report, "PDF not generated")
+
+        # Make sure the attachment is created.
+        report = reports._get_report(report_ref)
+        self.assertTrue(report.retrieve_attachment(record_to_report), "Attachment not generated")
+
+        aggregate_report_content, content_type = reports._render_qweb_pdf(report_ref, res_ids=records.ids)
+        self.assertEqual(content_type, "pdf", "Report is not a PDF")
+        self.assertTrue(aggregate_report_content, "PDF not generated")
+        for record in records:
+            self.assertTrue(report.retrieve_attachment(record), "Attachment not generated")

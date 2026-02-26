@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
+# pylint: skip-file
 
 from __future__ import print_function
 import logging
@@ -11,12 +12,13 @@ import time
 import netifaces as ni
 import traceback
 
-try: 
+escpos = printer = None
+try:
     from .. escpos import *
     from .. escpos.exceptions import *
     from .. escpos.printer import Usb
 except ImportError:
-    escpos = printer = None
+    pass
 
 from queue import Queue
 from threading import Thread, Lock

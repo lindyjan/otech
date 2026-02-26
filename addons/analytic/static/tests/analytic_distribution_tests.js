@@ -1,5 +1,8 @@
 /** @odoo-module **/
 
+import { registry } from "@web/core/registry";
+import { batchedOrmService } from "@analytic/services/batched_orm_service";
+
 import {
     addRow,
     click,
@@ -115,6 +118,7 @@ QUnit.module("Analytic", (hooks) => {
         };
 
         setupViewRegistries();
+        registry.category("services").add("batchedOrm", batchedOrmService);
     });
 
     QUnit.module("AnalyticDistribution");
@@ -394,4 +398,54 @@ QUnit.module("Analytic", (hooks) => {
     QUnit.test("amount_field Column", (assert) => { assert.expect(0) });
     QUnit.test("save as model", (assert) => { assert.expect(0) });
 
+    QUnit.test("analytic distribution popup closes when inside modal and clicking outside", async function (assert) {
+        assert.expect(2);
+
+        const modal = document.createElement("div");
+        modal.classList.add("modal");
+        modal.style.display = "block";
+        modal.style.position = "fixed";
+        modal.innerHTML = `<div class="click-area">Click Here</div>`;
+        document.body.appendChild(modal);
+
+        const clickTarget = modal.querySelector(".click-area");
+
+        await makeView({
+            type: "form",
+            resModel: "aml",
+            resId: 1,
+            serverData,
+            arch: `
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="analytic_distribution" widget="analytic_distribution"/>
+                        </group>
+                    </sheet>
+                </form>`,
+            mockRPC(route, { method, model }) {
+                if (method === "get_relevant_plans" && model === "account.analytic.plan") {
+                    return Promise.resolve(
+                        serverData.models['plan'].records.filter((r) => !r.parent_id && r.applicability !== "unavailable" && r.all_account_count)
+                    );
+                }
+            },
+        });
+
+        await nextTick();
+
+        const widgetEl = target.querySelector(".o_field_analytic_distribution");
+        modal.appendChild(widgetEl);
+
+        await click(widgetEl.querySelector(".o_input_dropdown"));
+        assert.containsOnce(widgetEl, ".analytic_distribution_popup", "popup is visible");
+
+        clickTarget.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+
+        await nextTick();
+
+        assert.containsNone(widgetEl, ".analytic_distribution_popup", "popup should close on outside click");
+
+        modal.remove();
+    });
 });

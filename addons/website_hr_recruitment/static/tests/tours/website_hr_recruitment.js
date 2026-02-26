@@ -20,7 +20,7 @@
             run: `text ${application.email}`,
         }, {
             content: "Complete phone number",
-            trigger: "input[name=partner_mobile]",
+            trigger: "input[name=partner_phone]",
             run: `text ${application.phone}`,
         }, {
             content: "Complete LinkedIn profile",
@@ -88,11 +88,20 @@
             document.querySelector('.o_iframe:not(.o_ignore_in_tour)').contentDocument.querySelector('input[name="job_id"]').value = 'FAKE_JOB_ID_DEFAULT_VAL';
         },
     }, {
-        content: 'Edit the form',
-        trigger: 'iframe input[type="file"]',
+        content: 'Make the department_id field visible',
+        trigger: "body",
+        run: () => {
+            const departmentEl = document.querySelector('.o_iframe:not(.o_ignore_in_tour)').contentDocument.querySelector('input[name="department_id"]');
+            departmentEl.type = 'text';
+            departmentEl.closest('.s_website_form_field').classList.remove('s_website_form_dnone');
+        },
     }, {
-        content: 'Add a new field',
-        trigger: 'we-button[data-add-field]',
+        content: 'Focus on department_id field',
+        trigger: 'iframe input[name="department_id"]',
+    }, {
+        content: 'Add a fake default value for the department_id field',
+        trigger: 'we-input[data-attribute-name="value"] input',
+        run: 'text FAKE_DEPARTMENT_ID_DEFAULT_VAL',
     },
     ...wTourUtils.clickOnSave(),
     {
@@ -117,17 +126,61 @@
                 console.error('The job_id field has a wrong value');
             }
         }
-    },
-    ...wTourUtils.clickOnEditAndWaitEditMode(),
-    {
-        content: 'Verify that the job_id field has kept its default value',
-        trigger: "body",
-        run: () => {
-            if (!document.querySelector('.o_iframe:not(.o_ignore_in_tour)').contentDocument.querySelector('input[name="job_id"][value="FAKE_JOB_ID_DEFAULT_VAL"]')) {
-                console.error('The job_id field has lost its default value');
+    }, {
+        content: 'Check that a department_id has been loaded',
+        trigger: 'iframe input[name="department_id"][value="FAKE_DEPARTMENT_ID_DEFAULT_VAL"]',
+        run: function () {
+            if (this.$anchor.val() === "FAKE_DEPARTMENT_ID_DEFAULT_VAL") {
+                console.error('The department_id data-for should have been applied');
             }
         }
     },
+    ...wTourUtils.clickOnEditAndWaitEditMode(),
+    {
+        content: 'Verify that the job_id hidden field has lost its default value',
+        trigger: "body",
+        run: () => {
+            const doc = document.querySelector(".o_iframe:not(.o_ignore_in_tour)").contentDocument;
+            const id = doc.querySelector('[data-oe-model="hr.job"]').dataset.oeId;
+            if (!doc.querySelector(`input[name="job_id"][value="${id}"]`)) {
+                console.error('The hidden field has kept its default value in edit mode instead of data-for');
+            }
+        }
+    },
+    {
+        content: 'Verify that the department_id shown field has kept its default value',
+        trigger: 'iframe input[name="department_id"][value="FAKE_DEPARTMENT_ID_DEFAULT_VAL"]',
+        run: function () {
+            if (this.$anchor.val() !== "FAKE_DEPARTMENT_ID_DEFAULT_VAL") {
+                console.error('The department_id field has lost its default value');
+            }
+        },
+    },
+]);
+
+    // This tour addresses an issue that occurred in a website form containing
+    // the 'hide-change-model' attribute. Specifically, when a model-required
+    // field is selected, the alert message should not display an undefined
+    // action name.
+    wTourUtils.registerWebsitePreviewTour('model_required_field_should_have_action_name', {
+        test: true,
+        url: '/jobs',
+    }, () => [{
+        content: "Select Job",
+        trigger: "iframe h3:contains('Guru')",
+    }, {
+        content: "Apply",
+        trigger: "iframe a:contains('Apply')",
+    },
+    ...wTourUtils.clickOnEditAndWaitEditMode(),
+    {
+        content: "click on the your name field",
+        trigger: "iframe #hr_recruitment_form div.s_website_form_model_required",
+    }, {
+        content: "Select model-required field",
+        trigger: "we-customizeblock-options we-alert > span:not(:contains(undefined))",
+        isCheck: true,
+    }
 ]);
 
 export default {};

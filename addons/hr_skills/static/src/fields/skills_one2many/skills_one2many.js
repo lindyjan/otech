@@ -78,7 +78,9 @@ export class SkillsX2ManyField extends X2ManyField {
             getList: () => this.list,
             saveRecord: async (record) => {
                 await saveRecord(record);
-                await this.props.record.save();
+                await this.props.record.save({
+                    onError: (e) => {this.list.delete(record); throw e;}
+                });
             },
             updateRecord: updateRecord,
             withParentId: this.props.widget !== "many2many",
@@ -95,7 +97,7 @@ export class SkillsX2ManyField extends X2ManyField {
     }
 
     async onAdd({ context, editable } = {}) {
-        const employeeId = this.props.record.resId;
+        const employeeId = this.props.record.resModel === "res.users" ? this.props.record.data.employee_id[0] : this.props.record.resId;
         return super.onAdd({
             editable,
             context: {

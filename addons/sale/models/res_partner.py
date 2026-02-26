@@ -73,19 +73,28 @@ class ResPartner(models.Model):
     def _compute_credit_to_invoice(self):
         # EXTENDS 'account'
         super()._compute_credit_to_invoice()
-        domain = [('partner_id', 'in', self.ids), ('state', '=', 'sale')]
-        group = self.env['sale.order']._read_group(domain, ['partner_id'], ['amount_to_invoice:sum'])
-        for partner, amount_to_invoice_sum in group:
-            partner.credit_to_invoice += amount_to_invoice_sum
+        if not (commercial_partners := self.commercial_partner_id & self):
+            return  # nothing to compute
+        company = self.env.company
+        domain = [
+            ('company_id', '=', company.id),
+            ('partner_invoice_id', 'any', [
+                ('commercial_partner_id', 'in', commercial_partners.ids),
+            ]),
+            ('amount_to_invoice', '>', 0),
+            ('state', '=', 'sale')
+        ]
 
-
-    def unlink(self):
-        # Unlink draft/cancelled SO so that the partner can be removed from database
-        self.env['sale.order'].sudo().search([
-            ('state', 'in', ['draft', 'cancel']),
-            '|', '|',
-            ('partner_id', 'in', self.ids),
-            ('partner_invoice_id', 'in', self.ids),
-            ('partner_shipping_id', 'in', self.ids),
-        ]).unlink()
-        return super().unlink()
+        group = self.env['sale.order']._read_group(
+            domain,
+            ['partner_invoice_id', 'currency_id'],
+            ['amount_to_invoice:sum'],
+        )
+        for partner, currency, amount_to_invoice_sum in group:
+            credit_company_currency = currency._convert(
+                amount_to_invoice_sum,
+                company.currency_id,
+                company,
+                fields.Date.context_today(self)
+            )
+            partner.commercial_partner_id.credit_to_invoice += credit_company_currency

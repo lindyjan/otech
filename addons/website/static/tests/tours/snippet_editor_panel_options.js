@@ -3,6 +3,8 @@
 import wTourUtils from '@website/js/tours/tour_utils';
 import { browser } from '@web/core/browser/browser';
 
+const oldWriteText = browser.navigator.clipboard.writeText;
+
 wTourUtils.registerWebsitePreviewTour('snippet_editor_panel_options', {
     test: true,
     url: '/',
@@ -52,15 +54,16 @@ wTourUtils.dragNDrop({
     trigger: '#oe_snippets .snippet-option-anchor we-button',
     run() {
         // Patch and ignore write on clipboard in tour as we don't have permissions
-        const oldWriteText = browser.navigator.clipboard.writeText;
         browser.navigator.clipboard.writeText = () => { console.info('Copy in clipboard ignored!') };
         this.$anchor[0].click();
-        browser.navigator.clipboard.writeText = oldWriteText;
     }
 }, {
     content: "Check the copied url from the notification toast",
     trigger: '.o_notification_manager .o_notification_content',
     run() {
+        // Cleanup the patched clipboard method
+        browser.navigator.clipboard.writeText = oldWriteText;
+
         const { textContent } = this.$anchor[0];
         const url = textContent.substring(textContent.indexOf('/'));
 
@@ -181,6 +184,22 @@ wTourUtils.changeOption("layout_column", 'we-button[data-name="normal_mode"]'),
             console.error("The paragraph text selection was lost.");
         }
     },
+},
+// Test close dropdowns if click anywhere outside the dropdown
+{
+    content: "Open text style dropdown.",
+    trigger: "#style button.dropdown-toggle",
+}, {
+    content: "Check if dropdown opened correctly.",
+    trigger: "#style button[data-bs-toggle=dropdown][aria-expanded=true]",
+    run: () => {}, // It's a check.
+}, {
+    content: "Click on the first paragraph again.",
+    trigger: "iframe .s_text_block p",
+}, {
+    content: "Check if dropdown closed correctly.",
+    trigger: "#style button[data-bs-toggle=dropdown][aria-expanded=false]",
+    run: () => {}, // It's a check.
 },
 ...wTourUtils.clickOnSave(),
 ]);

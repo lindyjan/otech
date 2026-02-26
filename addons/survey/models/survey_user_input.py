@@ -312,18 +312,12 @@ class SurveyUserInput(models.Model):
         if not (isinstance(answers, list)):
             answers = [answers]
 
-        if not answers:
+        if not answers and not (comment and question.comment_count_as_answer):
             # add a False answer to force saving a skipped line
             # this will make this question correctly considered as skipped in statistics
             answers = [False]
 
-        vals_list = []
-
-        if question.question_type == 'simple_choice':
-            if not question.comment_count_as_answer or not question.comments_allowed or not comment:
-                vals_list = [self._get_line_answer_values(question, answer, 'suggestion') for answer in answers]
-        elif question.question_type == 'multiple_choice':
-            vals_list = [self._get_line_answer_values(question, answer, 'suggestion') for answer in answers]
+        vals_list = [self._get_line_answer_values(question, answer, 'suggestion') for answer in answers]
 
         if comment:
             vals_list.append(self._get_line_comment_values(question, comment))
@@ -444,7 +438,8 @@ class SurveyUserInput(models.Model):
 
             question_section = question.page_id.title or _('Uncategorized')
             for user_input in self:
-                user_input_lines = user_input.user_input_line_ids.filtered(lambda line: line.question_id == question)
+                user_input_lines = user_input.user_input_line_ids.filtered(lambda line:
+                    line.question_id == question and (line.answer_type != 'char_box' or question.comment_count_as_answer))
                 if question.question_type == 'simple_choice':
                     answer_result_key = self._simple_choice_question_answer_result(user_input_lines, question_correct_suggested_answers, question_incorrect_scored_answers)
                 elif question.question_type == 'multiple_choice':
@@ -747,7 +742,7 @@ class SurveyUserInputLine(models.Model):
             elif line.answer_type == 'date':
                 line.display_name = fields.Date.to_string(line.value_date)
             elif line.answer_type == 'datetime':
-                line.display_name = fields.Datetime.to_string(line.value_datetime)
+                line.display_name = fields.Datetime.to_string(fields.Datetime.context_timestamp(self.env.user, line.value_datetime))
             elif line.answer_type == 'suggestion':
                 if line.matrix_row_id:
                     line.display_name = f'{line.suggested_answer_id.value}: {line.matrix_row_id.value}'

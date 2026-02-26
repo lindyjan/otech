@@ -3,7 +3,7 @@ from collections import defaultdict
 
 from odoo import Command, models, fields, api, _
 from odoo.exceptions import UserError
-from odoo.tools import frozendict
+from odoo.tools import frozendict, OrderedSet
 
 
 class AccountPaymentRegister(models.TransientModel):
@@ -51,6 +51,10 @@ class AccountPaymentRegister(models.TransientModel):
     )
     company_currency_id = fields.Many2one('res.currency', string="Company Currency",
         related='company_id.currency_id')
+    qr_code = fields.Html(
+        string="QR Code URL",
+        compute="_compute_qr_code",
+    )
 
     # == Fields given through the context ==
     line_ids = fields.Many2many('account.move.line', 'account_payment_register_move_line_rel', 'wizard_id', 'line_id',
@@ -115,12 +119,12 @@ class AccountPaymentRegister(models.TransientModel):
         copy=False,
         domain="[('deprecated', '=', False)]",
         check_company=True,
-        compute='_compute_writeoff_account_id',
-        store=True,
-        readonly=False,
     )
     writeoff_label = fields.Char(string='Journal Item Label', default='Write-Off',
         help='Change label of the counterpart that will hold the payment difference')
+    writeoff_is_exchange_account = fields.Boolean(
+        compute='_compute_writeoff_is_exchange_account',
+    )
 
     # == Display purpose fields ==
     show_partner_bank_account = fields.Boolean(
@@ -144,7 +148,7 @@ class AccountPaymentRegister(models.TransientModel):
         :param batch_result:    A batch returned by '_get_batches'.
         :return:                A string representing a communication to be set on payment.
         '''
-        labels = set(line.name or line.move_id.ref or line.move_id.name for line in batch_result['lines'])
+        labels = set(line.move_id.payment_reference or line.name or line.move_id.ref or line.move_id.name for line in batch_result['lines'])
         return ' '.join(sorted(labels))
 
     @api.model
@@ -175,9 +179,7 @@ class AccountPaymentRegister(models.TransientModel):
         payment_values = batch_result['payment_values']
         foreign_currency_id = payment_values['currency_id']
         partner_bank_id = payment_values['partner_bank_id']
-        company = batch_result['lines'].company_id
-        if len(company) > 1:
-            company = company._accessible_branches()[:1]
+        company = min(batch_result['lines'].company_id, key=lambda c: len(c.parent_ids))
 
         currency_domain = [('currency_id', '=', foreign_currency_id)]
         partner_bank_domain = [('bank_account_id', '=', partner_bank_id)]
@@ -211,13 +213,13 @@ class AccountPaymentRegister(models.TransientModel):
     @api.model
     def _get_batch_available_partner_banks(self, batch_result, journal):
         payment_values = batch_result['payment_values']
-        company = batch_result['lines'].company_id._accessible_branches()[:1]
 
         # A specific bank account is set on the journal. The user must use this one.
         if payment_values['payment_type'] == 'inbound':
             # Receiving money on a bank account linked to the journal.
             return journal.bank_account_id
         else:
+            company = min(batch_result['lines'].company_id, key=lambda c: len(c.sudo().parent_ids))
             # Sending money to a bank account owned by a partner.
             return batch_result['lines'].partner_id.bank_ids.filtered(lambda x: x.company_id.id in (False, company.id))._origin
 
@@ -255,11 +257,13 @@ class AccountPaymentRegister(models.TransientModel):
 
         if len(lines.company_id.root_id) > 1:
             raise UserError(_("You can't create payments for entries belonging to different companies."))
+        if self._from_sibling_companies(lines) and lines.company_id.root_id not in self.env.user.company_ids:
+            raise UserError(_("You can't create payments for entries belonging to different branches without access to parent company."))
         if not lines:
             raise UserError(_("You can't open the register payment wizard without at least one receivable/payable line."))
 
         batches = defaultdict(lambda: {'lines': self.env['account.move.line']})
-        banks_per_partner = defaultdict(lambda: {'inbound': set(), 'outbound': set()})
+        banks_per_partner = defaultdict(lambda: {'inbound': OrderedSet(), 'outbound': OrderedSet()})
         for line in lines:
             batch_key = self._get_line_batch_key(line)
             vals = batches[frozendict(batch_key)]
@@ -281,8 +285,8 @@ class AccountPaymentRegister(models.TransientModel):
             vals = batches[key]
             lines = vals['lines']
             merge = (
-                batch_key['partner_id'] in partner_unique_inbound
-                and batch_key['partner_id'] in partner_unique_outbound
+                key['partner_id'] in partner_unique_inbound
+                and key['partner_id'] in partner_unique_outbound
             )
             if merge:
                 for other_key in list(batches)[i+1:]:
@@ -300,8 +304,8 @@ class AccountPaymentRegister(models.TransientModel):
             balance = sum(lines.mapped('balance'))
             vals['payment_values']['payment_type'] = 'inbound' if balance > 0.0 else 'outbound'
             if merge:
-                partner_banks = banks_per_partner[batch_key['partner_id']]
-                vals['partner_bank_id'] = partner_banks[vals['payment_values']['payment_type']]
+                partner_banks = banks_per_partner[key['partner_id']]
+                vals['payment_values']['partner_bank_id'] = next(iter(partner_banks[vals['payment_values']['payment_type']]))
                 vals['lines'] = lines
             batch_vals.append(vals)
         return batch_vals
@@ -315,7 +319,7 @@ class AccountPaymentRegister(models.TransientModel):
         '''
         payment_values = batch_result['payment_values']
         lines = batch_result['lines']
-        company = lines[0].company_id._accessible_branches()[:1]
+        company = min(lines.company_id, key=lambda c: len(c.sudo().parent_ids)) if not self._from_sibling_companies(lines) else lines.company_id.root_id
 
         source_amount = abs(sum(lines.mapped('amount_residual')))
         if payment_values['currency_id'] == company.currency_id.id:
@@ -332,6 +336,10 @@ class AccountPaymentRegister(models.TransientModel):
             'source_amount': source_amount,
             'source_amount_currency': source_amount_currency,
         }
+
+    @api.model
+    def _from_sibling_companies(self, lines):
+        return len(lines.company_id) > 1 and not any(c.root_id in lines.company_id for c in lines.company_id)
 
     # -------------------------------------------------------------------------
     # COMPUTE METHODS
@@ -360,7 +368,6 @@ class AccountPaymentRegister(models.TransientModel):
                 'untrusted_bank_ids': untrusted_accounts or False,
             })
 
-
     @api.depends('line_ids')
     def _compute_from_lines(self):
         ''' Load initial values from the account.moves passed through the context. '''
@@ -377,8 +384,10 @@ class AccountPaymentRegister(models.TransientModel):
                 wizard.can_group_payments = len(batch_result['lines']) != 1
             else:
                 # == Multiple batches: The wizard is not editable  ==
+                lines = sum((batch_result['lines'] for batch_result in batches), self.env['account.move.line'])
+                company = min(lines.company_id, key=lambda c: len(c.parent_ids)) if not self._from_sibling_companies(lines) else lines.company_id.root_id
                 wizard.update({
-                    'company_id': batches[0]['lines'][0].company_id._accessible_branches()[:1].id,
+                    'company_id': company.id,
                     'partner_id': False,
                     'partner_type': False,
                     'payment_type': wizard_values_from_batch['payment_type'],
@@ -496,14 +505,12 @@ class AccountPaymentRegister(models.TransientModel):
         self.ensure_one()
         amount = 0.0
         mode = False
-        moves = batch_result['lines'].mapped('move_id')
-        for move in moves:
+        for move, lines in batch_result['lines'].grouped('move_id').items():
             if early_payment_discount and move._is_eligible_for_early_payment_discount(move.currency_id, self.payment_date):
-                amount += move.invoice_payment_term_id._get_amount_due_after_discount(move.amount_total, move.amount_tax)#todo currencies
                 mode = 'early_payment'
+                amount += sum(aml.discount_amount_currency for aml in lines)
             else:
-                for aml in batch_result['lines'].filtered(lambda l: l.move_id.id == move.id):
-                    amount += aml.amount_residual_currency
+                amount += sum(aml.amount_residual_currency for aml in lines)
         return abs(amount), mode
 
     def _get_total_amount_in_wizard_currency_to_full_reconcile(self, batch_result, early_payment_discount=True):
@@ -514,6 +521,7 @@ class AccountPaymentRegister(models.TransientModel):
         :return:                An amount in the currency of the wizard.
         """
         self.ensure_one()
+
         comp_curr = self.company_id.currency_id
         if self.source_currency_id == self.currency_id:
             # Same currency (manage the early payment discount).
@@ -587,6 +595,19 @@ class AccountPaymentRegister(models.TransientModel):
             else:
                 wizard.payment_difference = 0.0
 
+    @api.depends('can_edit_wizard', 'writeoff_account_id')
+    def _compute_writeoff_is_exchange_account(self):
+        for wizard in self:
+            wizard.writeoff_is_exchange_account = all((
+                wizard.can_edit_wizard,
+                wizard.currency_id != wizard.source_currency_id,
+                wizard.writeoff_account_id,
+                wizard.writeoff_account_id in (
+                    wizard.company_id.expense_currency_exchange_account_id,
+                    wizard.company_id.income_currency_exchange_account_id,
+                ),
+            ))
+
     @api.depends('early_payment_discount_mode')
     def _compute_payment_difference_handling(self):
         for wizard in self:
@@ -599,6 +620,31 @@ class AccountPaymentRegister(models.TransientModel):
     def _compute_hide_writeoff_section(self):
         for wizard in self:
             wizard.hide_writeoff_section = wizard.early_payment_discount_mode
+
+    @api.depends('partner_bank_id', 'amount', 'currency_id', 'payment_method_line_id', 'payment_type', 'communication')
+    def _compute_qr_code(self):
+        for pay in self:
+            qr_html = False
+            if pay.partner_bank_id \
+               and pay.partner_bank_id.allow_out_payment \
+               and pay.payment_method_line_id.code == 'manual' \
+               and pay.payment_type == 'outbound' \
+               and pay.amount \
+               and pay.currency_id:
+                b64_qr = pay.partner_bank_id.build_qr_code_base64(
+                    amount=pay.amount,
+                    free_communication=pay.communication,
+                    structured_communication=pay.communication,
+                    currency=pay.currency_id,
+                    debtor_partner=pay.partner_id,
+                )
+                if b64_qr:
+                    qr_html = f'''
+                        <img class="border border-dark rounded" src="{b64_qr}"/>
+                        <br/>
+                        <strong>{_('Scan me with your banking app.')}</strong>
+                    '''
+            pay.qr_code = qr_html
 
     # -------------------------------------------------------------------------
     # LOW-LEVEL METHODS
@@ -652,7 +698,7 @@ class AccountPaymentRegister(models.TransientModel):
             if len(lines.company_id.root_id) > 1:
                 raise UserError(_("You can't create payments for entries belonging to different companies."))
             if len(set(available_lines.mapped('account_type'))) > 1:
-                raise UserError(_("You can't register payments for journal items being either all inbound, either all outbound."))
+                raise UserError(_("You can't register payments for both inbound and outbound moves at the same time."))
 
             res['line_ids'] = [(6, 0, available_lines.ids)]
 
@@ -697,21 +743,30 @@ class AccountPaymentRegister(models.TransientModel):
                     payment_vals['write_off_line_vals'] += aml_values_list
 
             elif not self.currency_id.is_zero(self.payment_difference):
-                if self.payment_type == 'inbound':
-                    # Receive money.
-                    write_off_amount_currency = self.payment_difference
-                else: # if self.payment_type == 'outbound':
-                    # Send money.
-                    write_off_amount_currency = -self.payment_difference
 
-                payment_vals['write_off_line_vals'].append({
-                    'name': self.writeoff_label,
-                    'account_id': self.writeoff_account_id.id,
-                    'partner_id': self.partner_id.id,
-                    'currency_id': self.currency_id.id,
-                    'amount_currency': write_off_amount_currency,
-                    'balance': self.currency_id._convert(write_off_amount_currency, self.company_id.currency_id, self.company_id, self.payment_date),
-                })
+                if self.writeoff_is_exchange_account:
+                    # Force the rate when computing the 'balance' only when the payment has a foreign currency.
+                    # If not, the rate is forced during the reconciliation to put the difference directly on the
+                    # exchange difference.
+                    if self.currency_id != self.company_currency_id:
+                        payment_vals['force_balance'] = sum(batch_result['lines'].mapped('amount_residual'))
+                else:
+                    if self.payment_type == 'inbound':
+                        # Receive money.
+                        write_off_amount_currency = self.payment_difference
+                    else:  # if self.payment_type == 'outbound':
+                        # Send money.
+                        write_off_amount_currency = -self.payment_difference
+
+                    payment_vals['write_off_line_vals'].append({
+                        'name': self.writeoff_label,
+                        'account_id': self.writeoff_account_id.id,
+                        'partner_id': self.partner_id.id,
+                        'currency_id': self.currency_id.id,
+                        'amount_currency': write_off_amount_currency,
+                        'balance': self.currency_id._convert(write_off_amount_currency, self.company_id.currency_id, self.company_id, self.payment_date),
+                    })
+
         return payment_vals
 
     def _create_payment_vals_from_batch(self, batch_result):
@@ -737,11 +792,15 @@ class AccountPaymentRegister(models.TransientModel):
             'company_id': self.company_id.id,
             'currency_id': batch_values['source_currency_id'],
             'partner_id': batch_values['partner_id'],
-            'partner_bank_id': partner_bank_id,
             'payment_method_line_id': payment_method_line.id,
             'destination_account_id': batch_result['lines'][0].account_id.id,
             'write_off_line_vals': [],
         }
+
+        # In case it is false, we don't add it to the create vals so that
+        # _compute_partner_bank_id is executed at payment creation
+        if partner_bank_id:
+            payment_vals['partner_bank_id'] = partner_bank_id
 
         total_amount, mode = self._get_total_amount_using_same_currency(batch_result)
         currency = self.env['res.currency'].browse(batch_values['source_currency_id'])
@@ -840,7 +899,7 @@ class AccountPaymentRegister(models.TransientModel):
         payments = self.env['account.payment']
         for vals in to_process:
             payments |= vals['payment']
-        payments.action_post()
+        payments.with_context(skip_sale_auto_invoice_send=True).action_post()
 
     def _reconcile_payments(self, to_process, edit_mode=False):
         """ Reconcile the payments.
@@ -860,9 +919,11 @@ class AccountPaymentRegister(models.TransientModel):
         for vals in to_process:
             payment_lines = vals['payment'].line_ids.filtered_domain(domain)
             lines = vals['to_reconcile']
+            extra_context = {'forced_rate_from_register_payment': vals['rate']} if 'rate' in vals else {}
 
             for account in payment_lines.account_id:
                 (payment_lines + lines)\
+                    .with_context(**extra_context)\
                     .filtered_domain([('account_id', '=', account.id), ('reconciled', '=', False)])\
                     .reconcile()
 
@@ -886,11 +947,19 @@ class AccountPaymentRegister(models.TransientModel):
 
         if edit_mode:
             payment_vals = self._create_payment_vals_from_wizard(first_batch_result)
-            to_process.append({
+            to_process_values = {
                 'create_vals': payment_vals,
                 'to_reconcile': first_batch_result['lines'],
                 'batch': first_batch_result,
-            })
+            }
+
+            # Force the rate during the reconciliation to put the difference directly on the
+            # exchange difference.
+            if self.writeoff_is_exchange_account and self.currency_id == self.company_currency_id:
+                total_batch_residual = sum(first_batch_result['lines'].mapped('amount_residual_currency'))
+                to_process_values['rate'] = abs(total_batch_residual / self.amount) if self.amount else 0.0
+
+            to_process.append(to_process_values)
         else:
             # Don't group payments: Create one batch per move.
             if not self.group_payment:
@@ -914,10 +983,19 @@ class AccountPaymentRegister(models.TransientModel):
                     'batch': batch_result,
                 })
 
-        payments = self._init_payments(to_process, edit_mode=edit_mode)
-        self._post_payments(to_process, edit_mode=edit_mode)
-        self._reconcile_payments(to_process, edit_mode=edit_mode)
-        return payments
+        lines = sum((batch_result['lines'] for batch_result in batches), self.env['account.move.line'])
+        from_sibling_companies = self._from_sibling_companies(lines)
+        if from_sibling_companies and lines.company_id.root_id not in self.env.companies:
+            # Payment made for sibling companies, we don't want to redirect to the payments
+            # to avoid access error, as it will be created as parent company.
+            self.env.context = {**self.env.context, "dont_redirect_to_payments": True}
+
+        wizard = self.sudo() if from_sibling_companies else self
+
+        payments = wizard._init_payments(to_process, edit_mode=edit_mode)
+        wizard._post_payments(to_process, edit_mode=edit_mode)
+        wizard._reconcile_payments(to_process, edit_mode=edit_mode)
+        return payments.sudo(flag=False)
 
     def action_create_payments(self):
         payments = self._create_payments()

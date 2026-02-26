@@ -1,7 +1,7 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 {
     'name': 'Uruguay - Accounting',
-    'website': 'https://www.odoo.com/documentation/17.0/applications/finance/fiscal_localizations.html',
+    'website': 'https://www.odoo.com/documentation/master/applications/finance/fiscal_localizations/uruguay.html',
     'icon': '/account/static/description/l10n.png',
     'countries': ['uy'],
     'version': '0.1',
@@ -48,7 +48,7 @@ Demo data for testing:
     ],
     'demo': [
         'demo/demo_company.xml',
-        'demo/res_partner_demo.xml',
+        'demo/res_currency_rate_demo.xml',
     ],
     'license': 'LGPL-3',
 }

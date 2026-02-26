@@ -1,14 +1,13 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # 	* website_forum
-# 
+#
 # Translators:
 # Levi Siuzdak (sile), 2023
 # Robin Calvin, 2023
 # Björn Hayer, 2023
 # lasch a <bmail440@gmail.com>, 2023
 # Frida E, 2023
-# Jakob Krabbe <jakob.krabbe@vertel.se>, 2023
 # Patrik Lermon <patrik.lermon@gmail.com>, 2023
 # Kim Asplund <kim.asplund@gmail.com>, 2023
 # Martin Wilderoth <martin.wilderoth@linserv.se>, 2023
@@ -23,19 +22,21 @@
 # Martin Trigaux, 2023
 # Claes-Johan Dahlin, 2024
 # Anders Wallenquist <anders.wallenquist@vertel.se>, 2024
-# 
+# Jakob Krabbe <jakob.krabbe@vertel.se>, 2024
+# Larissa Manderfeld, 2025
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-29 10:46+0000\n"
+"POT-Creation-Date: 2025-12-29 18:38+0000\n"
 "PO-Revision-Date: 2023-10-26 23:09+0000\n"
-"Last-Translator: Anders Wallenquist <anders.wallenquist@vertel.se>, 2024\n"
+"Last-Translator: Larissa Manderfeld, 2025\n"
 "Language-Team: Swedish (https://app.transifex.com/odoo/teams/41243/sv/)\n"
+"Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: sv\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: website_forum
@@ -47,7 +48,6 @@ msgstr " Flagga"
 
 #. module: website_forum
 #. odoo-javascript
-#: code:addons/website_forum/static/src/js/website_forum.js:0
 #: code:addons/website_forum/static/src/js/website_forum.js:0
 #, python-format
 msgid " Flagged"
@@ -143,7 +143,7 @@ msgstr "%d karma krävs för att skapa en ny fråga."
 #: code:addons/website_forum/models/forum_post.py:0
 #, python-format
 msgid "%d karma required to delete a comment."
-msgstr ""
+msgstr "%d karma krävs för att ta bort en kommentar."
 
 #. module: website_forum
 #. odoo-python
@@ -162,7 +162,6 @@ msgstr "%d karma krävs för att nedrösta."
 #. module: website_forum
 #. odoo-python
 #: code:addons/website_forum/models/forum_post.py:0
-#: code:addons/website_forum/models/forum_post.py:0
 #, python-format
 msgid "%d karma required to edit a post."
 msgstr "%d karma krävs för att redigera ett inlägg."
@@ -170,14 +169,12 @@ msgstr "%d karma krävs för att redigera ett inlägg."
 #. module: website_forum
 #. odoo-python
 #: code:addons/website_forum/models/forum_post.py:0
-#: code:addons/website_forum/models/forum_post.py:0
 #, python-format
 msgid "%d karma required to flag a post."
 msgstr "%d karma krävs för att flagga ett inlägg."
 
 #. module: website_forum
 #. odoo-python
-#: code:addons/website_forum/controllers/website_forum.py:0
 #: code:addons/website_forum/controllers/website_forum.py:0
 #: code:addons/website_forum/models/forum_post.py:0
 #, python-format
@@ -252,7 +249,7 @@ msgstr "/ (dagar + 2) ** (dagar + 2)"
 #: code:addons/website_forum/static/src/xml/public_templates.xml:0
 #, python-format
 msgid "45% of questions shared"
-msgstr "45 % av frågorna delades"
+msgstr "45% av frågorna delades"
 
 #. module: website_forum
 #. odoo-javascript
@@ -269,17 +266,23 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:website_forum.post_display
 msgid ""
 "<b class=\"d-block \">This answer has been flagged</b>\n"
-"                            As a moderator, you can either validate or reject this answer."
+"                            As a moderator, you can either validate or "
+"reject this answer."
 msgstr ""
+"<b class=\"d-block\">Det här svaret har flaggats</b>\n"
+"                            Som moderator kan du antingen godkänna eller "
+"avvisa detta svar."
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.post_description_full
 msgid ""
 "<b class=\"d-block\">You have a pending post</b>\n"
-"                        Please wait for a moderator to validate your previous post to be allowed replying questions."
+"                        Please wait for a moderator to validate your "
+"previous post to be allowed replying questions."
 msgstr ""
 "<b class=\"d-block\">Du har ett väntande inlägg</b>.\n"
-"                        Vänta tills en moderator har validerat ditt tidigare inlägg för att få svara på frågor."
+"                        Vänta tills en moderator har validerat ditt tidigare "
+"inlägg för att få svara på frågor."
 
 #. module: website_forum
 #: model_terms:forum.forum,faq:website_forum.forum_help
@@ -288,8 +291,8 @@ msgid ""
 "<b>Answers should not add or expand questions</b>. Instead either edit the "
 "question or add a question comment."
 msgstr ""
-"<b>Svar bör inte lägga till eller utöka frågor</b>. Istället ska du antingen"
-" redigera frågan eller lägga till en kommentar."
+"<b>Svar bör inte lägga till eller utöka frågor</b>. Istället ska du antingen "
+"redigera frågan eller lägga till en kommentar."
 
 #. module: website_forum
 #: model_terms:forum.forum,faq:website_forum.forum_help
@@ -298,8 +301,8 @@ msgid ""
 "<b>Answers should not add or expand questions</b>. Instead, either edit the "
 "question or add a comment."
 msgstr ""
-"<b>Svar bör inte lägga till eller utöka frågor</b>. Istället kan du antingen"
-" redigera frågan eller lägga till en kommentar."
+"<b>Svar bör inte lägga till eller utöka frågor</b>. Istället kan du antingen "
+"redigera frågan eller lägga till en kommentar."
 
 #. module: website_forum
 #: model_terms:forum.forum,faq:website_forum.forum_help
@@ -317,12 +320,12 @@ msgstr ""
 msgid ""
 "<b>Answers should not start debates</b> This community Q&amp;A is not a "
 "discussion group. Please avoid holding debates in your answers as they tend "
-"to dilute the essence of questions and answers. For brief discussions please"
-" use commenting facility."
+"to dilute the essence of questions and answers. For brief discussions please "
+"use commenting facility."
 msgstr ""
 "<b>Svar bör inte starta debatter</b> Detta community Q&amp;A är inte en "
-"diskussionsgrupp. Undvik att hålla debatter i dina svar eftersom de tenderar"
-" att späda ut kärnan i frågor och svar. För korta diskussioner, använd "
+"diskussionsgrupp. Undvik att hålla debatter i dina svar eftersom de tenderar "
+"att späda ut kärnan i frågor och svar. För korta diskussioner, använd "
 "kommentarsfunktionen."
 
 #. module: website_forum
@@ -331,8 +334,8 @@ msgstr ""
 msgid ""
 "<b>Answers shouldn't just point to other Questions</b>. Instead add a "
 "question comment indication \"Possible duplicate of...\". However, it's ok "
-"to include links to other questions or answers providing relevant additional"
-" information."
+"to include links to other questions or answers providing relevant additional "
+"information."
 msgstr ""
 "<b>Svar bör inte bara peka på andra frågor</b>. Lägg istället till en "
 "frågekommentar som anger \"Möjlig duplikat av...\". Det är dock ok att "
@@ -343,8 +346,8 @@ msgstr ""
 #: model_terms:forum.forum,faq:website_forum.forum_help
 #: model_terms:ir.ui.view,arch_db:website_forum.default_faq
 msgid ""
-"<b>Answers shouldn't just point to other questions</b>.Instead add a comment"
-" indicating <i>\"Possible duplicate of...\"</i>. However, it's fine to "
+"<b>Answers shouldn't just point to other questions</b>.Instead add a comment "
+"indicating <i>\"Possible duplicate of...\"</i>. However, it's fine to "
 "include links to other questions or answers providing relevant additional "
 "information."
 msgstr ""
@@ -357,34 +360,34 @@ msgstr ""
 #: model_terms:forum.forum,faq:website_forum.forum_help
 #: model_terms:ir.ui.view,arch_db:website_forum.default_faq
 msgid ""
-"<b>Answers shouldn't just provide a link a solution</b>. Instead provide the"
-" solution description text in your answer, even if it's just a copy/paste. "
+"<b>Answers shouldn't just provide a link a solution</b>. Instead provide the "
+"solution description text in your answer, even if it's just a copy/paste. "
 "Links are welcome, but should be complementary to answer, referring sources "
 "or additional reading."
 msgstr ""
 "<b>Svar ska inte bara innehålla en länk till en lösning</b>. Ange istället "
-"lösningens beskrivningstext i ditt svar, även om det bara är en "
-"kopia/klistra in. Länkar är välkomna, men bör vara komplement till svaret, "
-"hänvisa till källor eller ytterligare läsning."
+"lösningens beskrivningstext i ditt svar, även om det bara är en kopia/"
+"klistra in. Länkar är välkomna, men bör vara komplement till svaret, hänvisa "
+"till källor eller ytterligare läsning."
 
 #. module: website_forum
 #: model_terms:forum.forum,faq:website_forum.forum_help
 #: model_terms:ir.ui.view,arch_db:website_forum.default_faq
 msgid ""
 "<b>Before you ask - please make sure to search for a similar question.</b> "
-"You can search questions by their title or tags. It’s also OK to answer your"
-" own question."
+"You can search questions by their title or tags. It’s also OK to answer your "
+"own question."
 msgstr ""
 "<b>Innan du frågar - se till att söka efter en liknande fråga.</b> Du kan "
-"söka frågor efter deras titel eller taggar. Det är också OK att svara på din"
-" egen fråga."
+"söka frågor efter deras titel eller taggar. Det är också OK att svara på din "
+"egen fråga."
 
 #. module: website_forum
 #: model_terms:forum.forum,faq:website_forum.forum_help
 #: model_terms:ir.ui.view,arch_db:website_forum.default_faq
 msgid ""
-"<b>Please avoid asking questions that are too subjective and "
-"argumentative</b> or not relevant to this community."
+"<b>Please avoid asking questions that are too subjective and argumentative</"
+"b> or not relevant to this community."
 msgstr ""
 "<b>Var vänlig undvik att ställa frågor som är alltför subjektiva och "
 "argumentativa</b> eller som inte är relevanta för detta community."
@@ -392,15 +395,22 @@ msgstr ""
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.post_answer
 msgid ""
-"<b>Please try to give a substantial answer.</b> If you wanted to comment on the question or answer, just\n"
-"            <b>use the commenting tool.</b> Please remember that you can always <b>revise your answers</b>\n"
-"            - no need to answer the same question twice. Also, please <b>don't forget to vote</b>\n"
+"<b>Please try to give a substantial answer.</b> If you wanted to comment on "
+"the question or answer, just\n"
+"            <b>use the commenting tool.</b> Please remember that you can "
+"always <b>revise your answers</b>\n"
+"            - no need to answer the same question twice. Also, please "
+"<b>don't forget to vote</b>\n"
 "            - it really helps to select the best questions and answers!"
 msgstr ""
-"<b>Försök att ge ett innehållsrikt svar.</b> Om du vill kommentera frågan eller svaret, använd bara\n"
-"            <b>använd kommentarsverktyget.</b> Kom ihåg att du alltid kan <b>revidera dina svar</b>\n"
-"            - du behöver inte svara på samma fråga två gånger. Glöm inte heller att <b>rösta</b>\n"
-"            - det hjälper verkligen till att välja de bästa frågorna och svaren!"
+"<b>Försök att ge ett innehållsrikt svar.</b> Om du vill kommentera frågan "
+"eller svaret, använd bara\n"
+"            <b>använd kommentarsverktyget.</b> Kom ihåg att du alltid kan "
+"<b>revidera dina svar</b>\n"
+"            - du behöver inte svara på samma fråga två gånger. Glöm inte "
+"heller att <b>rösta</b>\n"
+"            - det hjälper verkligen till att välja de bästa frågorna och "
+"svaren!"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.faq_karma
@@ -416,28 +426,32 @@ msgstr "<b>Du har redan ett väntande inlägg.</b><br/>"
 #: model_terms:ir.ui.view,arch_db:website_forum.contact
 msgid ""
 "<b>|</b>\n"
-"                    <span class=\"fa fa-trophy o-text-gold ms-2\" role=\"img\" aria-label=\"Gold badge\" title=\"Gold badge\"/>"
+"                    <span class=\"fa fa-trophy o-text-gold ms-2\" "
+"role=\"img\" aria-label=\"Gold badge\" title=\"Gold badge\"/>"
 msgstr ""
+"<b>|</b>\n"
+"                    <span class=\"fa fa-trophy o-text-gold ms-2\" "
+"role=\"img\" aria-label=\"Guldmärke\" title=\"Guldmärke\"/>"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.post_description_full
 msgid "<br/>by"
-msgstr ".<br/>av"
+msgstr "<br/>av"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.new_question
 msgid "<i class=\"fa fa-angle-left me-2\"/>Back to All Posts"
-msgstr ""
+msgstr "<i class=\"fa fa-angle-left me-2\"/>Tillbaka till alla inlägg"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.user_votes
 msgid "<i class=\"fa fa-arrow-right\"/> Go To Forums"
-msgstr ""
+msgstr "<i class=\"fa fa-pil-höger\"/> Gå till forum"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.forum_model_nav
 msgid "<i class=\"fa fa-bug me-1\"/>Filter Tool"
-msgstr ""
+msgstr "<i class=\"fa fa-bug me-1\"/>Filterverktyg"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.vote
@@ -445,6 +459,8 @@ msgid ""
 "<i class=\"fa fa-caret-down\" data-bs-toggle=\"tooltip\" data-bs-"
 "placement=\"top\" title=\"Downvote\"/>"
 msgstr ""
+"<i class=\"fa fa-caret-down\" data-bs-toggle=\"tooltip\" data-bs-"
+"placement=\"top\" title=\"Nedröstning\"/>"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.vote
@@ -452,11 +468,13 @@ msgid ""
 "<i class=\"fa fa-caret-up\" data-bs-toggle=\"tooltip\" data-bs-"
 "placement=\"top\" title=\"Upvote\"/>"
 msgstr ""
+"<i class=\"fa fa-caret-up\" data-bs-toggle=\"tooltip\" data-bs-"
+"placement=\"top\" title=\"Upvote\"/>"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.post_description_full
 msgid "<i class=\"fa fa-check fa-fw me-1\"/>Accept"
-msgstr "<i class=\"fa fa-check fa-fw me-1\"/>Accept"
+msgstr "<i class=\"fa fa-check fa-fw me-1\"/>Acceptera"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.no_results_message
@@ -464,31 +482,38 @@ msgid ""
 "<i class=\"fa fa-check fa-fw me-1\"/>Be less specific in your wording for a "
 "wider search result."
 msgstr ""
+"<i class=\"fa fa-check fa-fw me-1\"/>Var mindre specifik i din formulering "
+"för att få ett bredare sökresultat."
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.no_results_message
 msgid "<i class=\"fa fa-check fa-fw me-1\"/>Check your spelling and try again."
 msgstr ""
+"<i class=\"fa fa-check fa-fw me-1\"/>Kontrollera din stavning och försök "
+"igen."
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.no_results_message
-msgid "<i class=\"fa fa-check fa-fw me-1\"/>Try searching for one or two words."
+msgid ""
+"<i class=\"fa fa-check fa-fw me-1\"/>Try searching for one or two words."
 msgstr ""
+"<i class=\"fa fa-check fa-fw me-1\"/>Testa att söka efter ett eller två ord."
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.display_post_question_block
 msgid "<i class=\"fa fa-check me-1\"/>Solved"
-msgstr ""
+msgstr "<i class=\"fa fa-check me-1\"/>Löst"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.show_flag_validator
 msgid "<i class=\"fa fa-check\"/> Accept"
-msgstr ""
+msgstr "<i class=\"fa fa-check\"/> Acceptera"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.edit_post
 #: model_terms:ir.ui.view,arch_db:website_forum.new_question
-msgid "<i class=\"fa fa-check\"/> How to configure TPS and TVQ's canadian taxes?"
+msgid ""
+"<i class=\"fa fa-check\"/> How to configure TPS and TVQ's canadian taxes?"
 msgstr ""
 "<i class=\"fa fa-check\"/> Hur konfigurerar jag TPS och TVQ:s kanadensiska "
 "skatter?"
@@ -496,7 +521,7 @@ msgstr ""
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.moderation_queue
 msgid "<i class=\"fa fa-check\"/><span class=\"ms-2\">Accept</span>"
-msgstr ""
+msgstr "<i class=\"fa fa-check\"/><span class=\"ms-2\">Acceptera</span>"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.forum_post_view_kanban
@@ -509,6 +534,8 @@ msgid ""
 "<i class=\"fa fa-ellipsis-h\" data-bs-toggle=\"tooltip\" data-bs-"
 "placement=\"top\" title=\"More\"/>"
 msgstr ""
+"<i class=\"fa fa-ellipsis-h\" data-bs-toggle=\"tooltip\" data-bs-"
+"placement=\"top\" title=\"Mer\"/>"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.forum_post_view_kanban
@@ -523,12 +550,12 @@ msgstr "<i class=\"fa fa-flagga\"/> Land"
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.moderation_queue
 msgid "<i class=\"fa fa-font\"/> Text"
-msgstr ""
+msgstr "<i class=\"fa fa-font\"/> Text"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.follow
 msgid "<i class=\"fa fa-fw fa-check me-1\"/>Following"
-msgstr ""
+msgstr "<i class=\"fa fa-fw fa-check me-1\"/>Följning"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.forum_post_view_kanban
@@ -539,21 +566,24 @@ msgstr "<i class=\"fa fa-globe me-1\" title=\"Hemsida\"/>"
 #: model_terms:ir.ui.view,arch_db:website_forum.user_sidebar
 #: model_terms:ir.ui.view,arch_db:website_forum.user_sidebar_mobile
 msgid "<i class=\"fa fa-info-circle fa-fw\"/> About this forum"
-msgstr ""
+msgstr "<i class=\"fa fa-info-circle fa-fw\"/> Om detta forum"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.edit_post
 msgid "<i class=\"fa fa-lightbulb-o\"/> Tip: consider adding an example."
 msgstr ""
+"<i class=\"fa fa-lightbulb-o\"/> Tips: överväg att lägga till ett exempel."
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.post_display
 msgid ""
 "<i class=\"fa fa-pencil\"/>\n"
-"                                Edit<span class=\"d-none d-lg-inline\"> your answer</span>"
+"                                Edit<span class=\"d-none d-lg-inline\"> your "
+"answer</span>"
 msgstr ""
 "<i class=\"fa fa-pencil\"/>\n"
-"                                Ändra<span class=\"d-none d-lg-inline\"> ditt svar</span>"
+"                                Ändra<span class=\"d-none d-lg-inline\"> "
+"ditt svar</span>"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.display_post
@@ -561,6 +591,8 @@ msgid ""
 "<i class=\"fa fa-reply me-1 d-lg-none\"/>\n"
 "                0"
 msgstr ""
+"<i class=\"fa fa-reply me-1 d-lg-none\"/>\n"
+"                0"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.post_description_full
@@ -574,11 +606,13 @@ msgid ""
 "<i class=\"fa fa-share-alt\" data-bs-toggle=\"tooltip\" data-bs-"
 "placement=\"top\" title=\"Share\"/>"
 msgstr ""
+"<i class=\"fa fa-share-alt\" data-bs-toggle=\"tooltip\" data-bs-"
+"placement=\"top\" title=\"Dela\"/>"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.user_sidebar_body
 msgid "<i class=\"fa fa-shield fa-fw opacity-50\"/> Badges"
-msgstr ""
+msgstr "<i class=\"fa fa-shield fa-fw opacity-50\"/> Utmärkelser"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.user_profile_content
@@ -592,11 +626,11 @@ msgstr ""
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.user_profile_content
 msgid ""
-"<i class=\"fa fa-thumbs-up text-success\" role=\"img\" aria-label=\"Positive"
-" votes\" title=\"Positive votes\"/>"
+"<i class=\"fa fa-thumbs-up text-success\" role=\"img\" aria-label=\"Positive "
+"votes\" title=\"Positive votes\"/>"
 msgstr ""
-"<i class=\"fa fa-thumbs-up text-success\" role=\"img\" aria-label=\"Positiva"
-" röster\" title=\"Positiva röster\"/>"
+"<i class=\"fa fa-thumbs-up text-success\" role=\"img\" aria-label=\"Positiva "
+"röster\" title=\"Positiva röster\"/>"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.post_description_full
@@ -621,12 +655,12 @@ msgstr "<i class=\"fa fa-times\"/> Avvisa"
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.moderation_queue
 msgid "<i class=\"fa fa-times\"/><span class=\"ms-2\">Offensive</span>"
-msgstr ""
+msgstr "<i class=\"fa fa-times\"/><span class=\"ms-2\">Offensiv</span>"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.moderation_queue
 msgid "<i class=\"fa fa-times\"/><span class=\"ms-2\">Reject</span>"
-msgstr ""
+msgstr "<i class=\"fa fa-times\"/><span class=\"ms-2\">Avvisa</span>"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.moderation_queue
@@ -636,12 +670,12 @@ msgstr "<i class=\"fa fa-user\"/> Användare"
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.user_sidebar_body
 msgid "<i class=\"fa fa-users fa-fw opacity-50\"/> People"
-msgstr ""
+msgstr "<i class=\"fa fa-users fa-fw opacity-50\"/> Personer"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.user_profile_content
 msgid "<i class=\"oi oi-arrow-right d-inline-block\"/> Go to Forums"
-msgstr ""
+msgstr "<i class=\"oi oi-arrow-right d-inline-block\"/> Gå till Forum"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.404
@@ -649,11 +683,13 @@ msgid ""
 "<i class=\"oi oi-arrow-right display-inline-block\"/> Return to questions "
 "list"
 msgstr ""
+"<i class=\"oi oi-arrow-right display-inline-block\"/> Tillbaka till "
+"frågelistan"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.user_profile_sub_nav
 msgid "<i class=\"oi oi-chevron-left small\"/> Back"
-msgstr ""
+msgstr "<i class=\"oi oi-chevron-left small\"/> Tillbaka"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.user_profile_content
@@ -663,12 +699,12 @@ msgstr "<small class=\"fw-bold\">Röstsiffror</small>"
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.user_sidebar_body
 msgid "<small>View all</small>"
-msgstr ""
+msgstr "<small>Visa alla</small>"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.forum_all_all_entries
 msgid "<span class=\"badge bg-dark me-1\">Last post:</span>"
-msgstr ""
+msgstr "<span class=\"badge bg-dark me-1\">Sista inlägget:</span>"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.contact
@@ -676,6 +712,8 @@ msgid ""
 "<span class=\"fa fa-trophy o-text-bronze ms-2\" role=\"img\" aria-"
 "label=\"Bronze badge\" title=\"Bronze badge\"/>"
 msgstr ""
+"<span class=\"fa fa-trophy o-text-bronze ms-2\" role=\"img\" aria-"
+"label=\"Bronsmärke\" title=\"Bronsmärke\"/>"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.contact
@@ -683,6 +721,8 @@ msgid ""
 "<span class=\"fa fa-trophy o-text-silver ms-2\" role=\"img\" aria-"
 "label=\"Silver badge\" title=\"Silver badge\"/>"
 msgstr ""
+"<span class=\"fa fa-trophy o-text-silver ms-2\" role=\"img\" aria-"
+"label=\"Silverbadge\" title=\"Silverbadge\"/>"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.new_question
@@ -690,6 +730,8 @@ msgid ""
 "<span class=\"form-text d-inline small text-muted\"><i class=\"fa fa-"
 "lightbulb-o\"/> Tip: consider adding an example. </span>"
 msgstr ""
+"<span class=\"form-text d-inline small text-muted\"><i class=\"fa fa-"
+"lightbulb-o\"/> Tips: överväg att lägga till ett exempel. </span>"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.forum_forum_view_form
@@ -710,17 +752,17 @@ msgstr "<span class=\"o_stat_text\">Inlägg</span>"
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.display_activities
 msgid "<span class=\"text-muted\">There is no activity yet.</span>"
-msgstr ""
+msgstr "<span class=\"text-muted\">Det finns ingen aktivitet ännu.</span>"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.post_description_full
 msgid "<span>Be the first to answer this question</span>"
-msgstr ""
+msgstr "<span>Var den första att svara på denna fråga</span>"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.forum_model_nav
 msgid "<span>Moderation</span>"
-msgstr ""
+msgstr "<span>Moderering</span>"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.post_description_full
@@ -728,11 +770,15 @@ msgid ""
 "<span>Please wait for a moderator to validate your previous post to be "
 "allowed to reply to questions.</span>"
 msgstr ""
+"<span>Vänta på att en moderator validerar ditt tidigare inlägg för att få "
+"svara på frågor.</span>"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.user_sidebar_header
 msgid "<span>You need to be registered to interact with the community.</span>"
 msgstr ""
+"<span>Du måste vara registrerad för att kunna interagera med communityn.</"
+"span>"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.forum_post_template_new_answer
@@ -765,7 +811,7 @@ msgstr "Accepterat svar"
 #: code:addons/website_forum/models/forum_post.py:0
 #, python-format
 msgid "Accepted answer removed"
-msgstr ""
+msgstr "Accepterat svar borttaget"
 
 #. module: website_forum
 #: model:ir.model.fields,field_description:website_forum.field_forum_forum__karma_gen_answer_accept
@@ -807,7 +853,7 @@ msgstr "Aktivitet"
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.post_comment
 msgid "Add a comment"
-msgstr ""
+msgstr "Lägg till en kommentar"
 
 #. module: website_forum
 #: model:ir.model.fields,help:website_forum.field_forum_forum__allow_share
@@ -840,14 +886,14 @@ msgstr "Alla forum"
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.no_results_message
 msgid "Animation of a pen checking a checkbox"
-msgstr ""
+msgstr "Animering av en penna som kontrollerar en kryssruta"
 
 #. module: website_forum
 #. odoo-python
 #: code:addons/website_forum/models/forum_post_vote.py:0
 #, python-format
 msgid "Answer %s"
-msgstr ""
+msgstr "Svar %s"
 
 #. module: website_forum
 #. odoo-python
@@ -911,7 +957,7 @@ msgstr "Svaret godtogs med 3 eller fler röster"
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.moderation_queue
 msgid "Answer:"
-msgstr ""
+msgstr "Svara:"
 
 #. module: website_forum
 #: model:ir.model.fields.selection,name:website_forum.selection__forum_forum__default_order__child_count_desc
@@ -931,7 +977,7 @@ msgstr "Besvarad av"
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.display_post
 msgid "Answered on"
-msgstr ""
+msgstr "Besvarades på"
 
 #. module: website_forum
 #: model_terms:gamification.badge,description:website_forum.badge_a_8
@@ -963,21 +1009,21 @@ msgstr "Arkiverad"
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.post_description_full
 msgid "As a moderator, you can either validate or reject this answer."
-msgstr ""
+msgstr "Som moderator kan du antingen godkänna eller avbryt detta svar."
 
 #. module: website_forum
 #. odoo-python
 #: code:addons/website_forum/models/forum_post.py:0
 #, python-format
 msgid "Ask a new question"
-msgstr ""
+msgstr "Ställ en ny fråga"
 
 #. module: website_forum
 #. odoo-python
 #: code:addons/website_forum/models/forum_post.py:0
 #, python-format
 msgid "Ask a question"
-msgstr ""
+msgstr "Ställ en fråga"
 
 #. module: website_forum
 #: model:ir.model.fields,field_description:website_forum.field_forum_forum__karma_ask
@@ -992,7 +1038,7 @@ msgstr "Ställ frågor utan att bekräfta"
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.new_question
 msgid "Ask your question"
-msgstr ""
+msgstr "Ställ din fråga"
 
 #. module: website_forum
 #: model_terms:gamification.badge,description:website_forum.badge_26
@@ -1078,18 +1124,17 @@ msgstr "Tillbaka till frågan"
 #: code:addons/website_forum/controllers/website_forum.py:0
 #, python-format
 msgid "Bad \"filters\" value \"%(filters)s\"."
-msgstr ""
+msgstr "Felaktigt \"filter\"-värde \"%(filters)s\"."
 
 #. module: website_forum
 #. odoo-python
 #: code:addons/website_forum/controllers/website_forum.py:0
 #, python-format
 msgid "Bad \"tag_char\" value \"%(tag_char)s\""
-msgstr ""
+msgstr "Dåligt \"tag_char\"-värde \"%(tag_char)s\""
 
 #. module: website_forum
 #. odoo-python
-#: code:addons/website_forum/controllers/website_forum.py:0
 #: code:addons/website_forum/controllers/website_forum.py:0
 #, python-format
 msgid "Bad Request"
@@ -1108,12 +1153,12 @@ msgstr "Grundläggande"
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.no_results_message
 msgid "Because there are no posts in this forum yet."
-msgstr ""
+msgstr "Eftersom det inte finns några inlägg i detta forum ännu."
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.post_display
 msgid "Best Answer"
-msgstr ""
+msgstr "Bästa svar"
 
 #. module: website_forum
 #. odoo-javascript
@@ -1140,7 +1185,7 @@ msgstr "Kan fråga"
 #. module: website_forum
 #: model:ir.model.fields,field_description:website_forum.field_forum_post__can_post
 msgid "Can Automatically be Validated"
-msgstr "Kan valideras automatiskt"
+msgstr "Kan bekräftas automatiskt"
 
 #. module: website_forum
 #: model:ir.model.fields,field_description:website_forum.field_forum_post__can_close
@@ -1272,7 +1317,7 @@ msgstr "Stängd"
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.moderation_queue
 msgid "Closed Posts"
-msgstr ""
+msgstr "Stängda inlägg"
 
 #. module: website_forum
 #: model:ir.model.fields,field_description:website_forum.field_forum_post__closed_uid
@@ -1312,7 +1357,7 @@ msgstr "Kommentera egna inlägg"
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.post_comment
 msgid "Comment this post"
-msgstr ""
+msgstr "Kommentera detta inlägg"
 
 #. module: website_forum
 #: model:gamification.badge,name:website_forum.badge_p_2
@@ -1324,7 +1369,7 @@ msgstr "Kommentator"
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.forum_all_oe_structure_forum_all_top
 msgid "Community Forums"
-msgstr ""
+msgstr "Gemenskapens forum"
 
 #. module: website_forum
 #: model:gamification.challenge,name:website_forum.challenge_configure_profile
@@ -1366,7 +1411,7 @@ msgstr "Konvertera egna svar till kommentarer och vice versa"
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.post_comment
 msgid "Convert to answer"
-msgstr ""
+msgstr "Konvertera till svar"
 
 #. module: website_forum
 #: model:ir.model.fields,field_description:website_forum.field_forum_post__is_correct
@@ -1492,7 +1537,7 @@ msgstr "Radera egna inlägg"
 #: code:addons/website_forum/models/forum_post.py:0
 #, python-format
 msgid "Delete the accepted answer"
-msgstr ""
+msgstr "Ta bort det accepterade svaret"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.forum_model_nav
@@ -1529,7 +1574,7 @@ msgstr "Beskrivning synlig på webbplatsen"
 #: model_terms:ir.ui.view,arch_db:website_forum.post_answer
 #: model_terms:ir.ui.view,arch_db:website_forum.post_comment
 msgid "Discard"
-msgstr "Förkasta"
+msgstr "Avbryt"
 
 #. module: website_forum
 #: model:gamification.badge,name:website_forum.badge_6
@@ -1554,7 +1599,7 @@ msgstr "Avfärda"
 #. module: website_forum
 #: model_terms:forum.forum,welcome_message:website_forum.forum_help
 msgid "Dismiss message"
-msgstr ""
+msgstr "Avvisa meddelande"
 
 #. module: website_forum
 #: model:ir.model.fields,field_description:website_forum.field_forum_forum__display_name
@@ -1581,7 +1626,7 @@ msgstr "Nedrösta"
 #: code:addons/website_forum/models/forum_post.py:0
 #, python-format
 msgid "Downvote for posting offensive contents"
-msgstr ""
+msgstr "Nedrösta för att publicera stötande innehåll"
 
 #. module: website_forum
 #: model:forum.post.reason,name:website_forum.reason_1
@@ -1621,12 +1666,12 @@ msgstr "Redigera ditt inlägg"
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.edit_post
 msgid "Edit your answer"
-msgstr ""
+msgstr "Redigera ditt svar"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.edit_post
 msgid "Edit your question"
-msgstr ""
+msgstr "Redigera din fråga"
 
 #. module: website_forum
 #: model:gamification.badge,name:website_forum.badge_7
@@ -1643,7 +1688,7 @@ msgstr "Editorfunktioner: bild och länkar"
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.no_results_message
 msgid "Empty box"
-msgstr ""
+msgstr "Tom låda"
 
 #. module: website_forum
 #: model:gamification.badge,name:website_forum.badge_a_5
@@ -1659,6 +1704,8 @@ msgid ""
 "Example\n"
 "                            <i class=\"fa fa-question-circle\"/>"
 msgstr ""
+"Exempel\n"
+"                            <i class=\"fa fa-fråga-cirkel\"/>"
 
 #. module: website_forum
 #: model:gamification.badge,name:website_forum.badge_q_3
@@ -1714,6 +1761,9 @@ msgid ""
 "Field to keep track of a post's last activity. Updated whenever it is "
 "replied to, or when a comment is added on the post or one of its replies."
 msgstr ""
+"Fält för att hålla reda på ett inläggs senaste aktivitet. Uppdateras när det "
+"besvaras, eller när en kommentar läggs till på inlägget eller ett av dess "
+"svar."
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.moderation_queue
@@ -1776,7 +1826,7 @@ msgstr "Följda frågor"
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.forum_model_nav
 msgid "Followed Tags"
-msgstr ""
+msgstr "Följda taggar"
 
 #. module: website_forum
 #: model:ir.model.fields,field_description:website_forum.field_forum_forum__message_follower_ids
@@ -1803,16 +1853,15 @@ msgid ""
 "accumulated for a question or answer per day. The table given at the end "
 "explains reputation point requirements for each type of moderation task."
 msgstr ""
-"Om du till exempel ställer en intressant fråga eller ger ett användbart svar"
-" kommer ditt inlägg att röstas upp. Om svaret däremot är missvisande kommer "
+"Om du till exempel ställer en intressant fråga eller ger ett användbart svar "
+"kommer ditt inlägg att röstas upp. Om svaret däremot är missvisande kommer "
 "det att nedröstas. Varje röst för genererar 10 poäng, varje röst emot drar "
-"av 2 poäng. Det finns en gräns på 200 poäng som kan ackumuleras för en fråga"
-" eller ett svar per dag. I tabellen i slutet förklaras kraven för "
-"ryktespoäng för varje typ av modereringsuppgift."
+"av 2 poäng. Det finns en gräns på 200 poäng som kan ackumuleras för en fråga "
+"eller ett svar per dag. I tabellen i slutet förklaras kraven för ryktespoäng "
+"för varje typ av modereringsuppgift."
 
 #. module: website_forum
 #. odoo-python
-#: code:addons/website_forum/models/website.py:0
 #: code:addons/website_forum/models/website.py:0
 #: model:ir.actions.act_url,name:website_forum.action_open_forum
 #: model:ir.model,name:website_forum.model_forum_forum
@@ -1832,7 +1881,7 @@ msgstr "Forum"
 #. module: website_forum
 #: model:ir.model.fields,field_description:website_forum.field_website__forum_count
 msgid "Forum Count"
-msgstr ""
+msgstr "Forumräkning"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.forum_forum_view_form_add
@@ -1887,12 +1936,12 @@ msgstr "Utmaning Gamification"
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.follow
 msgid "Get notified when there's activity on this post"
-msgstr ""
+msgstr "Få ett meddelande när det finns aktivitet på detta inlägg"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.follow
 msgid "Get notified when this tag is used"
-msgstr ""
+msgstr "Få ett meddelande när denna tagg används"
 
 #. module: website_forum
 #. odoo-javascript
@@ -1904,12 +1953,12 @@ msgstr "Ge ditt inlägg en titel."
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.no_results_message
 msgid "Go back to the list of"
-msgstr ""
+msgstr "Gå tillbaka till listan över"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.no_results_message
 msgid "Go enjoy a cup of coffee."
-msgstr ""
+msgstr "Gå och njut av en kopp kaffe."
 
 #. module: website_forum
 #: model:gamification.badge,name:website_forum.badge_a_3
@@ -1992,7 +2041,7 @@ msgstr "Har meddelande"
 #. module: website_forum
 #: model:ir.model.fields,field_description:website_forum.field_forum_forum__has_pending_post
 msgid "Has pending post"
-msgstr ""
+msgstr "Har väntande inlägg"
 
 #. module: website_forum
 #: model:forum.forum,name:website_forum.forum_help
@@ -2003,6 +2052,7 @@ msgstr "Hjälp"
 #: model_terms:ir.ui.view,arch_db:website_forum.user_votes
 msgid "Help moderating the forums by upvoting and downvoting posts. <br/>"
 msgstr ""
+"Hjälp till att moderera forumet genom att rösta upp och ned inlägg. <br/>"
 
 #. module: website_forum
 #: model_terms:forum.forum,faq:website_forum.forum_help
@@ -2059,7 +2109,8 @@ msgid ""
 "            users having a high karma can see closed posts to moderate\n"
 "            them."
 msgstr ""
-"Om du stänger detta inlägg kommer det att döljas för de flesta användare. Endast\n"
+"Om du stänger detta inlägg kommer det att döljas för de flesta användare. "
+"Endast\n"
 "            användare med hög karma kan se stängda inlägg för att moderera\n"
 "            dem."
 
@@ -2068,15 +2119,15 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:website_forum.default_faq
 msgid ""
 "If you fit in one of these example or if your motivation for asking the "
-"question is “I would like to participate in a discussion about ______”, then"
-" you should not be asking here but on our mailing lists. However, if your "
+"question is “I would like to participate in a discussion about ______”, then "
+"you should not be asking here but on our mailing lists. However, if your "
 "motivation is “I would like others to explain ______ to me”, then you are "
 "probably OK."
 msgstr ""
 "Om du passar in i något av dessa exempel eller om ditt motiv för att ställa "
 "frågan är \"Jag skulle vilja delta i en diskussion om ______\", bör du inte "
-"ställa frågan här utan på våra e-postlistor. Men om ditt motiv är \"Jag vill"
-" att andra ska förklara ______ för mig\", då är det förmodligen OK."
+"ställa frågan här utan på våra e-postlistor. Men om ditt motiv är \"Jag vill "
+"att andra ska förklara ______ för mig\", då är det förmodligen OK."
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.mark_as_offensive
@@ -2085,7 +2136,8 @@ msgid ""
 "            users having a high karma can see offensive posts to moderate\n"
 "            them."
 msgstr ""
-"Om du markerar detta inlägg som stötande, kommer det att döljas för de flesta användare. Endast\n"
+"Om du markerar detta inlägg som stötande, kommer det att döljas för de "
+"flesta användare. Endast\n"
 "            användare med hög karma kan se stötande inlägg för att moderera\n"
 "            dem."
 
@@ -2146,7 +2198,7 @@ msgstr "Är Följare"
 #. module: website_forum
 #: model:ir.model.fields,field_description:website_forum.field_forum_forum__can_moderate
 msgid "Is a moderator"
-msgstr ""
+msgstr "Är moderator"
 
 #. module: website_forum
 #: model:ir.model.fields,field_description:website_forum.field_forum_post__has_validated_answer
@@ -2244,7 +2296,7 @@ msgstr "Senast uppdaterad den"
 #. module: website_forum
 #: model:ir.model.fields,field_description:website_forum.field_forum_post__last_activity_date
 msgid "Last activity on"
-msgstr ""
+msgstr "Senaste aktivitet på"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.snippet_options
@@ -2259,7 +2311,7 @@ msgstr "Lämnade 10 svar med poäng på 10 eller mer"
 #. module: website_forum
 #: model:ir.model.fields,field_description:website_forum.field_forum_tag__website_url
 msgid "Link to questions with the tag"
-msgstr ""
+msgstr "Länk till frågor med taggen"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.snippet_options
@@ -2290,7 +2342,7 @@ msgstr "Markera som spam"
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.forum_all_oe_structure_forum_all_top
 msgid "Meet our community members"
-msgstr ""
+msgstr "Möt våra medlemmar i samhället"
 
 #. module: website_forum
 #: model:ir.model.fields,field_description:website_forum.field_forum_forum__menu_id
@@ -2340,7 +2392,7 @@ msgstr "Mer över:"
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.forum_model_nav
 msgid "Most Used Tags"
-msgstr ""
+msgstr "Mest använda taggar"
 
 #. module: website_forum
 #: model:ir.model.fields.selection,name:website_forum.selection__forum_forum__default_order__vote_count_desc
@@ -2350,12 +2402,12 @@ msgstr "Mest röstad"
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.forum_model_nav
 msgid "Most used Tags"
-msgstr ""
+msgstr "Mest använda Taggar"
 
 #. module: website_forum
 #: model:ir.model.fields,field_description:website_forum.field_forum_forum__tag_most_used_ids
 msgid "Most used tags"
-msgstr ""
+msgstr "Mest använda taggar"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.forum_index
@@ -2376,7 +2428,7 @@ msgstr "Min röst"
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.user_sidebar_body
 msgid "My forums"
-msgstr ""
+msgstr "Mina forum"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.user_sidebar_header
@@ -2447,7 +2499,7 @@ msgstr "Inget forum är tillgängligt ännu."
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.forum_all_all_entries
 msgid "No posts yet"
-msgstr ""
+msgstr "Inga inlägg ännu"
 
 #. module: website_forum
 #: model:ir.model.fields,field_description:website_forum.field_forum_forum__karma_dofollow
@@ -2537,7 +2589,7 @@ msgstr "Offensiv post"
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.moderation_queue
 msgid "Offensive Posts"
-msgstr ""
+msgstr "Offensiva inlägg"
 
 #. module: website_forum
 #. odoo-javascript
@@ -2549,7 +2601,7 @@ msgstr "I genomsnitt,"
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.no_results_message
 msgid "Oops!"
-msgstr ""
+msgstr "Oops!"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.forum_forum_view_form
@@ -2577,8 +2629,7 @@ msgstr "Enkelt innehåll"
 #: model_terms:ir.ui.view,arch_db:website_forum.forum_model_nav
 #: model_terms:ir.ui.view,arch_db:website_forum.new_question
 msgid ""
-"Please wait for a moderator to validate your previous post before "
-"continuing."
+"Please wait for a moderator to validate your previous post before continuing."
 msgstr ""
 "Vänta tills en moderator har bekräftat ditt tidigare inlägg innan du "
 "fortsätter."
@@ -2628,7 +2679,7 @@ msgstr "Post Svar"
 #. module: website_forum
 #: model:ir.actions.act_window,name:website_forum.forum_post_reason_action
 msgid "Post Close Reason"
-msgstr ""
+msgstr "Poststängning Orsak"
 
 #. module: website_forum
 #: model:ir.model,name:website_forum.model_forum_post_reason
@@ -2655,14 +2706,14 @@ msgstr "Skicka din fråga"
 #: code:addons/website_forum/models/forum_post.py:0
 #, python-format
 msgid "Post is closed and marked as offensive content"
-msgstr ""
+msgstr "Inlägget är stängt och markerat som stötande innehåll"
 
 #. module: website_forum
 #. odoo-python
 #: code:addons/website_forum/models/forum_post.py:0
 #, python-format
 msgid "Post is closed and marked as spam"
-msgstr ""
+msgstr "Inlägget är stängt och markerat som spam"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.mark_as_offensive
@@ -2711,11 +2762,13 @@ msgstr "Publik"
 msgid ""
 "Public: Forum is public\n"
 "Signed In: Forum is visible for signed in users\n"
-"Some users: Forum and their content are hidden for non members of selected group"
+"Some users: Forum and their content are hidden for non members of selected "
+"group"
 msgstr ""
 "Offentlig: Forumet är offentligt\n"
 "Inloggad: Forumet är synligt för inloggade användare\n"
-"Vissa användare: Forumet och dess innehåll är dolt för icke-medlemmar i den valda gruppen"
+"Vissa användare: Forumet och dess innehåll är dolt för icke-medlemmar i den "
+"valda gruppen"
 
 #. module: website_forum
 #: model:gamification.badge,name:website_forum.badge_25
@@ -2749,7 +2802,7 @@ msgstr "Fråga"
 #: code:addons/website_forum/models/forum_post_vote.py:0
 #, python-format
 msgid "Question %s"
-msgstr ""
+msgstr "Fråga %s"
 
 #. module: website_forum
 #. odoo-python
@@ -2815,7 +2868,7 @@ msgstr "Fråga som röstats upp 6 gånger"
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.moderation_queue
 msgid "Question:"
-msgstr ""
+msgstr "Fråga:"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.user_profile_content
@@ -2856,7 +2909,6 @@ msgstr "Betyg"
 #. module: website_forum
 #. odoo-python
 #: code:addons/website_forum/models/forum_post.py:0
-#: code:addons/website_forum/models/forum_post.py:0
 #, python-format
 msgid "Re: %s"
 msgstr "Re: %s"
@@ -2865,7 +2917,7 @@ msgstr "Re: %s"
 #: model_terms:ir.ui.view,arch_db:website_forum.display_post_question_block
 #: model_terms:ir.ui.view,arch_db:website_forum.moderation_queue
 msgid "Read: #{question.name}"
-msgstr "Läs: #{frågans.namn}"
+msgstr "Läs: #{question.name}"
 
 #. module: website_forum
 #: model:ir.model.fields,field_description:website_forum.field_forum_post__closed_reason_id
@@ -2913,7 +2965,7 @@ msgstr "Beräkning av relevans"
 #: code:addons/website_forum/models/forum_post.py:0
 #, python-format
 msgid "Remove validated answer"
-msgstr ""
+msgstr "Ta bort validerat svar"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.moderation_queue
@@ -2927,7 +2979,7 @@ msgstr "Återuppta"
 #: code:addons/website_forum/models/forum_post.py:0
 #, python-format
 msgid "Reopen a banned question"
-msgstr ""
+msgstr "Återöppna en bannlyst fråga"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.forum_index
@@ -2961,7 +3013,7 @@ msgstr "Begränsa publicering till denna webbplats."
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.profile_access_denied
 msgid "Return to the forum"
-msgstr ""
+msgstr "Återgå till forumet"
 
 #. module: website_forum
 #: model:ir.model.fields,field_description:website_forum.field_forum_post__moderator_id
@@ -3014,7 +3066,7 @@ msgstr "Andra relevansparametern"
 #: code:addons/website_forum/models/res_users.py:0
 #, python-format
 msgid "See our Forum"
-msgstr ""
+msgstr "Se vårt forum"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.forum_post_template_new_answer
@@ -3059,14 +3111,16 @@ msgid ""
 "Share and discuss the best content and new marketing ideas, build your "
 "professional profile and become a better marketer together."
 msgstr ""
+"Dela och diskutera det bästa innehållet och nya marknadsföringsidéer, bygg "
+"din professionella profil och bli en bättre marknadsförare tillsammans."
 
 #. module: website_forum
 #. odoo-javascript
 #: code:addons/website_forum/static/src/xml/public_templates.xml:0
 #, python-format
 msgid ""
-"Share this content to increase your chances to be featured on the front page"
-" and attract more visitors."
+"Share this content to increase your chances to be featured on the front page "
+"and attract more visitors."
 msgstr ""
 "Dela detta innehåll för att öka dina chanser att synas på förstasidan och "
 "locka fler besökare."
@@ -3076,7 +3130,7 @@ msgstr ""
 #: code:addons/website_forum/static/src/xml/public_templates.xml:0
 #, python-format
 msgid "Share this post on social networks."
-msgstr ""
+msgstr "Dela detta inlägg på sociala nätverk."
 
 #. module: website_forum
 #: model:ir.model.fields,field_description:website_forum.field_forum_forum__allow_share
@@ -3086,7 +3140,7 @@ msgstr "Utdelningsalternativ"
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.forum_index_tags
 msgid "Show Tags Starting with"
-msgstr ""
+msgstr "Visa taggar Börjar med"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.no_results_message
@@ -3130,7 +3184,7 @@ msgstr "Tyvärr, du måste vara inloggad för att flagga ett inlägg"
 #: code:addons/website_forum/static/src/js/website_forum.js:0
 #, python-format
 msgid "Sorry, anonymous users cannot choose correct answers."
-msgstr ""
+msgstr "Tyvärr kan anonyma användare inte välja rätt svar."
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.404
@@ -3140,29 +3194,29 @@ msgstr "Tyvärr är denna fråga inte tillgänglig längre."
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.no_results_message
 msgid "Sorry, we could not find any <b>solved</b> results"
-msgstr ""
+msgstr "Tyvärr kunde vi inte hitta några <b>lösta</b> resultat"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.no_results_message
 msgid "Sorry, we could not find any <b>unanswered</b> results"
-msgstr ""
+msgstr "Tyvärr, vi kunde inte hitta några <b>obesvarade</b> resultat"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.no_results_message
 msgid "Sorry, we could not find any <b>unsolved</b> results"
-msgstr ""
+msgstr "Tyvärr, vi kunde inte hitta några <b>olösta</b> resultat"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.no_results_message
 msgid "Sorry, we could not find any results"
-msgstr ""
+msgstr "Tyvärr kunde vi inte hitta några resultat"
 
 #. module: website_forum
 #. odoo-javascript
 #: code:addons/website_forum/static/src/js/website_forum.js:0
 #, python-format
 msgid "Sorry, you cannot select your own posts as best answer"
-msgstr ""
+msgstr "Tyvärr kan du inte välja dina egna inlägg som bästa svar"
 
 #. module: website_forum
 #. odoo-javascript
@@ -3184,7 +3238,7 @@ msgstr "Spam eller reklam"
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.no_results_message
 msgid "Start by creating a post"
-msgstr ""
+msgstr "Börja med att skapa ett inlägg"
 
 #. module: website_forum
 #: model:ir.model.fields,field_description:website_forum.field_forum_post__state
@@ -3245,6 +3299,8 @@ msgid ""
 "Tap into the collective knowledge of our community by asking your questions "
 "in our forums,<br/> where helpful members are ready to assist you."
 msgstr ""
+"Dra nytta av den kollektiva kunskapen i vårt samhälle genom att ställa dina "
+"frågor i våra forum, där hjälpsamma medlemmar är redo att hjälpa dig."
 
 #. module: website_forum
 #: model:gamification.badge,name:website_forum.badge_32
@@ -3277,7 +3333,7 @@ msgstr "Tack för inlägget!"
 #: code:addons/website_forum/models/forum_post.py:0
 #, python-format
 msgid "The accepted answer is deleted"
-msgstr ""
+msgstr "Det accepterade svaret är borttaget"
 
 #. module: website_forum
 #: model_terms:forum.forum,faq:website_forum.forum_help
@@ -3287,8 +3343,8 @@ msgid ""
 "The goal of this site is create a relevant knowledge base that would answer "
 "questions related to Odoo."
 msgstr ""
-"Målet med denna webbplats är att skapa en relevant kunskapsbas som svarar på"
-" frågor relaterade till Odoo."
+"Målet med denna webbplats är att skapa en relevant kunskapsbas som svarar på "
+"frågor relaterade till Odoo."
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.post_description_full
@@ -3298,31 +3354,31 @@ msgstr "Frågan har avslutats"
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.post_description_full
 msgid "There are no answers yet"
-msgstr ""
+msgstr "Det finns inga svar ännu"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.forum_index_tags
 msgid "There are no tags being used in this forum."
-msgstr ""
+msgstr "Det används inga taggar i det här forumet."
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.forum_index_tags
 msgid "There are no tags matching the selected filter"
-msgstr ""
+msgstr "Det finns inga taggar som matchar det valda filtret"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.forum_index_tags
 msgid "There are no tags matching the selected search."
-msgstr ""
+msgstr "Det finns inga taggar som matchar den valda sökningen."
 
 #. module: website_forum
 #: model_terms:forum.forum,faq:website_forum.forum_help
 #: model_terms:ir.ui.view,arch_db:website_forum.default_faq
 #: model_terms:ir.ui.view,arch_db:website_forum.faq_karma
 msgid ""
-"Therefore questions and answers can be edited like wiki pages by experienced"
-" users of this site in order to improve the overall quality of the knowledge"
-" base content. Such privileges are granted based on user karma level: you "
+"Therefore questions and answers can be edited like wiki pages by experienced "
+"users of this site in order to improve the overall quality of the knowledge "
+"base content. Such privileges are granted based on user karma level: you "
 "will be able to do the same once your karma gets high enough."
 msgstr ""
 "Därför kan frågor och svar redigeras som wiki-sidor av erfarna användare av "
@@ -3386,29 +3442,34 @@ msgstr "Detta inlägg är redan flaggat"
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.post_description_full
 msgid "This post is awaiting validation"
-msgstr ""
+msgstr "Detta inlägg väntar på validering"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.post_description_full
 msgid ""
 "This post is currently awaiting moderation and is not published yet.<br/>\n"
-"                    As a moderator you can either <b>Accept</b> or <b>Reject</b> this post."
+"                    As a moderator you can either <b>Accept</b> or "
+"<b>Reject</b> this post."
 msgstr ""
+"Detta inlägg väntar för närvarande på moderering och är inte publicerat ännu."
+"<br/>\n"
+"                    Som moderator kan du antingen <b>acceptera</b> eller "
+"<b>avvisa</b> det här inlägget."
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.post_description_full
 msgid "This question has been flagged"
-msgstr ""
+msgstr "Denna fråga har flaggats"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.user_profile_content
 msgid "This user hasn't answered any questions yet. <br/>"
-msgstr ""
+msgstr "Den här användaren har inte svarat på några frågor än. <br/>"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.user_profile_content
 msgid "This user hasn't posted any questions yet.<br/>"
-msgstr ""
+msgstr "Den här användaren har inte ställt några frågor ännu.<br/>"
 
 #. module: website_forum
 #: model:forum.post.reason,name:website_forum.reason_14
@@ -3453,8 +3514,8 @@ msgid ""
 "To prevent your question from being flagged and possibly removed, avoid "
 "asking subjective questions where …"
 msgstr ""
-"För att undvika att din fråga flaggas och eventuellt tas bort bör du undvika"
-" att ställa subjektiva frågor där ..."
+"För att undvika att din fråga flaggas och eventuellt tas bort bör du undvika "
+"att ställa subjektiva frågor där ..."
 
 #. module: website_forum
 #: model:forum.post.reason,name:website_forum.reason_9
@@ -3535,12 +3596,12 @@ msgstr "Olösta"
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.forum_model_nav
 msgid "Unused Tags"
-msgstr ""
+msgstr "Oanvända taggar"
 
 #. module: website_forum
 #: model:ir.model.fields,field_description:website_forum.field_forum_forum__tag_unused_ids
 msgid "Unused tags"
-msgstr ""
+msgstr "Oanvända taggar"
 
 #. module: website_forum
 #: model:ir.model.fields,field_description:website_forum.field_forum_post__write_uid
@@ -3594,7 +3655,7 @@ msgstr "Användare"
 #: code:addons/website_forum/models/forum_post.py:0
 #, python-format
 msgid "User answer accepted"
-msgstr ""
+msgstr "Användarens svar accepterat"
 
 #. module: website_forum
 #: model:ir.actions.act_window,name:website_forum.forum_post_action_favorites
@@ -3613,7 +3674,7 @@ msgstr "Bekräfta"
 #: code:addons/website_forum/models/forum_post.py:0
 #, python-format
 msgid "Validate an answer"
-msgstr ""
+msgstr "Validera ett svar"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.forum_post_template_validation
@@ -3628,7 +3689,7 @@ msgstr "Visa"
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.post_display
 msgid "View my answer <i class=\"oi oi-arrow-right ms-1\"/>"
-msgstr ""
+msgstr "Visa mitt svar <i class=\"oi oi-arrow-right ms-1\"/>"
 
 #. module: website_forum
 #: model:ir.model.fields,field_description:website_forum.field_forum_post__views
@@ -3650,7 +3711,7 @@ msgstr "Rösta"
 #. module: website_forum
 #: model:ir.model.constraint,message:website_forum.constraint_forum_post_vote_vote_uniq
 msgid "Vote already exists!"
-msgstr ""
+msgstr "Omröstningen finns redan!"
 
 #. module: website_forum
 #: model:ir.model.fields,field_description:website_forum.field_forum_post__vote_ids
@@ -3739,19 +3800,19 @@ msgstr "Välkommen!"
 #: model_terms:forum.forum,faq:website_forum.forum_help
 #: model_terms:ir.ui.view,arch_db:website_forum.default_faq
 msgid "What kind of questions can I ask here?"
-msgstr ""
+msgstr "Vilken typ av frågor kan jag ställa här?"
 
 #. module: website_forum
 #: model_terms:forum.forum,faq:website_forum.forum_help
 #: model_terms:ir.ui.view,arch_db:website_forum.default_faq
 msgid "What should I avoid in my answers?"
-msgstr ""
+msgstr "Vad bör jag undvika i mina svar?"
 
 #. module: website_forum
 #: model_terms:forum.forum,faq:website_forum.forum_help
 #: model_terms:ir.ui.view,arch_db:website_forum.default_faq
 msgid "What should I avoid in my questions?"
-msgstr ""
+msgstr "Vad bör jag undvika i mina frågor?"
 
 #. module: website_forum
 #: model_terms:forum.forum,faq:website_forum.forum_help
@@ -3771,17 +3832,17 @@ msgstr ""
 #: model_terms:forum.forum,faq:website_forum.forum_help
 #: model_terms:ir.ui.view,arch_db:website_forum.default_faq
 msgid "Why can other people edit my questions/answers?"
-msgstr ""
+msgstr "Varför kan andra personer redigera mina frågor/svar?"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.new_question
 msgid "Write a clear, explicit and concise title"
-msgstr ""
+msgstr "Skriv en klar, tydlig och koncis titel"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.user_sidebar_header
 msgid "XP"
-msgstr ""
+msgstr "XP"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.forum_model_nav
@@ -3791,7 +3852,7 @@ msgstr "Du har redan ett pågående inlägg"
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.post_display
 msgid "You are only allowed one answer"
-msgstr ""
+msgstr "Du får bara ge ett svar"
 
 #. module: website_forum
 #. odoo-javascript
@@ -3803,7 +3864,7 @@ msgstr "Du kan dela din fråga när den har validerats"
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.post_display
 msgid "You can't vote for your own post"
-msgstr ""
+msgstr "Du kan inte rösta på ditt eget inlägg"
 
 #. module: website_forum
 #. odoo-python
@@ -3820,27 +3881,27 @@ msgstr "Du kan inte skicka ett tomt svar"
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.post_display
 msgid "You don't have enough karma"
-msgstr ""
+msgstr "Du har inte tillräckligt med karma"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.post_description_full
 msgid "You have a pending post"
-msgstr ""
+msgstr "Du har ett väntande inlägg"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.user_profile_content
 msgid "You have not answered any questions yet. <br/>"
-msgstr ""
+msgstr "Du har inte svarat på några frågor ännu. <br/> <br/>"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.user_profile_content
 msgid "You have not posted any questions yet. <br/>"
-msgstr ""
+msgstr "Du har inte ställt några frågor ännu. <br/>"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.user_votes
 msgid "You haven't given any votes yet."
-msgstr ""
+msgstr "Du har inte gett några röster ännu."
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.header
@@ -3856,9 +3917,9 @@ msgstr "Du måste ha tillräcklig karma för att redigera taggar"
 #: model_terms:forum.forum,faq:website_forum.forum_help
 #: model_terms:ir.ui.view,arch_db:website_forum.default_faq
 msgid ""
-"You should only ask practical, answerable questions based on actual problems"
-" that you face. Chatty, open-ended questions diminish the usefulness of this"
-" site and push other questions off the front page."
+"You should only ask practical, answerable questions based on actual problems "
+"that you face. Chatty, open-ended questions diminish the usefulness of this "
+"site and push other questions off the front page."
 msgstr ""
 "Du bör endast ställa praktiska, besvarbara frågor som baseras på faktiska "
 "problem som du ställs inför. Pratsamma, öppna frågor minskar användbarheten "
@@ -3867,12 +3928,12 @@ msgstr ""
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.display_post_question_block
 msgid "You're following this post"
-msgstr ""
+msgstr "Du följer detta inlägg"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.no_results_message
 msgid "You've Completely Caught&amp;nbsp;Up!"
-msgstr ""
+msgstr "Du har helt och hållet kommit ikapp!"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.edit_post
@@ -3898,7 +3959,7 @@ msgstr "och gå med i detta forum"
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.forum_index_tags
 msgid "and search"
-msgstr ""
+msgstr "och sök"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.author_box
@@ -3945,7 +4006,7 @@ msgstr "nedrösta"
 #: code:addons/website_forum/models/forum_post_vote.py:0
 #, python-format
 msgid "downvoted"
-msgstr ""
+msgstr "nedröstad"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.forum_forum_view_form
@@ -4069,7 +4130,7 @@ msgstr "det är en rant förklädd till en fråga: \"______ suger, har jag rätt
 #: code:addons/website_forum/static/src/js/website_forum.js:0
 #, python-format
 msgid "karma is required to perform this action. "
-msgstr ""
+msgstr "karma krävs för att utföra denna åtgärd. "
 
 #. module: website_forum
 #. odoo-javascript
@@ -4088,21 +4149,21 @@ msgstr "matchning \""
 #: code:addons/website_forum/models/forum_post_vote.py:0
 #, python-format
 msgid "no changes"
-msgstr ""
+msgstr "inga förändringar"
 
 #. module: website_forum
 #. odoo-python
 #: code:addons/website_forum/models/forum_post_vote.py:0
 #, python-format
 msgid "no more downvoted"
-msgstr ""
+msgstr "inte längre nedröstade"
 
 #. module: website_forum
 #. odoo-python
 #: code:addons/website_forum/models/forum_post_vote.py:0
 #, python-format
 msgid "no more upvoted"
-msgstr ""
+msgstr "inte mer uppröstade"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.forum_post_template_new_question
@@ -4132,7 +4193,7 @@ msgstr "post"
 #: model_terms:ir.ui.view,arch_db:website_forum.forum_index
 #: model_terms:ir.ui.view,arch_db:website_forum.no_results_message
 msgid "posts"
-msgstr ""
+msgstr "inlägg"
 
 #. module: website_forum
 #: model_terms:forum.forum,faq:website_forum.forum_help
@@ -4148,7 +4209,7 @@ msgstr "tagg"
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.forum_index_tags
 msgid "tags"
-msgstr ""
+msgstr "taggar"
 
 #. module: website_forum
 #: model_terms:forum.forum,faq:website_forum.forum_help
@@ -4170,7 +4231,7 @@ msgstr "rösta upp, lägg till kommentarer"
 #: code:addons/website_forum/models/forum_post_vote.py:0
 #, python-format
 msgid "upvoted"
-msgstr ""
+msgstr "röstat upp"
 
 #. module: website_forum
 #: model_terms:ir.ui.view,arch_db:website_forum.no_results_message

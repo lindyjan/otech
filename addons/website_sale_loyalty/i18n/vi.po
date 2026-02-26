@@ -1,33 +1,34 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # 	* website_sale_loyalty
-# 
+#
 # Translators:
 # Wil Odoo, 2023
-# 
+# Thi Huong Nguyen, 2025
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-26 21:56+0000\n"
+"POT-Creation-Date: 2025-12-29 18:38+0000\n"
 "PO-Revision-Date: 2023-10-26 23:09+0000\n"
-"Last-Translator: Wil Odoo, 2023\n"
+"Last-Translator: Thi Huong Nguyen, 2025\n"
 "Language-Team: Vietnamese (https://app.transifex.com/odoo/teams/41243/vi/)\n"
+"Language: vi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: vi\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: website_sale_loyalty
 #: model_terms:ir.ui.view,arch_db:website_sale_loyalty.modify_code_form
 msgid "<strong> - </strong>"
-msgstr ""
+msgstr "<strong> - </strong>"
 
 #. module: website_sale_loyalty
 #: model_terms:ir.ui.view,arch_db:website_sale_loyalty.modify_code_form
 msgid "<strong>Coupons - </strong>"
-msgstr ""
+msgstr "<strong>Phiếu giảm giá - </strong>"
 
 #. module: website_sale_loyalty
 #. odoo-python
@@ -46,17 +47,29 @@ msgstr "Một phiếu giảm giá có cùng mã đã được tìm thấy."
 #. module: website_sale_loyalty
 #: model_terms:ir.ui.view,arch_db:website_sale_loyalty.loyalty_program_view_form_inherit_website_sale_loyalty
 msgid "All websites"
-msgstr ""
+msgstr "Tất cả trang web"
 
 #. module: website_sale_loyalty
 #: model:ir.model.fields,field_description:website_sale_loyalty.field_loyalty_program__ecommerce_ok
 msgid "Available on Website"
+msgstr "Có trên trang web"
+
+#. module: website_sale_loyalty
+#. odoo-python
+#: code:addons/website_sale_loyalty/controllers/main.py:0
+#, python-format
+msgid ""
+"Cannot process payment: applied reward was changed or has expired.\n"
+"Please refresh the page and try again."
 msgstr ""
+"Không thể xử lý thanh toán: phần thưởng được áp dụng đã thay đổi hoặc hết "
+"hạn.\n"
+"Vui lòng tải lại trang và thử lại."
 
 #. module: website_sale_loyalty
 #: model_terms:ir.ui.view,arch_db:website_sale_loyalty.modify_code_form
 msgid "Claim"
-msgstr ""
+msgstr "Nhận"
 
 #. module: website_sale_loyalty
 #: model_terms:ir.ui.view,arch_db:website_sale_loyalty.modify_code_form
@@ -81,8 +94,7 @@ msgstr "Phiếu giảm giá"
 #. module: website_sale_loyalty
 #: model:ir.model,name:website_sale_loyalty.model_coupon_share
 msgid "Create links that apply a coupon and redirect to a specific page"
-msgstr ""
-"Tạo đường link áp dụng phiếu giảm giá và chuyển hướng tới trang cụ thể"
+msgstr "Tạo đường link áp dụng phiếu giảm giá và chuyển hướng tới trang cụ thể"
 
 #. module: website_sale_loyalty
 #: model:ir.model.fields,field_description:website_sale_loyalty.field_coupon_share__create_uid
@@ -97,7 +109,7 @@ msgstr "Được tạo vào"
 #. module: website_sale_loyalty
 #: model:ir.model.fields,field_description:website_sale_loyalty.field_sale_order__disabled_auto_rewards
 msgid "Disabled Auto Rewards"
-msgstr ""
+msgstr "Đã tắt phần thưởng tự động"
 
 #. module: website_sale_loyalty
 #: model:ir.ui.menu,name:website_sale_loyalty.menu_discount_loyalty_type_config
@@ -130,13 +142,6 @@ msgid "Expired Date:"
 msgstr "Ngày hết hạn: "
 
 #. module: website_sale_loyalty
-#. odoo-javascript
-#: code:addons/website_sale_loyalty/static/src/js/website_sale_loyalty_delivery.js:0
-#, python-format
-msgid "Free"
-msgstr "Miễn phí"
-
-#. module: website_sale_loyalty
 #: model_terms:ir.ui.view,arch_db:website_sale_loyalty.coupon_share_view_form
 msgid "Generate Short Link"
 msgstr "Tạo link rút gọn"
@@ -144,7 +149,7 @@ msgstr "Tạo link rút gọn"
 #. module: website_sale_loyalty
 #: model_terms:ir.ui.view,arch_db:website_sale_loyalty.sale_coupon_result
 msgid "Gift card or discount code..."
-msgstr ""
+msgstr "Thẻ quà tặng hoặc mã giảm giá..."
 
 #. module: website_sale_loyalty
 #: model:ir.ui.menu,name:website_sale_loyalty.menu_gift_ewallet_type_config
@@ -199,7 +204,7 @@ msgstr "Quy tắc khách hàng thân thiết"
 #. module: website_sale_loyalty
 #: model_terms:ir.ui.view,arch_db:website_sale_loyalty.modify_code_form
 msgid "Pay with eWallet"
-msgstr ""
+msgstr "Thanh toán bằng ví điện tử"
 
 #. module: website_sale_loyalty
 #: model:ir.model.fields,field_description:website_sale_loyalty.field_coupon_share__program_id
@@ -248,7 +253,6 @@ msgstr "Dòng đơn bán hàng"
 #. module: website_sale_loyalty
 #. odoo-python
 #: code:addons/website_sale_loyalty/wizard/coupon_share.py:0
-#: code:addons/website_sale_loyalty/wizard/coupon_share.py:0
 #: model_terms:ir.ui.view,arch_db:website_sale_loyalty.loyalty_card_view_tree_inherit_website_sale_loyalty
 #: model_terms:ir.ui.view,arch_db:website_sale_loyalty.loyalty_program_view_tree_inherit_website_sale_loyalty
 #, python-format
@@ -263,20 +267,19 @@ msgstr "Chia sẻ liên kết"
 #. module: website_sale_loyalty
 #: model_terms:ir.ui.view,arch_db:website_sale_loyalty.coupon_share_view_form
 msgid "Share Loyalty Card"
-msgstr ""
+msgstr "Chia sẻ thẻ khách hàng thân thiết"
 
 #. module: website_sale_loyalty
 #: model_terms:ir.ui.view,arch_db:website_sale_loyalty.snippet_options
 msgid "Show Discount in Subtotal"
-msgstr ""
+msgstr "Hiển thị Chiết khấu trong Thành tiền"
 
 #. module: website_sale_loyalty
 #. odoo-python
 #: code:addons/website_sale_loyalty/controllers/main.py:0
 #, python-format
 msgid ""
-"The coupon will be automatically applied when you add something in your "
-"cart."
+"The coupon will be automatically applied when you add something in your cart."
 msgstr "Phiếu giảm giá sẽ được tự động áp dụng khi bạn thêm hàng vào giỏ. "
 
 #. module: website_sale_loyalty
@@ -301,7 +304,7 @@ msgstr "Website được chia sẻ phải tương ứng với website của chư
 #. module: website_sale_loyalty
 #: model_terms:ir.ui.view,arch_db:website_sale_loyalty.modify_code_form
 msgid "Use"
-msgstr ""
+msgstr "Sử dụng"
 
 #. module: website_sale_loyalty
 #: model:ir.model.fields,field_description:website_sale_loyalty.field_coupon_share__website_id
@@ -315,10 +318,12 @@ msgstr "Trang web"
 #: model_terms:ir.ui.view,arch_db:website_sale_loyalty.coupon_share_view_form
 msgid ""
 "You can share this promotion with your customers.\n"
-"                            It will be applied at checkout when the customer uses this link."
+"                            It will be applied at checkout when the customer "
+"uses this link."
 msgstr ""
 "Bạn có thể chia sẻ khuyến mãi này với khách hàng.\n"
-"                            Khuyến mãi này sẽ được áp dụng lúc thanh toán khi khách hàng sử dụng đường link này. "
+"                            Khuyến mãi này sẽ được áp dụng lúc thanh toán "
+"khi khách hàng sử dụng đường link này. "
 
 #. module: website_sale_loyalty
 #: model_terms:ir.ui.view,arch_db:website_sale_loyalty.modify_code_form
@@ -328,9 +333,9 @@ msgstr "Bạn có"
 #. module: website_sale_loyalty
 #: model_terms:ir.ui.view,arch_db:website_sale_loyalty.modify_code_form
 msgid "You have successfully applied the following code:"
-msgstr ""
+msgstr "Bạn đã áp dụng mã khuyến mại sau thành công:"
 
 #. module: website_sale_loyalty
 #: model_terms:ir.ui.view,arch_db:website_sale_loyalty.modify_code_form
 msgid "in your ewallet"
-msgstr ""
+msgstr "trong ví điện tử của bạn"

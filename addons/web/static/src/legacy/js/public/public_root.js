@@ -229,7 +229,7 @@ export const PublicRoot = publicWidget.RootWidget.extend({
      */
     _onMainObjectRequest: function (ev) {
         var repr = $('html').data('main-object');
-        var m = repr.match(/(.+)\((\d+),(.*)\)/);
+        var m = repr.match(/(.+)\((-?\d+),(.*)\)/);
         ev.data.callback({
             model: m[1],
             id: m[2] | 0,
@@ -246,7 +246,9 @@ export const PublicRoot = publicWidget.RootWidget.extend({
         this._startWidgets(ev.data.$target, ev.data.options)
             .then(ev.data.onSuccess)
             .catch((e) => {
-                ev.data.onFailure(e);
+                if (ev.data.onFailure) {
+                    ev.data.onFailure(e);
+                }
                 if (!(e instanceof RPCError)) {
                     return Promise.reject(e);
                 }

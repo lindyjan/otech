@@ -1,25 +1,27 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* lunch
-# 
+# * lunch
+#
 # Translators:
 # Wil Odoo, 2023
 # Ryoko Tsuda <ryoko@quartile.co>, 2024
-# Junko Augias, 2024
-# 
+# Junko Augias, 2025
+# "Junko Augias (juau)" <juau@odoo.com>, 2025, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-05 12:31+0000\n"
-"PO-Revision-Date: 2023-10-26 23:09+0000\n"
-"Last-Translator: Junko Augias, 2024\n"
-"Language-Team: Japanese (https://app.transifex.com/odoo/teams/41243/ja/)\n"
+"POT-Creation-Date: 2025-12-29 18:37+0000\n"
+"PO-Revision-Date: 2026-02-07 08:07+0000\n"
+"Last-Translator: \"Junko Augias (juau)\" <juau@odoo.com>\n"
+"Language-Team: Japanese <https://translate.odoo.com/projects/odoo-17/lunch/"
+"ja/>\n"
+"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 5.14.3\n"
 
 #. module: lunch
 #: model_terms:lunch.product,description:lunch.product_temaki
@@ -59,8 +61,10 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:lunch.lunch_order_view_kanban
 #: model_terms:ir.ui.view,arch_db:lunch.view_lunch_cashmove_kanban
 #: model_terms:ir.ui.view,arch_db:lunch.view_lunch_cashmove_report_kanban
-msgid "<i class=\"fa fa-clock-o\" role=\"img\" aria-label=\"Date\" title=\"Date\"/>"
-msgstr "<i class=\"fa fa-clock-o\" role=\"img\" aria-label=\"Date\" title=\"日付\"/>"
+msgid ""
+"<i class=\"fa fa-clock-o\" role=\"img\" aria-label=\"Date\" title=\"Date\"/>"
+msgstr ""
+"<i class=\"fa fa-clock-o\" role=\"img\" aria-label=\"Date\" title=\"日付\"/>"
 
 #. module: lunch
 #: model_terms:ir.ui.view,arch_db:lunch.lunch_order_view_kanban
@@ -74,13 +78,19 @@ msgstr ""
 #. module: lunch
 #: model_terms:ir.ui.view,arch_db:lunch.view_lunch_cashmove_kanban
 #: model_terms:ir.ui.view,arch_db:lunch.view_lunch_cashmove_report_kanban
-msgid "<i class=\"fa fa-money\" role=\"img\" aria-label=\"Amount\" title=\"Amount\"/>"
-msgstr "<i class=\"fa fa-money\" role=\"img\" aria-label=\"Amount\" title=\"Amount\"/>"
+msgid ""
+"<i class=\"fa fa-money\" role=\"img\" aria-label=\"Amount\" title=\"Amount\"/"
+">"
+msgstr ""
+"<i class=\"fa fa-money\" role=\"img\" aria-label=\"Amount\" title=\"Amount\"/"
+">"
 
 #. module: lunch
 #: model_terms:ir.ui.view,arch_db:lunch.lunch_order_view_kanban
-msgid "<i class=\"fa fa-money\" role=\"img\" aria-label=\"Money\" title=\"Money\"/>"
-msgstr "<i class=\"fa fa-money\" role=\"img\" aria-label=\"Money\" title=\"Money\"/>"
+msgid ""
+"<i class=\"fa fa-money\" role=\"img\" aria-label=\"Money\" title=\"Money\"/>"
+msgstr ""
+"<i class=\"fa fa-money\" role=\"img\" aria-label=\"Money\" title=\"Money\"/>"
 
 #. module: lunch
 #: model_terms:ir.ui.view,arch_db:lunch.lunch_order_view_kanban
@@ -112,20 +122,32 @@ msgstr ""
 #. module: lunch
 #: model:mail.template,body_html:lunch.lunch_order_mail_supplier
 msgid ""
-"<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"padding-top: 16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;\"><tr><td align=\"center\">\n"
-"<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"padding: 16px; background-color: white; color: #454748; border-collapse:separate;\">\n"
+"<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"padding-top: "
+"16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; "
+"color: #454748; width: 100%; border-collapse:separate;\"><tr><td "
+"align=\"center\">\n"
+"<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" "
+"style=\"padding: 16px; background-color: white; color: #454748; border-"
+"collapse:separate;\">\n"
 "<tbody>\n"
 "    <!-- HEADER -->\n"
 "    <tr>\n"
 "        <td align=\"center\" style=\"min-width: 590px;\">\n"
-"            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
+"            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" "
+"width=\"590\" style=\"min-width: 590px; background-color: white; padding: "
+"0px 8px 0px 8px; border-collapse:separate;\">\n"
 "                <tr><td valign=\"middle\">\n"
 "                    <span style=\"font-size: 10px;\">Lunch Order</span><br>\n"
-"                </td><td valign=\"middle\" align=\"right\" t-if=\"not user.company_id.uses_default_logo\">\n"
-"                    <img t-attf-src=\"/logo.png?company={{ user.company_id.id }}\" style=\"padding: 0px; margin: 0px; height: auto; width: 80px;\" t-att-alt=\"user.company_id.name\">\n"
+"                </td><td valign=\"middle\" align=\"right\" t-if=\"not "
+"user.company_id.uses_default_logo\">\n"
+"                    <img t-attf-src=\"/logo.png?"
+"company={{ user.company_id.id }}\" style=\"padding: 0px; margin: 0px; "
+"height: auto; width: 80px;\" t-att-alt=\"user.company_id.name\">\n"
 "                </td></tr>\n"
 "                <tr><td colspan=\"2\" style=\"text-align:center;\">\n"
-"                  <hr width=\"100%\" style=\"background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin:16px 0px 16px 0px;\">\n"
+"                  <hr width=\"100%\" style=\"background-"
+"color:rgb(204,204,204);border:medium none;clear:both;display:block;font-"
+"size:0px;min-height:1px;line-height:0; margin:16px 0px 16px 0px;\">\n"
 "                </td></tr>\n"
 "            </table>\n"
 "        </td>\n"
@@ -133,24 +155,29 @@ msgid ""
 "    <!-- CONTENT -->\n"
 "    <tr>\n"
 "        <td align=\"center\" style=\"min-width: 590px;\">\n"
-"            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
+"            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" "
+"width=\"590\" style=\"min-width: 590px; background-color: white; padding: "
+"0px 8px 0px 8px; border-collapse:separate;\">\n"
 "                <tr>\n"
 "                    <td valign=\"top\" style=\"font-size: 13px;\">\n"
 "    <div>\n"
 "        <t t-set=\"lines\" t-value=\"ctx.get('lines', [])\"></t>\n"
 "        <t t-set=\"order\" t-value=\"ctx.get('order')\"></t>\n"
-"        <t t-set=\"currency\" t-value=\"user.env['res.currency'].browse(order.get('currency_id'))\"></t>\n"
+"        <t t-set=\"currency\" t-"
+"value=\"user.env['res.currency'].browse(order.get('currency_id'))\"></t>\n"
 "        <p>\n"
 "        Dear <t t-out=\"order.get('supplier_name', '')\">Laurie Poiret</t>,\n"
 "        </p><p>\n"
-"        Here is, today orders for <t t-out=\"order.get('company_name', '')\">LunchCompany</t>:\n"
+"        Here is, today orders for <t t-out=\"order.get('company_name', '')"
+"\">LunchCompany</t>:\n"
 "        </p>\n"
 "\n"
 "        <t t-if=\"sites\">\n"
 "            <br>\n"
 "            <p>Location</p>\n"
 "            <t t-foreach=\"site\" t-as=\"site\">\n"
-"                <p><t t-out=\"site['name'] or ''\"></t> : <t t-out=\"site['address'] or ''\"></t></p>\n"
+"                <p><t t-out=\"site['name'] or ''\"></t> : <t t-"
+"out=\"site['address'] or ''\"></t></p>\n"
 "            </t>\n"
 "            <br>\n"
 "        </t>\n"
@@ -158,37 +185,55 @@ msgid ""
 "        <table>\n"
 "            <thead>\n"
 "                <tr style=\"background-color:rgb(233,232,233);\">\n"
-"                    <th style=\"width: 100%; min-width: 96px; font-size: 13px;\"><strong>Product</strong></th>\n"
-"                    <th style=\"width: 100%; min-width: 96px; font-size: 13px;\"><strong>Comments</strong></th>\n"
-"                    <th style=\"width: 100%; min-width: 96px; font-size: 13px;\"><strong>Person</strong></th>\n"
-"                    <th style=\"width: 100%; min-width: 96px; font-size: 13px;\"><strong>Site</strong></th>\n"
-"                    <th style=\"width: 100%; min-width: 96px; font-size: 13px;\" align=\"center\"><strong>Qty</strong></th>\n"
-"                    <th style=\"width: 100%; min-width: 96px; font-size: 13px;\" align=\"center\"><strong>Price</strong></th>\n"
+"                    <th style=\"width: 100%; min-width: 96px; font-size: "
+"13px;\"><strong>Product</strong></th>\n"
+"                    <th style=\"width: 100%; min-width: 96px; font-size: "
+"13px;\"><strong>Comments</strong></th>\n"
+"                    <th style=\"width: 100%; min-width: 96px; font-size: "
+"13px;\"><strong>Person</strong></th>\n"
+"                    <th style=\"width: 100%; min-width: 96px; font-size: "
+"13px;\"><strong>Site</strong></th>\n"
+"                    <th style=\"width: 100%; min-width: 96px; font-size: "
+"13px;\" align=\"center\"><strong>Qty</strong></th>\n"
+"                    <th style=\"width: 100%; min-width: 96px; font-size: "
+"13px;\" align=\"center\"><strong>Price</strong></th>\n"
 "                </tr>\n"
 "            </thead>\n"
 "            <tbody>\n"
 "                <tr t-foreach=\"lines\" t-as=\"line\">\n"
-"                    <td style=\"width: 100%; font-size: 13px;\" valign=\"top\" t-out=\"line['product'] or ''\">Sushi salmon</td>\n"
-"                    <td style=\"width: 100%; font-size: 13px;\" valign=\"top\">\n"
+"                    <td style=\"width: 100%; font-size: 13px;\" "
+"valign=\"top\" t-out=\"line['product'] or ''\">Sushi salmon</td>\n"
+"                    <td style=\"width: 100%; font-size: 13px;\" "
+"valign=\"top\">\n"
 "                    <t t-if=\"line['toppings']\">\n"
 "                        <t t-out=\"line['toppings'] or ''\">Soy sauce</t>\n"
 "                    </t>\n"
 "                    <t t-if=\"line['note']\">\n"
-"                        <div style=\"color: rgb(173,181,189);\" t-out=\"line['note'] or ''\">With wasabi.</div>\n"
+"                        <div style=\"color: rgb(173,181,189);\" t-"
+"out=\"line['note'] or ''\">With wasabi.</div>\n"
 "                    </t>\n"
 "                    </td>\n"
-"                    <td style=\"width: 100%; font-size: 13px;\" valign=\"top\" t-out=\"line['username'] or ''\">lap</td>\n"
-"                    <td style=\"width: 100%; font-size: 13px;\" valign=\"top\" t-out=\"line['site'] or ''\">Office 1</td>\n"
-"                    <td style=\"width: 100%; font-size: 13px;\" valign=\"top\" align=\"right\" t-out=\"line['quantity'] or ''\">10</td>\n"
-"                    <td style=\"width: 100%; font-size: 13px;\" valign=\"top\" align=\"right\" t-out=\"format_amount(line['price'], currency) or ''\">$ 1.00</td>\n"
+"                    <td style=\"width: 100%; font-size: 13px;\" "
+"valign=\"top\" t-out=\"line['username'] or ''\">lap</td>\n"
+"                    <td style=\"width: 100%; font-size: 13px;\" "
+"valign=\"top\" t-out=\"line['site'] or ''\">Office 1</td>\n"
+"                    <td style=\"width: 100%; font-size: 13px;\" "
+"valign=\"top\" align=\"right\" t-out=\"line['quantity'] or ''\">10</td>\n"
+"                    <td style=\"width: 100%; font-size: 13px;\" "
+"valign=\"top\" align=\"right\" t-out=\"format_amount(line['price'], "
+"currency) or ''\">$ 1.00</td>\n"
 "                </tr>\n"
 "                <tr>\n"
 "                    <td></td>\n"
 "                    <td></td>\n"
 "                    <td></td>\n"
 "                    <td></td>\n"
-"                    <td style=\"width: 100%; font-size: 13px; border-top: 1px solid black;\"><strong>Total</strong></td>\n"
-"                    <td style=\"width: 100%; font-size: 13px; border-top: 1px solid black;\" align=\"right\"><strong t-out=\"format_amount(order['amount_total'], currency) or ''\">$ 10.00</strong></td>\n"
+"                    <td style=\"width: 100%; font-size: 13px; border-top: "
+"1px solid black;\"><strong>Total</strong></td>\n"
+"                    <td style=\"width: 100%; font-size: 13px; border-top: "
+"1px solid black;\" align=\"right\"><strong t-"
+"out=\"format_amount(order['amount_total'], currency) or ''\">$ 10.00</"
+"strong></td>\n"
 "                </tr>\n"
 "            </tbody>\n"
 "        </table>\n"
@@ -199,7 +244,9 @@ msgid ""
 "                </tr>\n"
 "                <tr>\n"
 "                    <td style=\"text-align:center;\">\n"
-"                        <hr width=\"100%\" style=\"background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;\">\n"
+"                        <hr width=\"100%\" style=\"background-"
+"color:rgb(204,204,204);border:medium none;clear:both;display:block;font-"
+"size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;\">\n"
 "                    </td>\n"
 "                </tr>\n"
 "            </table>\n"
@@ -208,19 +255,29 @@ msgid ""
 "    <!-- FOOTER -->\n"
 "    <tr>\n"
 "        <td align=\"center\" style=\"min-width: 590px;\">\n"
-"            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: white; font-size: 11px; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
+"            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" "
+"width=\"590\" style=\"min-width: 590px; background-color: white; font-size: "
+"11px; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
 "                <tr><td valign=\"middle\" align=\"left\">\n"
 "                    <t t-out=\"user.company_id.name or ''\">YourCompany</t>\n"
 "                </td></tr>\n"
-"                <tr><td valign=\"middle\" align=\"left\" style=\"opacity: 0.7;\">\n"
-"                    <t t-out=\"user.company_id.phone or ''\">+1 650-123-4567</t>\n"
-"                    <t t-if=\"user.company_id.phone and (user.company_id.email or user.company_id.website)\">|</t>\n"
+"                <tr><td valign=\"middle\" align=\"left\" style=\"opacity: "
+"0.7;\">\n"
+"                    <t t-out=\"user.company_id.phone or ''\">+1 "
+"650-123-4567</t>\n"
+"                    <t t-if=\"user.company_id.phone and "
+"(user.company_id.email or user.company_id.website)\">|</t>\n"
 "                    <t t-if=\"user.company_id.email\">\n"
-"                        <a t-attf-href=\"'mailto:%s' % {{ user.company_id.email }}\" style=\"text-decoration:none; color: #454748;\" t-out=\"user.company_id.email or ''\">info@yourcompany.com</a>\n"
+"                        <a t-attf-href=\"'mailto:%s' % "
+"{{ user.company_id.email }}\" style=\"text-decoration:none; color: "
+"#454748;\" t-out=\"user.company_id.email or ''\">info@yourcompany.com</a>\n"
 "                    </t>\n"
-"                    <t t-if=\"user.company_id.email and user.company_id.website\">|</t>\n"
+"                    <t t-if=\"user.company_id.email and "
+"user.company_id.website\">|</t>\n"
 "                    <t t-if=\"user.company_id.website\">\n"
-"                        <a t-attf-href=\"'%s' % {{ user.company_id.website }}\" style=\"text-decoration:none; color: #454748;\" t-out=\"user.company_id.website or ''\">http://www.example.com</a>\n"
+"                        <a t-attf-href=\"'%s' % {{ user.company_id.website }}"
+"\" style=\"text-decoration:none; color: #454748;\" t-"
+"out=\"user.company_id.website or ''\">http://www.example.com</a>\n"
 "                    </t>\n"
 "                </td></tr>\n"
 "            </table>\n"
@@ -231,29 +288,45 @@ msgid ""
 "</td></tr>\n"
 "<!-- POWERED BY -->\n"
 "<tr><td align=\"center\" style=\"min-width: 590px;\">\n"
-"    <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: #F1F1F1; color: #454748; padding: 8px; border-collapse:separate;\">\n"
+"    <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" "
+"style=\"min-width: 590px; background-color: #F1F1F1; color: #454748; "
+"padding: 8px; border-collapse:separate;\">\n"
 "      <tr><td style=\"text-align: center; font-size: 13px;\">\n"
-"        Powered by <a target=\"_blank\" href=\"https://www.odoo.com\" style=\"color: #875A7B;\">Odoo</a>\n"
+"        Powered by <a target=\"_blank\" href=\"https://www.odoo.com\" "
+"style=\"color: #875A7B;\">Odoo</a>\n"
 "      </td></tr>\n"
 "    </table>\n"
 "</td></tr>\n"
 "</table>\n"
 "        "
 msgstr ""
-"<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"padding-top: 16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;\"><tr><td align=\"center\">\n"
-"<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"padding: 16px; background-color: white; color: #454748; border-collapse:separate;\">\n"
+"<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"padding-top: "
+"16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; "
+"color: #454748; width: 100%; border-collapse:separate;\"><tr><td "
+"align=\"center\">\n"
+"<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" "
+"style=\"padding: 16px; background-color: white; color: #454748; border-"
+"collapse:separate;\">\n"
 "<tbody>\n"
 "    <!-- HEADER -->\n"
 "    <tr>\n"
 "        <td align=\"center\" style=\"min-width: 590px;\">\n"
-"            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
+"            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" "
+"width=\"590\" style=\"min-width: 590px; background-color: white; padding: "
+"0px 8px 0px 8px; border-collapse:separate;\">\n"
 "                <tr><td valign=\"middle\">\n"
-"                    <span style=\"font-size: 10px;\">ランチオーダ</span><br>\n"
-"                </td><td valign=\"middle\" align=\"right\" t-if=\"not user.company_id.uses_default_logo\">\n"
-"                    <img t-attf-src=\"/logo.png?company={{ user.company_id.id }}\" style=\"padding: 0px; margin: 0px; height: auto; width: 80px;\" t-att-alt=\"user.company_id.name\">\n"
+"                    <span style=\"font-size: 10px;\">ランチオーダ</"
+"span><br>\n"
+"                </td><td valign=\"middle\" align=\"right\" t-if=\"not "
+"user.company_id.uses_default_logo\">\n"
+"                    <img t-attf-src=\"/logo.png?"
+"company={{ user.company_id.id }}\" style=\"padding: 0px; margin: 0px; "
+"height: auto; width: 80px;\" t-att-alt=\"user.company_id.name\">\n"
 "                </td></tr>\n"
 "                <tr><td colspan=\"2\" style=\"text-align:center;\">\n"
-"                  <hr width=\"100%\" style=\"background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin:16px 0px 16px 0px;\">\n"
+"                  <hr width=\"100%\" style=\"background-"
+"color:rgb(204,204,204);border:medium none;clear:both;display:block;font-"
+"size:0px;min-height:1px;line-height:0; margin:16px 0px 16px 0px;\">\n"
 "                </td></tr>\n"
 "            </table>\n"
 "        </td>\n"
@@ -261,24 +334,29 @@ msgstr ""
 "    <!-- CONTENT -->\n"
 "    <tr>\n"
 "        <td align=\"center\" style=\"min-width: 590px;\">\n"
-"            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
+"            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" "
+"width=\"590\" style=\"min-width: 590px; background-color: white; padding: "
+"0px 8px 0px 8px; border-collapse:separate;\">\n"
 "                <tr>\n"
 "                    <td valign=\"top\" style=\"font-size: 13px;\">\n"
 "    <div>\n"
 "        <t t-set=\"lines\" t-value=\"ctx.get('lines', [])\"></t>\n"
 "        <t t-set=\"order\" t-value=\"ctx.get('order')\"></t>\n"
-"        <t t-set=\"currency\" t-value=\"user.env['res.currency'].browse(order.get('currency_id'))\"></t>\n"
+"        <t t-set=\"currency\" t-"
+"value=\"user.env['res.currency'].browse(order.get('currency_id'))\"></t>\n"
 "        <p>\n"
 "        <t t-out=\"order.get('supplier_name', '')\">Laurie Poiret</t>様\n"
 "        </p><p>\n"
-"        以下、本日の<t t-out=\"order.get('company_name', '')\">LunchCompany</t>用オーダです:\n"
+"        以下、本日の<t t-out=\"order.get('company_name', '')\">LunchCompany</"
+"t>用オーダです:\n"
 "        </p>\n"
 "\n"
 "        <t t-if=\"sites\">\n"
 "            <br>\n"
 "            <p>場所</p>\n"
 "            <t t-foreach=\"site\" t-as=\"site\">\n"
-"                <p><t t-out=\"site['name'] or ''\"></t> : <t t-out=\"site['address'] or ''\"></t></p>\n"
+"                <p><t t-out=\"site['name'] or ''\"></t> : <t t-"
+"out=\"site['address'] or ''\"></t></p>\n"
 "            </t>\n"
 "            <br>\n"
 "        </t>\n"
@@ -286,37 +364,55 @@ msgstr ""
 "        <table>\n"
 "            <thead>\n"
 "                <tr style=\"background-color:rgb(233,232,233);\">\n"
-"                    <th style=\"width: 100%; min-width: 96px; font-size: 13px;\"><strong>プロダクト</strong></th>\n"
-"                    <th style=\"width: 100%; min-width: 96px; font-size: 13px;\"><strong>コメント</strong></th>\n"
-"                    <th style=\"width: 100%; min-width: 96px; font-size: 13px;\"><strong>人</strong></th>\n"
-"                    <th style=\"width: 100%; min-width: 96px; font-size: 13px;\"><strong>サイト</strong></th>\n"
-"                    <th style=\"width: 100%; min-width: 96px; font-size: 13px;\" align=\"center\"><strong>数量</strong></th>\n"
-"                    <th style=\"width: 100%; min-width: 96px; font-size: 13px;\" align=\"center\"><strong>価格</strong></th>\n"
+"                    <th style=\"width: 100%; min-width: 96px; font-size: "
+"13px;\"><strong>プロダクト</strong></th>\n"
+"                    <th style=\"width: 100%; min-width: 96px; font-size: "
+"13px;\"><strong>コメント</strong></th>\n"
+"                    <th style=\"width: 100%; min-width: 96px; font-size: "
+"13px;\"><strong>人</strong></th>\n"
+"                    <th style=\"width: 100%; min-width: 96px; font-size: "
+"13px;\"><strong>サイト</strong></th>\n"
+"                    <th style=\"width: 100%; min-width: 96px; font-size: "
+"13px;\" align=\"center\"><strong>数量</strong></th>\n"
+"                    <th style=\"width: 100%; min-width: 96px; font-size: "
+"13px;\" align=\"center\"><strong>価格</strong></th>\n"
 "                </tr>\n"
 "            </thead>\n"
 "            <tbody>\n"
 "                <tr t-foreach=\"lines\" t-as=\"line\">\n"
-"                    <td style=\"width: 100%; font-size: 13px;\" valign=\"top\" t-out=\"line['product'] or ''\">サーモン寿司</td>\n"
-"                    <td style=\"width: 100%; font-size: 13px;\" valign=\"top\">\n"
+"                    <td style=\"width: 100%; font-size: 13px;\" "
+"valign=\"top\" t-out=\"line['product'] or ''\">サーモン寿司</td>\n"
+"                    <td style=\"width: 100%; font-size: 13px;\" "
+"valign=\"top\">\n"
 "                    <t t-if=\"line['toppings']\">\n"
 "                        <t t-out=\"line['toppings'] or ''\">醤油</t>\n"
 "                    </t>\n"
 "                    <t t-if=\"line['note']\">\n"
-"                        <div style=\"color: rgb(173,181,189);\" t-out=\"line['note'] or ''\">ワサビ付き</div>\n"
+"                        <div style=\"color: rgb(173,181,189);\" t-"
+"out=\"line['note'] or ''\">ワサビ付き</div>\n"
 "                    </t>\n"
 "                    </td>\n"
-"                    <td style=\"width: 100%; font-size: 13px;\" valign=\"top\" t-out=\"line['username'] or ''\">ラップ</td>\n"
-"                    <td style=\"width: 100%; font-size: 13px;\" valign=\"top\" t-out=\"line['site'] or ''\">オフィス 1</td>\n"
-"                    <td style=\"width: 100%; font-size: 13px;\" valign=\"top\" align=\"right\" t-out=\"line['quantity'] or ''\">10</td>\n"
-"                    <td style=\"width: 100%; font-size: 13px;\" valign=\"top\" align=\"right\" t-out=\"format_amount(line['price'], currency) or ''\">$ 1.00</td>\n"
+"                    <td style=\"width: 100%; font-size: 13px;\" "
+"valign=\"top\" t-out=\"line['username'] or ''\">ラップ</td>\n"
+"                    <td style=\"width: 100%; font-size: 13px;\" "
+"valign=\"top\" t-out=\"line['site'] or ''\">オフィス 1</td>\n"
+"                    <td style=\"width: 100%; font-size: 13px;\" "
+"valign=\"top\" align=\"right\" t-out=\"line['quantity'] or ''\">10</td>\n"
+"                    <td style=\"width: 100%; font-size: 13px;\" "
+"valign=\"top\" align=\"right\" t-out=\"format_amount(line['price'], "
+"currency) or ''\">$ 1.00</td>\n"
 "                </tr>\n"
 "                <tr>\n"
 "                    <td></td>\n"
 "                    <td></td>\n"
 "                    <td></td>\n"
 "                    <td></td>\n"
-"                    <td style=\"width: 100%; font-size: 13px; border-top: 1px solid black;\"><strong>合計</strong></td>\n"
-"                    <td style=\"width: 100%; font-size: 13px; border-top: 1px solid black;\" align=\"right\"><strong t-out=\"format_amount(order['amount_total'], currency) or ''\">$ 10.00</strong></td>\n"
+"                    <td style=\"width: 100%; font-size: 13px; border-top: "
+"1px solid black;\"><strong>合計</strong></td>\n"
+"                    <td style=\"width: 100%; font-size: 13px; border-top: "
+"1px solid black;\" align=\"right\"><strong t-"
+"out=\"format_amount(order['amount_total'], currency) or ''\">$ 10.00</"
+"strong></td>\n"
 "                </tr>\n"
 "            </tbody>\n"
 "        </table>\n"
@@ -327,7 +423,9 @@ msgstr ""
 "                </tr>\n"
 "                <tr>\n"
 "                    <td style=\"text-align:center;\">\n"
-"                        <hr width=\"100%\" style=\"background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;\">\n"
+"                        <hr width=\"100%\" style=\"background-"
+"color:rgb(204,204,204);border:medium none;clear:both;display:block;font-"
+"size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;\">\n"
 "                    </td>\n"
 "                </tr>\n"
 "            </table>\n"
@@ -336,19 +434,29 @@ msgstr ""
 "    <!-- FOOTER -->\n"
 "    <tr>\n"
 "        <td align=\"center\" style=\"min-width: 590px;\">\n"
-"            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: white; font-size: 11px; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
+"            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" "
+"width=\"590\" style=\"min-width: 590px; background-color: white; font-size: "
+"11px; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
 "                <tr><td valign=\"middle\" align=\"left\">\n"
 "                    <t t-out=\"user.company_id.name or ''\">YourCompany</t>\n"
 "                </td></tr>\n"
-"                <tr><td valign=\"middle\" align=\"left\" style=\"opacity: 0.7;\">\n"
-"                    <t t-out=\"user.company_id.phone or ''\">+1 650-123-4567</t>\n"
-"                    <t t-if=\"user.company_id.phone and (user.company_id.email or user.company_id.website)\">|</t>\n"
+"                <tr><td valign=\"middle\" align=\"left\" style=\"opacity: "
+"0.7;\">\n"
+"                    <t t-out=\"user.company_id.phone or ''\">+1 "
+"650-123-4567</t>\n"
+"                    <t t-if=\"user.company_id.phone and "
+"(user.company_id.email or user.company_id.website)\">|</t>\n"
 "                    <t t-if=\"user.company_id.email\">\n"
-"                        <a t-attf-href=\"'mailto:%s' % {{ user.company_id.email }}\" style=\"text-decoration:none; color: #454748;\" t-out=\"user.company_id.email or ''\">info@yourcompany.com</a>\n"
+"                        <a t-attf-href=\"'mailto:%s' % "
+"{{ user.company_id.email }}\" style=\"text-decoration:none; color: "
+"#454748;\" t-out=\"user.company_id.email or ''\">info@yourcompany.com</a>\n"
 "                    </t>\n"
-"                    <t t-if=\"user.company_id.email and user.company_id.website\">|</t>\n"
+"                    <t t-if=\"user.company_id.email and "
+"user.company_id.website\">|</t>\n"
 "                    <t t-if=\"user.company_id.website\">\n"
-"                        <a t-attf-href=\"'%s' % {{ user.company_id.website }}\" style=\"text-decoration:none; color: #454748;\" t-out=\"user.company_id.website or ''\">http://www.example.com</a>\n"
+"                        <a t-attf-href=\"'%s' % {{ user.company_id.website }}"
+"\" style=\"text-decoration:none; color: #454748;\" t-"
+"out=\"user.company_id.website or ''\">http://www.example.com</a>\n"
 "                    </t>\n"
 "                </td></tr>\n"
 "            </table>\n"
@@ -359,9 +467,12 @@ msgstr ""
 "</td></tr>\n"
 "<!-- POWERED BY -->\n"
 "<tr><td align=\"center\" style=\"min-width: 590px;\">\n"
-"    <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: #F1F1F1; color: #454748; padding: 8px; border-collapse:separate;\">\n"
+"    <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" "
+"style=\"min-width: 590px; background-color: #F1F1F1; color: #454748; "
+"padding: 8px; border-collapse:separate;\">\n"
 "      <tr><td style=\"text-align: center; font-size: 13px;\">\n"
-"        Powered by <a target=\"_blank\" href=\"https://www.odoo.com\" style=\"color: #875A7B;\">Odoo</a>\n"
+"        Powered by <a target=\"_blank\" href=\"https://www.odoo.com\" "
+"style=\"color: #875A7B;\">Odoo</a>\n"
 "      </td></tr>\n"
 "    </table>\n"
 "</td></tr>\n"
@@ -424,7 +535,7 @@ msgstr "活動状態"
 #. module: lunch
 #: model:ir.model.fields,field_description:lunch.field_lunch_supplier__activity_type_icon
 msgid "Activity Type Icon"
-msgstr "活動種別アイコン"
+msgstr "活動タイプアイコン"
 
 #. module: lunch
 #: model_terms:ir.ui.view,arch_db:lunch.lunch_order_view_form
@@ -506,7 +617,7 @@ msgstr "自動Eメール送信時間は0から12の間でなければなりま�
 #. module: lunch
 #: model_terms:ir.ui.view,arch_db:lunch.lunch_supplier_view_form
 msgid "Availability"
-msgstr "利用可能"
+msgstr "利用可否"
 
 #. module: lunch
 #: model_terms:ir.ui.view,arch_db:lunch.lunch_product_view_search
@@ -585,6 +696,7 @@ msgid "Cancelled"
 msgstr "取消済"
 
 #. module: lunch
+#. odoo-python
 #: code:addons/lunch/models/lunch_supplier.py:0
 #, python-format
 msgid "Cannot send an email to this supplier!"
@@ -651,13 +763,22 @@ msgstr "市"
 #. module: lunch
 #: model_terms:ir.actions.act_window,help:lunch.lunch_order_action_control_suppliers
 msgid ""
-"Click on the <span class=\"fa fa-phone text-success\" title=\"Order button\"></span> to announce that the order is ordered.<br>\n"
-"            Click on the <span class=\"fa fa-check text-success\" title=\"Receive button\"></span> to announce that the order is received.<br>\n"
-"            Click on the <span class=\"fa fa-times-circle text-danger\" title=\"Cancel button\"></span> red X to announce that the order isn't available."
+"Click on the <span class=\"fa fa-phone text-success\" title=\"Order "
+"button\"></span> to announce that the order is ordered.<br>\n"
+"            Click on the <span class=\"fa fa-check text-success\" "
+"title=\"Receive button\"></span> to announce that the order is received."
+"<br>\n"
+"            Click on the <span class=\"fa fa-times-circle text-danger\" "
+"title=\"Cancel button\"></span> red X to announce that the order isn't "
+"available."
 msgstr ""
-"以下をクリックして<span class=\"fa fa-phone text-success\" title=\"Order button\"></span>オーダがオーダされたことを伝える。<br>\n"
-"            以下をクリックして <span class=\"fa fa-check text-success\" title=\"Receive button\"></span>オーダを受理したことを伝える。<br>\n"
-"            以下をクリックして <span class=\"fa fa-times-circle text-danger\" title=\"Cancel button\"></span> 赤の X でオーダが利用不可であると伝える。"
+"以下をクリックして<span class=\"fa fa-phone text-success\" title=\"Order "
+"button\"></span>オーダがオーダされたことを伝える。<br>\n"
+"            以下をクリックして <span class=\"fa fa-check text-success\" "
+"title=\"Receive button\"></span>オーダを受理したことを伝える。<br>\n"
+"            以下をクリックして <span class=\"fa fa-times-circle text-"
+"danger\" title=\"Cancel button\"></span> 赤の X でオーダが利用不可であると伝"
+"える。"
 
 #. module: lunch
 #: model:lunch.product,name:lunch.product_club
@@ -705,7 +826,7 @@ msgstr "注文の内容"
 #. module: lunch
 #: model_terms:ir.ui.view,arch_db:lunch.lunch_order_view_tree
 msgid "Confirm"
-msgstr "確認"
+msgstr "確定"
 
 #. module: lunch
 #: model_terms:ir.ui.view,arch_db:lunch.lunch_order_view_tree
@@ -738,7 +859,7 @@ msgstr "新しい支払を作成しましょう"
 #. module: lunch
 #: model_terms:ir.actions.act_window,help:lunch.lunch_product_category_action
 msgid "Create a new product category"
-msgstr "新しいプロダクトカテゴリを作成しましょう"
+msgstr "新しいプロダクトカテゴリを作成"
 
 #. module: lunch
 #: model_terms:ir.actions.act_window,help:lunch.lunch_product_action
@@ -795,7 +916,7 @@ msgstr "通貨"
 #. module: lunch
 #: model_terms:ir.ui.view,arch_db:lunch.lunch_alert_view_search
 msgid "Currently inactive"
-msgstr "現在、アクティブではありません"
+msgstr "現在、有効ではありません"
 
 #. module: lunch
 #: model:ir.model.fields,field_description:lunch.field_lunch_cashmove__date
@@ -1018,7 +1139,9 @@ msgstr "メッセージあり"
 msgid ""
 "Helps you handle your lunch needs, if you are a manager you will be able to "
 "create new products, cashmoves and to confirm or cancel orders."
-msgstr "ランチニーズの処理をサポートします。管理者であれば、新プロダクトの作成や入出金、オーダの確認や取消ができます。"
+msgstr ""
+"ランチニーズの処理をサポートします。管理者であれば、新プロダクトの作成や入出"
+"金、オーダの確認や取消ができます。"
 
 #. module: lunch
 #: model_terms:ir.actions.act_window,help:lunch.lunch_product_category_action
@@ -1033,11 +1156,14 @@ msgstr "仕入先ごとの今日の注文内容を確認できます。"
 #. module: lunch
 #: model_terms:ir.actions.act_window,help:lunch.lunch_cashmove_report_action_account
 msgid ""
-"Here you can see your cash moves.<br>A cash move can either be an expense or a payment.\n"
-"            An expense is automatically created when an order is received while a payment is a reimbursement to the company encoded by the manager."
+"Here you can see your cash moves.<br>A cash move can either be an expense or "
+"a payment.\n"
+"            An expense is automatically created when an order is received "
+"while a payment is a reimbursement to the company encoded by the manager."
 msgstr ""
 "こちらで現金移動が見れます。<br>現金移動は経費または支払です。\n"
-"            経費はオーダを受けると自動的に作成され、支払はマネージャーによってエンコードされた会社への払戻です。"
+"            経費はオーダを受けると自動的に作成され、支払はマネージャーによっ"
+"てエンコードされた会社への払戻です。"
 
 #. module: lunch
 #: model:ir.model.fields,field_description:lunch.field_lunch_alert__id
@@ -1121,7 +1247,7 @@ msgstr "本日表示有効"
 #. module: lunch
 #: model:ir.model.fields,field_description:lunch.field_lunch_product__is_favorite
 msgid "Is Favorite"
-msgstr "お気に入り化"
+msgstr "お気に入り"
 
 #. module: lunch
 #: model:ir.model.fields,field_description:lunch.field_lunch_supplier__message_is_follower
@@ -1406,7 +1532,7 @@ msgstr "マイアカウント"
 #. module: lunch
 #: model:ir.ui.menu,name:lunch.lunch_cashmove_report_menu_form
 msgid "My Account History"
-msgstr "自分のアカウント履歴"
+msgstr "マイアカウント履歴"
 
 #. module: lunch
 #: model_terms:ir.ui.view,arch_db:lunch.lunch_cashmove_report_view_search
@@ -1490,6 +1616,20 @@ msgstr "配達なし"
 #: model_terms:ir.actions.act_window,help:lunch.lunch_cashmove_report_action_account
 msgid "No cash move yet"
 msgstr "まだ入出金がありません"
+
+#. module: lunch
+#. odoo-javascript
+#: code:addons/lunch/static/src/views/no_content_helper.xml:0
+#, python-format
+msgid "No location found"
+msgstr "ロケーションが見つかりません"
+
+#. module: lunch
+#. odoo-javascript
+#: code:addons/lunch/static/src/components/lunch_dashboard.xml:0
+#, python-format
+msgid "No lunch location available."
+msgstr "ランチロケーションが利用できません。"
 
 #. module: lunch
 #: model_terms:ir.actions.act_window,help:lunch.lunch_order_action_control_suppliers
@@ -1658,7 +1798,8 @@ msgid ""
 "Payments are used to register liquidity movements. You can process those "
 "payments by your own means or by using installed facilities."
 msgstr ""
-"支払いは、流動資金の動きを登録するために使用されています。これらの支払いは、独自の方法で、またはインストールされた機関を使用して処理できます。"
+"支払いは、流動資金の動きを登録するために使用されています。これらの支払いは、"
+"独自の方法で、またはインストールされた機関を使用して処理できます。"
 
 #. module: lunch
 #: model:ir.model.fields,field_description:lunch.field_lunch_supplier__phone
@@ -1691,6 +1832,13 @@ msgstr "マルゲリータピザ"
 #: model:lunch.product,name:lunch.product_vege
 msgid "Pizza Vegetarian"
 msgstr "ベジタリアンピザ"
+
+#. module: lunch
+#. odoo-javascript
+#: code:addons/lunch/static/src/views/no_content_helper.xml:0
+#, python-format
+msgid "Please create a location to start ordering."
+msgstr "オーダを開始するにはロケーションを作成して下さい。"
 
 #. module: lunch
 #: model_terms:lunch.alert,message:lunch.alert_office_3
@@ -1911,7 +2059,7 @@ msgstr "管理設定"
 #. module: lunch
 #: model:ir.model.fields,field_description:lunch.field_lunch_supplier__show_confirm_button
 msgid "Show Confirm Button"
-msgstr "確認ボタンを表示"
+msgstr "確定ボタンを表示"
 
 #. module: lunch
 #: model:ir.model.fields,field_description:lunch.field_lunch_supplier__show_order_button
@@ -2013,10 +2161,12 @@ msgstr "国"
 #: code:addons/lunch/models/lunch_product.py:0
 #, python-format
 msgid ""
-"The following product categories are archived. You should either unarchive the categories or change the category of the product.\n"
+"The following product categories are archived. You should either unarchive "
+"the categories or change the category of the product.\n"
 "%s"
 msgstr ""
-"以下のプロダクトカテゴリはアーカイブされています。アーカイブ取消するか、プロダクトのカテゴリを変更して下さい。\n"
+"以下のプロダクトカテゴリはアーカイブされています。アーカイブ取消するか、プロ"
+"ダクトのカテゴリを変更して下さい。\n"
 "%s"
 
 #. module: lunch
@@ -2024,10 +2174,12 @@ msgstr ""
 #: code:addons/lunch/models/lunch_product.py:0
 #, python-format
 msgid ""
-"The following suppliers are archived. You should either unarchive the suppliers or change the supplier of the product.\n"
+"The following suppliers are archived. You should either unarchive the "
+"suppliers or change the supplier of the product.\n"
 "%s"
 msgstr ""
-"以下のプロダクトカテゴリはアーカイブされています。アーカイブ取消するか、プロダクトのサプライヤを変更して下さい。\n"
+"以下のプロダクトカテゴリはアーカイブされています。アーカイブ取消するか、プロ"
+"ダクトのサプライヤを変更して下さい。\n"
 "%s"
 
 #. module: lunch
@@ -2057,13 +2209,14 @@ msgstr "オーダが送信されました！"
 #. module: lunch
 #: model:ir.model.fields,help:lunch.field_lunch_supplier__responsible_id
 msgid ""
-"The responsible is the person that will order lunch for everyone. It will be"
-" used as the 'from' when sending the automatic email."
-msgstr "担当者は全員のランチをオーダする人です。自動送信メールの送信元として使用されます。"
+"The responsible is the person that will order lunch for everyone. It will be "
+"used as the 'from' when sending the automatic email."
+msgstr ""
+"担当者は全員のランチをオーダする人です。自動送信メールの送信元として使用され"
+"ます。"
 
 #. module: lunch
 #. odoo-python
-#: code:addons/lunch/models/lunch_order.py:0
 #: code:addons/lunch/models/lunch_order.py:0
 #, python-format
 msgid "The vendor related to this order is not available today."
@@ -2072,9 +2225,11 @@ msgstr "この注文に関連する仕入先は、今日、利用できません
 #. module: lunch
 #: model_terms:ir.actions.act_window,help:lunch.lunch_order_action
 msgid ""
-"There is no previous order recorded. Click on \"My Lunch\" and then create a"
-" new lunch order."
-msgstr "前回のオーダが記録されていません。「自分のランチ」をクリックし、新しいランチのオーダを作成してください。"
+"There is no previous order recorded. Click on \"My Lunch\" and then create a "
+"new lunch order."
+msgstr ""
+"前回のオーダが記録されていません。「自分のランチ」をクリックし、新しいランチ"
+"のオーダを作成してください。"
 
 #. module: lunch
 #: model_terms:ir.actions.act_window,help:lunch.lunch_product_action_order
@@ -2107,19 +2262,19 @@ msgstr "木曜"
 #: model:ir.model.fields,field_description:lunch.field_lunch_alert__tz
 #: model:ir.model.fields,field_description:lunch.field_lunch_supplier__tz
 msgid "Timezone"
-msgstr "時間帯"
+msgstr "タイムゾーン"
 
 #. module: lunch
 #: model:ir.model.fields.selection,name:lunch.selection__lunch_order__state__new
 msgid "To Order"
-msgstr "注文する"
+msgstr "オーダ待ち"
 
 #. module: lunch
 #. odoo-javascript
 #: code:addons/lunch/static/src/components/lunch_dashboard.xml:0
 #, python-format
 msgid "To Pay"
-msgstr "要支払"
+msgstr "支払待ち"
 
 #. module: lunch
 #: model_terms:ir.ui.view,arch_db:lunch.lunch_payment_dialog
@@ -2134,8 +2289,8 @@ msgstr "ロケーションをいくつか見るには、作成ボタンを使用
 #. module: lunch
 #: model_terms:ir.actions.act_window,help:lunch.lunch_product_action_order
 msgid ""
-"To see some products, check if your vendors are available today and that you"
-" have configured some products"
+"To see some products, check if your vendors are available today and that you "
+"have configured some products"
 msgstr "仕入先が今日利用可能か、プロダクトを設定したかどうか確認して下さい"
 
 #. module: lunch
@@ -2152,7 +2307,8 @@ msgstr "今日の注文"
 #. module: lunch
 #: model_terms:lunch.product,description:lunch.product_4formaggi
 msgid "Tomato sauce, Olive oil, Fresh Tomatoes, Onions, Vegetables, Parmesan"
-msgstr "トマトソース、オリーブオイル、フレッシュトマト、玉ねぎ、野菜、パルメザン"
+msgstr ""
+"トマトソース、オリーブオイル、フレッシュトマト、玉ねぎ、野菜、パルメザン"
 
 #. module: lunch
 #: model_terms:lunch.product,description:lunch.product_Napoli
@@ -2296,7 +2452,9 @@ msgstr "水曜"
 msgid ""
 "You are trying to impersonate another user, but this can only be done by a "
 "lunch manager"
-msgstr "他のユーザIDを使おうとしていますが、これはランチマネージャーだけができることです。"
+msgstr ""
+"他のユーザIDを使おうとしていますが、これはランチマネージャーだけができること"
+"です。"
 
 #. module: lunch
 #. odoo-python
@@ -2347,7 +2505,9 @@ msgstr "自分のオーダ"
 msgid ""
 "Your wallet does not contain enough money to order that. To add some money "
 "to your wallet, please contact your lunch manager."
-msgstr "注文に必要な金額が不足しています。財布に残高を追加するには、ランチマネージャに連絡してください。"
+msgstr ""
+"注文に必要な金額が不足しています。財布に残高を追加するには、ランチマネージャ"
+"に連絡してください。"
 
 #. module: lunch
 #: model_terms:ir.ui.view,arch_db:lunch.lunch_supplier_view_form

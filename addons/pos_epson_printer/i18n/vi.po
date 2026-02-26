@@ -1,39 +1,39 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # 	* pos_epson_printer
-# 
+#
 # Translators:
 # Wil Odoo, 2023
-# 
+# Thi Huong Nguyen, 2025
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-26 21:55+0000\n"
+"POT-Creation-Date: 2025-12-29 18:37+0000\n"
 "PO-Revision-Date: 2023-10-26 23:09+0000\n"
-"Last-Translator: Wil Odoo, 2023\n"
+"Last-Translator: Thi Huong Nguyen, 2025\n"
 "Language-Team: Vietnamese (https://app.transifex.com/odoo/teams/41243/vi/)\n"
+"Language: vi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: vi\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: pos_epson_printer
 #: model_terms:ir.ui.view,arch_db:pos_epson_printer.pos_iot_config_view_form
 #: model_terms:ir.ui.view,arch_db:pos_epson_printer.res_config_settings_view_form
 msgid "Cashdrawer"
-msgstr "Ngăn kéo đựng tiền"
+msgstr "Ngăn két"
 
 #. module: pos_epson_printer
 #. odoo-javascript
 #: code:addons/pos_epson_printer/static/src/app/epson_printer.js:0
 #, python-format
 msgid ""
-"Check on the printer configuration for the 'Device ID' setting. It should be"
-" set to: "
-msgstr ""
-"Kiểm tra cấu hình máy in để biết cài đặt 'ID thiết bị'. Nên đặt thành:"
+"Check on the printer configuration for the 'Device ID' setting. It should be "
+"set to: "
+msgstr "Kiểm tra cấu hình máy in để biết cài đặt 'ID thiết bị'. Nên đặt thành:"
 
 #. module: pos_epson_printer
 #: model:ir.model,name:pos_epson_printer.model_res_config_settings
@@ -68,9 +68,11 @@ msgstr "Địa chỉ IP máy in biên lai Epson"
 #: code:addons/pos_epson_printer/static/src/app/epson_printer.js:0
 #, python-format
 msgid ""
-"If you are on a secure server (HTTPS) please make sure you manually accepted"
-" the certificate by accessing %s. "
+"If you are on a secure server (HTTPS) please make sure you manually accepted "
+"the certificate by accessing %s. "
 msgstr ""
+"Nếu bạn đang sử dụng máy chủ bảo mật (HTTPS), hãy bảo đảm bạn đã chấp nhận "
+"chứng chỉ theo cách thủ công bằng cách truy cập %s."
 
 #. module: pos_epson_printer
 #: model:ir.model.fields,help:pos_epson_printer.field_pos_config__epson_printer_ip
@@ -95,7 +97,7 @@ msgstr "Vui lòng kiểm tra xem máy in có đủ giấy và sẵn sàng in kh�
 #. module: pos_epson_printer
 #: model:ir.model,name:pos_epson_printer.model_pos_config
 msgid "Point of Sale Configuration"
-msgstr "Cấu hình điểm bán hàng"
+msgstr "Cấu hình POS"
 
 #. module: pos_epson_printer
 #: model:ir.model,name:pos_epson_printer.model_pos_printer

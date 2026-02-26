@@ -2,18 +2,23 @@
 
 import base64
 import fnmatch
+import functools
 import hashlib
 import inspect
 import json
 import logging
 import re
+import types
+from itertools import zip_longest
+
 import requests
 import threading
 
+from datetime import datetime
 from lxml import etree, html
 from psycopg2 import sql
 from werkzeug import urls
-from werkzeug.datastructures import OrderedMultiDict
+from werkzeug.datastructures import MultiDict
 from werkzeug.exceptions import NotFound
 
 from odoo import api, fields, models, tools, http, release, registry
@@ -195,7 +200,9 @@ class Website(models.Model):
         Checks if the website menu contains a record like url.
         :return: True if the menu contains a record like url
         """
-        return any(self.env['website.menu'].browse(self._get_menu_ids()).filtered(lambda menu: re.search(r"[/](([^/=?&]+-)?[0-9]+)([/]|$)", menu.url)))
+        return any(self.env['website.menu'].browse(self._get_menu_ids()).filtered(
+            lambda menu: menu.url and re.search(r"[/](([^/=?&]+-)?[0-9]+)([/]|$)", menu.url))
+        )
 
     @api.model_create_multi
     def create(self, vals_list):
@@ -323,6 +330,9 @@ class Website(models.Model):
         configurator_action_todo = self.env.ref('website.website_configurator_todo')
         return configurator_action_todo.action_launch()
 
+    def _idna_url(self, url):
+        return get_base_domain(url.lower(), True).encode('idna').decode('ascii')
+
     def _is_indexable_url(self, url):
         """
         Returns True if the given url has to be indexed by search engines.
@@ -335,7 +345,7 @@ class Website(models.Model):
         :param url: the url to check
         :return: True if the url has to be indexed, False otherwise
         """
-        return get_base_domain(url, True) == get_base_domain(self.domain, True)
+        return self._idna_url(url) == self._idna_url(self.domain)
 
     # ----------------------------------------------------------
     # Configurator
@@ -353,7 +363,7 @@ class Website(models.Model):
 
     def _OLG_api_rpc(self, route, params):
         # For text content generation
-        return self._api_rpc(route, params, 'website.olg_api_endpoint', DEFAULT_OLG_ENDPOINT, timeout=20)
+        return self._api_rpc(route, params, 'website.olg_api_endpoint', DEFAULT_OLG_ENDPOINT, timeout=45)
 
     def get_cta_data(self, website_purpose, website_type):
         return {'cta_btn_text': False, 'cta_btn_href': '/contactus'}
@@ -378,7 +388,9 @@ class Website(models.Model):
     @api.model
     def configurator_init(self):
         r = dict()
-        company = self.get_current_website().company_id
+        theme = self.env["ir.module.module"].search([("name", "=", "theme_default")])
+        current_website = self.get_current_website()
+        company = current_website.company_id
         configurator_features = self.env['website.configurator.feature'].search([])
         r['features'] = [{
             'id': feature.id,
@@ -392,6 +404,8 @@ class Website(models.Model):
         r['logo'] = False
         if not company.uses_default_logo:
             r['logo'] = company.logo.decode('utf-8')
+        if current_website.configurator_done:
+            r['redirect_url'] = theme.button_choose_theme()
         try:
             result = self._website_api_rpc('/api/website/1/configurator/industries', {'lang': self.env.context.get('lang')})
             r['industries'] = result['industries']
@@ -654,15 +668,18 @@ class Website(models.Model):
 
         if translated_ratio > 0.8:
             try:
+                database_id = self.env['ir.config_parameter'].sudo().get_param('database.uuid')
                 response = self._OLG_api_rpc('/api/olg/1/generate_placeholder', {
                     'placeholders': list(generated_content.keys()),
                     'lang': website.default_lang_id.name,
                     'industry': industry,
+                    'database_id': database_id,
                 })
                 name_replace_parser = re.compile(r"XXXX", re.MULTILINE)
+                website_name = re.escape(website.name)
                 for key in generated_content:
                     if response.get(key):
-                        generated_content[key] = (name_replace_parser.sub(website.name, response[key], 0))
+                        generated_content[key] = (name_replace_parser.sub(website_name, response[key], 0))
             except AccessError:
                 # If IAP is broken continue normally (without generating text)
                 pass
@@ -1115,7 +1132,8 @@ class Website(models.Model):
         # there is one on request) or return a random one.
 
         # The format of `httprequest.host` is `domain:port`
-        domain_name = (request and request.httprequest.host
+        domain_name = (
+            request and request.httprequest.host
             or hasattr(threading.current_thread(), 'url') and threading.current_thread().url
             or '')
         website_id = self.sudo()._get_current_website_id(domain_name, fallback=fallback)
@@ -1213,7 +1231,7 @@ class Website(models.Model):
                 order = View._order
             views = View.with_context(active_test=False).search(domain, order=order)
             if views:
-                view = views.filter_duplicate()
+                view = views.filter_duplicate()[:1]
             else:
                 # we handle the raise below
                 view = self.env.ref(view_id, raise_if_not_found=False)
@@ -1311,8 +1329,12 @@ class Website(models.Model):
             record = {'loc': page['url'], 'id': page['id'], 'name': page['name']}
             if page.view_id and page.view_id.priority != 16:
                 record['priority'] = min(round(page.view_id.priority / 32.0, 1), 1)
-            if page['write_date']:
-                record['lastmod'] = page['write_date'].date()
+            last_updated_date = max(
+                [d for d in (page.write_date, page.view_id.write_date) if isinstance(d, datetime)],
+                default=None,
+            )
+            if last_updated_date:
+                record['lastmod'] = last_updated_date.date()
             yield record
 
         # ==== CONTROLLERS ====
@@ -1321,22 +1343,42 @@ class Website(models.Model):
 
         sitemap_endpoint_done = set()
 
-        for rule in router.iter_rules():
-            if 'sitemap' in rule.endpoint.routing and rule.endpoint.routing['sitemap'] is not True:
-                if rule.endpoint.func in sitemap_endpoint_done:
-                    continue
-                sitemap_endpoint_done.add(rule.endpoint.func)
+        # Helper to normalize URLs while keeping '/' intact
+        def _norm(url):
+            return '/' if url == '/' else url.rstrip('/')
 
-                func = rule.endpoint.routing['sitemap']
-                if func is False:
+        # Avoid recomputing identical sitemap callables more than once
+        def _unwrap_callable(f):
+            # Unwrap functools.partial and bound methods to a stable function key
+            if isinstance(f, functools.partial):
+                f = f.func
+            # Unwrap bound methods (obj.method) to their underlying function
+            if isinstance(f, types.MethodType):
+                return f.__func__
+            return f
+
+        for rule in router.iter_rules():
+            sitemap_func = rule.endpoint.routing.get('sitemap')
+            if sitemap_func is False:
+                continue
+
+            if callable(sitemap_func):
+                func_key = _unwrap_callable(sitemap_func)
+                if func_key in sitemap_endpoint_done:
                     continue
-                for loc in func(self.with_context(lang=self.default_lang_id.code).env, rule, query_string):
-                    yield loc
+                sitemap_endpoint_done.add(func_key)
+                for loc in sitemap_func(self.with_context(lang=self.default_lang_id.code).env, rule, query_string):
+                    loc_norm = {**loc, 'loc': _norm(loc['loc'])}
+                    url = loc_norm['loc']
+                    if url not in url_set:
+                        yield loc_norm
+                        url_set.add(url)
                 continue
 
             if not self.rule_is_enumerable(rule):
                 continue
 
+            # Warn only if the 'sitemap' key is absent from routing (legacy behavior)
             if 'sitemap' not in rule.endpoint.routing:
                 logger.warning('No Sitemap value provided for controller %s (%s)' %
                                (rule.endpoint.original_endpoint, ','.join(rule.endpoint.routing['routes'])))
@@ -1371,6 +1413,8 @@ class Website(models.Model):
 
             for value in values:
                 domain_part, url = rule.build(value, append_unknown=False)
+                # Normalize trailing slash but keep '/'
+                url = _norm(url)
                 pattern = query_string and '*%s*' % "*".join(query_string.split('/'))
                 if not query_string or fnmatch.fnmatch(url.lower(), pattern):
                     page = {'loc': url}
@@ -1396,15 +1440,16 @@ class Website(models.Model):
             domain = AND([domain, self.website_domain()])
         pages = self.env['website.page'].sudo().search(domain)
         if self:
-            pages = pages._get_most_specific_pages()
+            pages = pages.with_context(website_id=self.id)._get_most_specific_pages()
         return pages.ids
 
     def _get_website_pages(self, domain=None, order='name', limit=None):
+        website = self.get_current_website()
         if domain is None:
             domain = []
-        domain += self.get_current_website().website_domain()
+        domain += website.website_domain()
         pages = self.env['website.page'].sudo().search(domain, order=order, limit=limit)
-        pages = pages._get_most_specific_pages()
+        pages = pages.with_context(website_id=website.id)._get_most_specific_pages()
         return pages
 
     def search_pages(self, needle=None, limit=None):
@@ -1473,6 +1518,7 @@ class Website(models.Model):
         return action
 
     def button_go_website(self, path='/', mode_edit=False):
+        # TODO: adapt in master as 'mode_edit' is always set to False
         self._force()
         if mode_edit:
             # If the user gets on a translated page (e.g /fr) the editor will
@@ -1520,11 +1566,11 @@ class Website(models.Model):
     def _is_canonical_url(self, canonical_params):
         """Returns whether the current request URL is canonical."""
         self.ensure_one()
-        # Compare OrderedMultiDict because the order is important, there must be
-        # only one canonical and not params permutations.
-        params = request.httprequest.args
-        canonical_params = canonical_params or OrderedMultiDict()
-        if params != canonical_params:
+        params = request.httprequest.args.items(multi=True)
+        canonical = iter([]) if not canonical_params\
+            else canonical_params.items(multi=True) if isinstance(canonical_params, MultiDict)\
+            else canonical_params.items()
+        if any(a != b for a, b in zip_longest(params, canonical)):
             return False
         # Compare URL at the first routing iteration because it's the one with
         # the language in the path. It is important to also test the domain of
@@ -1612,6 +1658,15 @@ class Website(models.Model):
                 if f'data-v{asset_type}="{asset_version}"' in snippet:
                     return True
         return False
+
+    def _check_user_can_modify(self, record):
+        """ Verify that the current user can modify the given record.
+
+        :param record: record on which to perform the check
+        :raise AccessError: if the operation is forbidden
+        """
+        record.check_access_rights('write')
+        record.check_access_rule('write')
 
     def _disable_unused_snippets_assets(self):
         snippet_assets = self.env['ir.asset'].with_context(active_test=False).search_fetch(
@@ -1963,3 +2018,16 @@ class Website(models.Model):
                         for word in re.findall(match_pattern, value):
                             if word[0] == search[0]:
                                 yield word.lower()
+
+    def _allConsentsGranted(self):
+        """
+        Checks if all (cookies) consents have been granted. Note that in the
+        case no cookies bar has been enabled, this considers that full consent
+        has been immediately given. Indeed, in that case, we suppose that the
+        user implemented his own consent behavior through custom code / app.
+        That custom code / app is able to override this function as desired and
+        xpath the `tracking_code_config` script in `website.layout`.
+        :return: True if all consents have been granted, False otherwise
+        """
+        self.ensure_one()
+        return not self.cookies_bar or self.env['ir.http']._is_allowed_cookie('optional')

@@ -1,14 +1,18 @@
-# -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
 from datetime import date, timedelta
+
 from freezegun import freeze_time
+from pytz import timezone
 
-from odoo import Command
-from odoo.addons.sale_loyalty.tests.common import TestSaleCouponCommon
 from odoo.exceptions import ValidationError
+from odoo.fields import Command, Datetime
 
-class TestProgramRules(TestSaleCouponCommon):
+from odoo.addons.payment.tests.common import PaymentCommon
+from odoo.addons.sale_loyalty.tests.common import TestSaleCouponCommon
+
+
+class TestProgramRules(TestSaleCouponCommon, PaymentCommon):
     # Test all the validity rules to allow a customer to have a reward.
     # The check based on the products is already done in the basic operations test
 
@@ -16,6 +20,7 @@ class TestProgramRules(TestSaleCouponCommon):
         # Test case: Based on the minimum purchased
 
         self.immediate_promotion_program.rule_ids.write({
+            'product_ids': False,
             'minimum_amount': 1006,
             'minimum_amount_tax_mode': 'excl'
         })
@@ -70,6 +75,91 @@ class TestProgramRules(TestSaleCouponCommon):
         order._update_programs_and_rewards()
         self._claim_reward(order, self.immediate_promotion_program)
         self.assertEqual(len(order.order_line.ids), 3, "The promo offer should be applied as the initial amount required is now tax included")
+
+    def test_program_rules_min_amount_not_reached_and_specific_product(self):
+        """
+        Test that the discount isn't applied if the min amount isn't reached for the specified
+        product.
+        """
+        self.env['loyalty.program'].search([]).active = False
+        order = self.empty_order
+        program = self.env['loyalty.program'].create({
+            'name': "Discount on Product A",
+            'program_type': 'promotion',
+            'trigger': 'auto',
+            'applies_on': 'current',
+            'rule_ids': [Command.create({
+                'minimum_amount': 110,
+                'minimum_amount_tax_mode': 'excl',
+                'product_ids': [Command.set(self.product_A.ids)],
+            })],
+            'reward_ids': [Command.create({
+                'reward_type': 'discount',
+                'discount': 10,
+                'discount_mode': 'percent',
+                'discount_applicability': 'specific',
+                'discount_product_ids': [Command.set(self.product_A.ids)],
+            })],
+        })
+        self.env['sale.order.line'].create([{
+            'product_id': self.product_A.id,
+            'product_uom_qty': 1.0,
+            'order_id': order.id,
+        }, {
+            'product_id': self.product_B.id,
+            'product_uom_qty': 40.0,
+            'order_id': order.id,
+        }])
+        self.assertEqual(len(order.order_line), 2)
+        self.assertEqual(order.amount_untaxed, 300)
+
+        order._update_programs_and_rewards()
+        self._claim_reward(order, program)
+
+        self.assertEqual(len(order.order_line), 2)
+        self.assertEqual(order.amount_untaxed, 300)
+
+    def test_program_rules_min_amount_reached_and_specific_product(self):
+        """
+        Test that the discount is applied if the min amount is reached for the specified product.
+        """
+        self.env['loyalty.program'].search([]).active = False
+        order = self.empty_order
+        program = self.env['loyalty.program'].create({
+            'name': "Discount on Product A",
+            'program_type': 'promotion',
+            'trigger': 'auto',
+            'applies_on': 'current',
+            'rule_ids': [Command.create({
+                'minimum_amount': 110,
+                'minimum_amount_tax_mode': 'excl',
+                'product_ids': [Command.set(self.product_A.ids)],
+            })],
+            'reward_ids': [Command.create({
+                'reward_type': 'discount',
+                'discount': 10,
+                'discount_mode': 'percent',
+                'discount_applicability': 'specific',
+                'discount_product_ids': [Command.set(self.product_A.ids)],
+            })],
+        })
+        self.env['sale.order.line'].create([{
+            'product_id': self.product_A.id,
+            'product_uom_qty': 2.0,
+            'order_id': order.id,
+        }, {
+            'product_id': self.product_B.id,
+            'product_uom_qty': 20.0,
+            'order_id': order.id,
+        }])
+        self.assertEqual(len(order.order_line), 2)
+        self.assertEqual(order.amount_untaxed, 300)
+
+        order._update_programs_and_rewards()
+        self._claim_reward(order, program)
+
+        self.assertEqual(len(order.order_line), 3)
+        self.assertEqual(order.amount_untaxed, 280)
 
     def test_program_rules_coupon_qty_and_amount_remove_not_eligible(self):
         ''' This test will:
@@ -314,3 +404,81 @@ class TestProgramRules(TestSaleCouponCommon):
         self._auto_rewards(order, self.immediate_promotion_program)
         msg = "The promo offer shouldn't have been applied as the number of uses is exceeded"
         self.assertEqual(len(order.order_line.ids), 1, msg)
+
+    def test_program_rules_validity_date_timezones(self):
+        """Test that the validity dates are checked according to the company's time zone"""
+        self.env.company.partner_id.tz = 'Europe/London'
+        self.steve.tz = 'America/Los_Angeles'
+        midnight = Datetime.today()
+        yesterday = (midnight - timedelta(days=1)).date()
+        self.immediate_promotion_program.update({
+            'date_to': yesterday,
+            'limit_usage': True,
+            'max_usage': 1,
+        })
+        order = self.empty_order.with_context(tz=self.steve.tz)
+        order.order_line = [
+            Command.create({'product_id': self.product_A.id}),
+            Command.create({'product_id': self.product_B.id}),
+        ]
+
+        with freeze_time(midnight):
+            # Try apply reward at UTC midnight with LA time zone in context (expired)
+            self._auto_rewards(order, self.immediate_promotion_program)
+            self.assertFalse(
+                order.order_line.filtered('is_reward_line'),
+                "Promo should not be applied if only valid in the customer's time zone",
+            )
+
+        with freeze_time(timezone(self.env.company.partner_id.tz).localize(midnight)):
+            # Try apply reward at London midnight (expired)
+            self._auto_rewards(order, self.immediate_promotion_program)
+            self.assertFalse(
+                order.order_line.filtered('is_reward_line'),
+                "Promo should not be applied if only valid in the customer's time zone",
+            )
+
+        self.steve.tz = 'Europe/Brussels'
+        with freeze_time(timezone(self.steve.tz).localize(midnight)):
+            # Apply reward at Brussels midnight (still valid in company's time zone)
+            self._auto_rewards(order, self.immediate_promotion_program)
+            self.assertTrue(
+                order.order_line.filtered('is_reward_line'),
+                "Promo should be applied if valid in the company's time zone",
+            )
+
+    def test_program_rules_validity_date_transactions(self):
+        """Test that the validity dates are checked according to the time of transaction."""
+        today = Datetime.today()
+        tomorrow = today + timedelta(days=1)
+        self.immediate_promotion_program.update({
+            'date_to': today,
+            'limit_usage': True,
+            'max_usage': 1,
+            'reward_ids': [Command.set(self.program_gift_card.reward_ids.ids)],
+        })
+        order = self.empty_order
+        order.order_line = [
+            Command.create({'product_id': self.product_A.id}),
+            Command.create({'product_id': self.product_B.id}),
+        ]
+
+        intial_amount = order.amount_total
+        self._auto_rewards(order, self.immediate_promotion_program)
+        self.assertLess(order.amount_total, intial_amount, "A discount should be applied")
+
+        tx = order.transaction_ids = self._create_transaction(
+            flow='redirect',
+            sale_order_ids=[order.id],
+            state='pending',
+            reference=order.name,
+            amount=order.amount_total,
+        )
+        # Our slow provider only gets around to confirming the transaction the next day
+        with freeze_time(tomorrow):
+            tx._set_done()
+            tx._reconcile_after_done()
+            self.assertAlmostEqual(
+                order.amount_total, tx.amount,
+                msg="Discount should still apply if transaction gets confirmed post-expiration",
+            )

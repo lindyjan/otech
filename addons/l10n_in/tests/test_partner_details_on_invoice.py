@@ -1,11 +1,11 @@
-from odoo.addons.account_reports.tests.common import TestAccountReportsCommon
+from odoo.addons.account.tests.common import AccountTestInvoicingCommon
 from odoo.tests import tagged
 import logging
 
 _logger = logging.getLogger(__name__)
 
 @tagged('post_install_l10n', 'post_install', '-at_install')
-class TestReports(TestAccountReportsCommon):
+class TestReports(AccountTestInvoicingCommon):
 
     @classmethod
     def setUpClass(cls, chart_template_ref="in"):
@@ -38,6 +38,12 @@ class TestReports(TestAccountReportsCommon):
             'state_id': cls.env.ref("base.state_us_1").id,
             'country_id': cls.env.ref("base.us").id,
             'zip': "123456",
+        })
+        cls.partner_d = cls.env['res.partner'].create({
+            'name': "Overseas partner without State",
+            'l10n_in_gst_treatment': 'overseas',
+            'country_id': cls.env.ref("base.us").id,
+            # No state_id defined
         })
         cls.igst_sale_18 = cls.env['account.chart.template'].ref('igst_sale_18')
 
@@ -93,12 +99,6 @@ class TestReports(TestAccountReportsCommon):
                 'l10n_in_gst_treatment': 'regular',
             }]
         )
-        invoice_2.button_draft()
-        self.assertRecordValues(invoice_2, [{
-            'state': 'draft',
-            'l10n_in_gst_treatment': self.partner_a.l10n_in_gst_treatment,
-            'l10n_in_state_id': expected_pos_id,
-        }])
 
     def test_partner_change_with_invoice(self):
         out_invoice = self.init_invoice(
@@ -137,5 +137,59 @@ class TestReports(TestAccountReportsCommon):
                 'state': 'draft',
                 'l10n_in_gst_treatment': self.partner_a.l10n_in_gst_treatment,
                 'l10n_in_state_id': self.env.company.state_id.id,
+            }]
+        )
+
+    def test_place_of_supply(self):
+        invoice = self.init_invoice(
+            move_type='out_invoice',
+            partner=self.partner_b,
+        )
+
+        child_partner = self.env['res.partner'].create({
+            'name': "Child Contact",
+            'type': "delivery",
+            'parent_id': self.partner_b.id,
+            'state_id': self.env.ref("base.state_in_gj").id
+        })
+
+        self.assertRecordValues(
+            invoice,
+            [{
+                'partner_shipping_id': self.partner_b.id,
+                'l10n_in_state_id': self.partner_b.state_id.id,
+            }]
+        )
+        invoice.partner_shipping_id = child_partner
+        self.assertRecordValues(
+            invoice,
+            [{
+                'partner_shipping_id': child_partner.id,
+                'l10n_in_state_id': child_partner.state_id.id,
+            }]
+        )
+        invoice.partner_shipping_id = self.partner_a
+        self.assertRecordValues(
+            invoice,
+            [{
+                'l10n_in_state_id': self.partner_b.state_id.id,
+            }]
+        )
+
+    def test_foreign_customer_without_state(self):
+        """Verify foreign customer without state_id gets foreign state reference"""
+        invoice = self.init_invoice(
+            move_type='out_invoice',
+            partner=self.partner_d,
+            amounts=[100, 200],
+            taxes=[self.igst_sale_18]
+        )
+
+        # Should assign foreign state reference even without partner state
+        self.assertRecordValues(
+            invoice,
+            [{
+                'l10n_in_gst_treatment': 'overseas',
+                'l10n_in_state_id': self.env.ref("l10n_in.state_in_oc").id,
             }]
         )

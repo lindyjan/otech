@@ -122,7 +122,7 @@ function getBestPosition(popper, target, { container, margin, position }, iframe
 
     // Retrieve container
     if (!container) {
-        container = target.ownerDocument.documentElement;
+        container = popper.ownerDocument.documentElement;
     } else if (typeof container === "function") {
         container = container();
     }
@@ -325,7 +325,7 @@ export function usePosition(refName, getTarget, options = {}) {
 
     let executingUpdate = false;
     const batchedUpdate = async () => {
-        if (!executingUpdate) {
+        if (!executingUpdate && ref.el) {
             executingUpdate = true;
             update();
             await Promise.resolve();

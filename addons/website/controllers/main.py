@@ -7,10 +7,12 @@ import os
 import logging
 import re
 import requests
+import urllib.parse
 import werkzeug.urls
 import werkzeug.utils
 import werkzeug.wrappers
 
+from hashlib import md5
 from itertools import islice
 from lxml import etree, html
 from textwrap import shorten
@@ -60,9 +62,9 @@ class QueryURL(object):
                     paths[key] = u"%s" % value
             elif value:
                 if isinstance(value, list) or isinstance(value, set):
-                    fragments.append(werkzeug.urls.url_encode([(key, item) for item in value]))
+                    fragments.append(urllib.parse.urlencode([(key, item) for item in value]))
                 else:
-                    fragments.append(werkzeug.urls.url_encode([(key, value)]))
+                    fragments.append(urllib.parse.urlencode([(key, value)]))
         for key in path_args:
             value = paths.get(key)
             if value is not None:
@@ -146,7 +148,8 @@ class Website(Home):
             domain_to = get_base_domain(website.domain)
             if domain_from != domain_to:
                 # redirect to correct domain for a correct routing map
-                url_to = werkzeug.urls.url_join(website.domain, '/website/force/%s?isredir=1&path=%s' % (website.id, path))
+                query_params = werkzeug.urls.url_encode({'isredir': 1, 'path': path})
+                url_to = werkzeug.urls.url_join(website.domain, f'/website/force/{website.id}?{query_params}')
                 return request.redirect(url_to)
         website._force()
         return request.redirect(path)
@@ -218,7 +221,18 @@ class Website(Home):
 
     @http.route(['/robots.txt'], type='http', auth="public", website=True, multilang=False, sitemap=False)
     def robots(self, **kwargs):
-        return request.render('website.robots', {'url_root': request.httprequest.url_root}, mimetype='text/plain')
+        # Don't use `request.website.domain` here, the template is in charge of
+        # detecting if the current URL is the domain one and add a `Disallow: /`
+        # if it's not the case to prevent the crawler to continue.
+        allowed_routes = self._get_allowed_robots_routes()
+        content = request.env['ir.ui.view']._render_template('website.robots',
+            {'url_root': request.httprequest.url_root})
+
+        if allowed_routes:
+            content += '\nUser-agent: *'
+            content += '\n' + '\n'.join(f"Allow: {route}" for route in allowed_routes)
+
+        return request.make_response(content, headers=[('Content-Type', 'text/plain')])
 
     @http.route('/sitemap.xml', type='http', auth="public", website=True, multilang=False, sitemap=False)
     def sitemap_xml_index(self, **kwargs):
@@ -227,6 +241,10 @@ class Website(Home):
         View = request.env['ir.ui.view'].sudo()
         mimetype = 'application/xml;charset=utf-8'
         content = None
+        url_root = request.httprequest.url_root
+        # For a same website, each domain has its own sitemap (cache)
+        hashed_url_root = md5(url_root.encode()).hexdigest()[:8]
+        sitemap_base_url = '/sitemap-%d-%s' % (current_website.id, hashed_url_root)
 
         def create_sitemap(url, content):
             return Attachment.create({
@@ -236,7 +254,7 @@ class Website(Home):
                 'name': url,
                 'url': url,
             })
-        dom = [('url', '=', '/sitemap-%d.xml' % current_website.id), ('type', '=', 'binary')]
+        dom = [('url', '=', '%s.xml' % sitemap_base_url), ('type', '=', 'binary')]
         sitemap = Attachment.search(dom, limit=1)
         if sitemap:
             # Check if stored version is still valid
@@ -247,8 +265,8 @@ class Website(Home):
 
         if not content:
             # Remove all sitemaps in ir.attachments as we're going to regenerated them
-            dom = [('type', '=', 'binary'), '|', ('url', '=like', '/sitemap-%d-%%.xml' % current_website.id),
-                   ('url', '=', '/sitemap-%d.xml' % current_website.id)]
+            dom = [('type', '=', 'binary'), '|', ('url', '=like', '%s-%%.xml' % sitemap_base_url),
+                   ('url', '=', '%s.xml' % sitemap_base_url)]
             sitemaps = Attachment.search(dom)
             sitemaps.unlink()
 
@@ -257,13 +275,13 @@ class Website(Home):
             while True:
                 values = {
                     'locs': islice(locs, 0, LOC_PER_SITEMAP),
-                    'url_root': request.httprequest.url_root[:-1],
+                    'url_root': url_root[:-1],
                 }
                 urls = View._render_template('website.sitemap_locs', values)
                 if urls.strip():
                     content = View._render_template('website.sitemap_xml', {'content': urls})
                     pages += 1
-                    last_sitemap = create_sitemap('/sitemap-%d-%d.xml' % (current_website.id, pages), content)
+                    last_sitemap = create_sitemap('%s-%d.xml' % (sitemap_base_url, pages), content)
                 else:
                     break
 
@@ -272,19 +290,21 @@ class Website(Home):
             elif pages == 1:
                 # rename the -id-page.xml => -id.xml
                 last_sitemap.write({
-                    'url': "/sitemap-%d.xml" % current_website.id,
-                    'name': "/sitemap-%d.xml" % current_website.id,
+                    'url': "%s.xml" % sitemap_base_url,
+                    'name': "%s.xml" % sitemap_base_url,
                 })
             else:
                 # TODO: in master/saas-15, move current_website_id in template directly
-                pages_with_website = ["%d-%d" % (current_website.id, p) for p in range(1, pages + 1)]
+                pages_with_website = ["%d-%s-%d" % (current_website.id, hashed_url_root, p) for p in range(1, pages + 1)]
 
                 # Sitemaps must be split in several smaller files with a sitemap index
                 content = View._render_template('website.sitemap_index_xml', {
                     'pages': pages_with_website,
-                    'url_root': request.httprequest.url_root,
+                    # URLs inside the sitemap index have to be on the same
+                    # domain as the sitemap index itself
+                    'url_root': url_root,
                 })
-                create_sitemap('/sitemap-%d.xml' % current_website.id, content)
+                create_sitemap('%s.xml' % sitemap_base_url, content)
 
         return request.make_response(content, [('Content-Type', mimetype)])
 
@@ -395,8 +415,11 @@ class Website(Home):
 
     @http.route('/website/snippet/options_filters', type='json', auth='user', website=True)
     def get_dynamic_snippet_filters(self, model_name=None, search_domain=None):
+        if not request.env.user.has_group('website.group_website_restricted_editor'):
+            raise werkzeug.exceptions.NotFound()
         domain = request.website.website_domain()
         if search_domain:
+            assert all(leaf[0] in request.env['website.snippet.filter']._fields for leaf in search_domain)
             domain = expression.AND([domain, search_domain])
         if model_name:
             domain = expression.AND([
@@ -638,6 +661,14 @@ class Website(Home):
             website._force()
         page = request.env['website'].new_page(path, add_menu=add_menu, sections_arch=kwargs.get('sections_arch'), **template)
         url = page['url']
+        # In case the page is created through the 404 "Create Page" button, the
+        # URL may use special characters which are slugified on page creation.
+        # If that URL is also a menu, we update it accordingly.
+        # NB: we don't want to slugify on menu creation as it could redirect
+        # towards files (with spaces, apostrophes, etc.).
+        menu = request.env['website.menu'].search([('url', '=', '/' + path), ('page_id', '=', False)])
+        if menu:
+            menu.page_id = page['page_id']
 
         if redirect:
             if ext_special_case:  # redirect non html pages to backend to edit
@@ -691,9 +722,13 @@ class Website(Home):
                 result.append(group)
         return result
 
+    @http.route('/website/save_xml', type='json', auth='user', website=True)
+    def save_xml(self, view_id, arch):
+        request.env['ir.ui.view'].browse(view_id).with_context(lang=request.website.default_lang_id.code).arch = arch
+
     @http.route("/website/get_switchable_related_views", type="json", auth="user", website=True)
     def get_switchable_related_views(self, key):
-        views = request.env["ir.ui.view"].get_related_views(key, bundles=False).filtered(lambda v: v.customize_show)
+        views = request.env["ir.ui.view"].with_context(is_customization_code=False).get_related_views(key, bundles=False).filtered(lambda v: v.customize_show)
         views = views.sorted(key=lambda v: (v.inherit_id.id, v.name))
         return views.with_context(display_website=False).read(['name', 'id', 'key', 'xml_id', 'active', 'inherit_id'])
 
@@ -724,7 +759,38 @@ class Website(Home):
 
     @http.route(['/website/seo_suggest'], type='json', auth="user", website=True)
     def seo_suggest(self, keywords=None, lang=None):
-        language = lang.split("_")
+        """
+        Suggests search keywords based on a given input using Google's
+        autocomplete API.
+
+        This method takes in a `keywords` string and an optional `lang`
+        parameter that defines the language and geographical region for
+        tailoring search suggestions. It sends a request to Google's
+        autocomplete service and returns the search suggestions in JSON format.
+
+        :param str keywords: the keyword string for which suggestions
+            are needed.
+        :param str lang: a string representing the language and geographical
+            location, formatted as:
+            - `language_territory@modifier`, where:
+                - `language`: 2-letter ISO language code (e.g., "en" for
+                  English).
+                - `territory`: Optional, 2-letter country code (e.g., "US" for
+                  United States).
+                - `modifier`: Optional, generally script variant (e.g.,
+                  "latin").
+            If `lang` is not provided or does not match the expected format, the
+            default language is set to English (`en`) and the territory to the
+            United States (`US`).
+
+        :returns: JSON list of strings
+            A list of suggested keywords returned by Google's autocomplete
+            service. If no suggestions are found or if there's an error (e.g.,
+            connection issues), an empty list is returned.
+        """
+        pattern = r'^([a-zA-Z]+)(?:_(\w+))?(?:@(\w+))?$'
+        match = re.match(pattern, lang)
+        language = [match.group(1), match.group(2) or ''] if match else ['en', 'US']
         url = "http://google.com/complete/search"
         try:
             req = requests.get(url, params={
@@ -732,7 +798,7 @@ class Website(Home):
             req.raise_for_status()
             response = req.content
         except IOError:
-            return []
+            return json.dumps([])
         xmlroot = ET.fromstring(response)
         return json.dumps([sugg[0].attrib['data'] for sugg in xmlroot if len(sugg) and sugg[0].attrib['data']])
 
@@ -748,11 +814,10 @@ class Website(Home):
         res = {'can_edit_seo': True}
         record = request.env[res_model].browse(res_id)
         try:
-            record.check_access_rights('write')
-            record.check_access_rule('write')
+            request.website._check_user_can_modify(record)
         except AccessError:
-            record = record.sudo()
             res['can_edit_seo'] = False
+        record = record.sudo()
 
         res.update(record.read(fields)[0])
         res['has_social_default_image'] = request.website.has_social_default_image
@@ -762,6 +827,22 @@ class Website(Home):
             res['seo_name'] = record.seo_name and slugify(record.seo_name) or ''
 
         return res
+
+    @http.route(['/website/check_can_modify_any'], type='json', auth="user", website=True)
+    def check_can_modify_any(self, records):
+        if not request.env.user.has_group('website.group_website_restricted_editor'):
+            raise werkzeug.exceptions.Forbidden()
+        first_error = None
+        for rec in records:
+            try:
+                record = request.env[rec['res_model']].browse(rec['res_id'])
+                request.website._check_user_can_modify(record)
+                return True
+            except AccessError as e:
+                if not first_error:
+                    first_error = e
+                continue
+        raise first_error
 
     @http.route(['/google<string(length=16):key>.html'], type='http', auth="public", website=True, sitemap=False)
     def google_console_search(self, key, **kwargs):
@@ -819,6 +900,9 @@ class Website(Home):
 
         if enable:
             records = self._get_customize_data(enable, is_view_data)
+            if 'website_blog.opt_blog_cover_post' in enable:
+                # TODO: In master, set the priority in XML directly.
+                records.filtered_domain([('key', '=', 'website_blog.opt_blog_cover_post')]).priority = 17
             records.filtered(lambda x: not x.active).write({'active': True})
 
     @http.route(['/website/theme_customize_bundle_reload'], type='json', auth='user', website=True)

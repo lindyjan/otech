@@ -1,27 +1,29 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # 	* web_unsplash
-# 
+#
 # Translators:
 # Tadej Lupšina <tadej@hbs.si>, 2023
 # Martin Trigaux, 2023
 # Grega Vavtar <grega@hbs.si>, 2023
 # Tomaž Jug <tomaz@editor.si>, 2023
 # Matjaz Mozetic <m.mozetic@matmoz.si>, 2023
-# 
+# Katja Deržič, 2024
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-26 21:56+0000\n"
+"POT-Creation-Date: 2025-12-29 18:38+0000\n"
 "PO-Revision-Date: 2023-10-26 23:09+0000\n"
-"Last-Translator: Matjaz Mozetic <m.mozetic@matmoz.si>, 2023\n"
+"Last-Translator: Katja Deržič, 2024\n"
 "Language-Team: Slovenian (https://app.transifex.com/odoo/teams/41243/sl/)\n"
+"Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: sl\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
+"n%100==4 ? 2 : 3);\n"
 
 #. module: web_unsplash
 #: model_terms:ir.ui.view,arch_db:web_unsplash.res_config_settings_view_form
@@ -84,7 +86,7 @@ msgstr ""
 #: code:addons/web_unsplash/static/src/components/media_dialog/image_selector.xml:0
 #, python-format
 msgid "Paste your access key here"
-msgstr ""
+msgstr "Tukaj prilepite svoj ključ za dostop"
 
 #. module: web_unsplash
 #. odoo-javascript
@@ -112,7 +114,7 @@ msgstr ""
 #: code:addons/web_unsplash/static/src/components/media_dialog/image_selector.js:0
 #, python-format
 msgid "Please check your internet connection or contact administrator."
-msgstr ""
+msgstr "Preverite internetno povezavo ali se obrnite na skrbnika."
 
 #. module: web_unsplash
 #: model:ir.model,name:web_unsplash.model_ir_qweb_field_image
@@ -124,7 +126,7 @@ msgstr "Qweb polje - slika"
 #: code:addons/web_unsplash/static/src/components/media_dialog/image_selector.js:0
 #, python-format
 msgid "Search is temporarily unavailable"
-msgstr ""
+msgstr "Iskanje začasno ni na voljo"
 
 #. module: web_unsplash
 #. odoo-javascript
@@ -138,16 +140,18 @@ msgstr ""
 #: code:addons/web_unsplash/static/src/components/media_dialog/image_selector.js:0
 #, python-format
 msgid "Something went wrong"
-msgstr ""
+msgstr "Nekaj je šlo narobe"
 
 #. module: web_unsplash
 #. odoo-javascript
 #: code:addons/web_unsplash/static/src/components/media_dialog/image_selector.js:0
 #, python-format
 msgid ""
-"The max number of searches is exceeded. Please retry in an hour or extend to"
-" a better account."
+"The max number of searches is exceeded. Please retry in an hour or extend to "
+"a better account."
 msgstr ""
+"Največje število iskanj je preseženo. Ponovno poskusite čez eno uro ali pa "
+"preklopite na boljši račun."
 
 #. module: web_unsplash
 #. odoo-javascript
@@ -168,7 +172,7 @@ msgstr ""
 #: code:addons/web_unsplash/static/src/components/media_dialog/image_selector.js:0
 #, python-format
 msgid "Uploading '%s' image."
-msgstr ""
+msgstr "Nalaganje '%s' slike"
 
 #. module: web_unsplash
 #: model:ir.model,name:web_unsplash.model_res_users
@@ -187,11 +191,11 @@ msgstr ""
 #: code:addons/web_unsplash/static/src/components/media_dialog/image_selector.xml:0
 #, python-format
 msgid "and paste it here:"
-msgstr ""
+msgstr "in prilepite tukaj:"
 
 #. module: web_unsplash
 #. odoo-javascript
 #: code:addons/web_unsplash/static/src/components/media_dialog/image_selector.xml:0
 #, python-format
 msgid "here:"
-msgstr ""
+msgstr "tukaj:"

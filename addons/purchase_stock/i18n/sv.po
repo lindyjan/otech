@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # 	* purchase_stock
-# 
+#
 # Translators:
 # Kim Asplund <kim.asplund@gmail.com>, 2023
 # Chrille Hedberg <hedberg.chrille@gmail.com>, 2023
@@ -13,19 +13,20 @@
 # Martin Trigaux, 2023
 # Mikael Åkerberg <mikael.akerberg@mariaakerberg.com>, 2023
 # Simon S, 2023
-# 
+# Jakob Krabbe <jakob.krabbe@vertel.se>, 2024
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-05 12:31+0000\n"
+"POT-Creation-Date: 2025-12-29 18:37+0000\n"
 "PO-Revision-Date: 2023-10-26 23:09+0000\n"
-"Last-Translator: Simon S, 2023\n"
+"Last-Translator: Jakob Krabbe <jakob.krabbe@vertel.se>, 2024\n"
 "Language-Team: Swedish (https://app.transifex.com/odoo/teams/41243/sv/)\n"
+"Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: sv\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: purchase_stock
@@ -35,8 +36,6 @@ msgstr "% leveranser i tid"
 
 #. module: purchase_stock
 #. odoo-python
-#: code:addons/purchase_stock/models/stock_rule.py:0
-#: code:addons/purchase_stock/models/stock_rule.py:0
 #: code:addons/purchase_stock/models/stock_rule.py:0
 #, python-format
 msgid "+ %d day(s)"
@@ -59,8 +58,11 @@ msgstr "<span class=\"o_stat_value\">%</span>"
 
 #. module: purchase_stock
 #: model_terms:ir.ui.view,arch_db:purchase_stock.purchase_order_view_form_inherit
-msgid "<span invisible=\"on_time_rate &gt;= 0\">No On-time Delivery Data</span>"
+msgid ""
+"<span invisible=\"on_time_rate &gt;= 0\">No On-time Delivery Data</span>"
 msgstr ""
+"<span invisible=\"on_time_rate &gt;= 0\">Inga uppgifter om leverans i rätt "
+"tid</span>"
 
 #. module: purchase_stock
 #: model_terms:ir.ui.view,arch_db:purchase_stock.res_config_settings_view_form_stock
@@ -70,7 +72,7 @@ msgstr "<span> dagar</span>"
 #. module: purchase_stock
 #: model_terms:ir.ui.view,arch_db:purchase_stock.product_view_kanban_catalog_purchase_only
 msgid "<span>Forecasted: </span>"
-msgstr ""
+msgstr "<span>Prognostiserad: </span>"
 
 #. module: purchase_stock
 #: model_terms:ir.ui.view,arch_db:purchase_stock.report_purchaseorder_document
@@ -87,10 +89,15 @@ msgstr "<strong>Leveransadress:</strong>"
 #. module: purchase_stock
 #: model:ir.model.fields,help:purchase_stock.field_purchase_order_line__qty_received_method
 msgid ""
-"According to product configuration, the received quantity can be automatically computed by mechanism:\n"
+"According to product configuration, the received quantity can be "
+"automatically computed by mechanism:\n"
 "  - Manual: the quantity is set manually on the line\n"
 "  - Stock Moves: the quantity comes from confirmed pickings\n"
 msgstr ""
+"Enligt produktkonfigurationen kan den mottagna kvantiteten beräknas "
+"automatiskt med hjälp av en mekanism:\n"
+"  - Manuell: kvantiteten ställs in manuellt på linjen\n"
+"  - Stock Moves: kvantiteten kommer från bekräftade plockningar\n"
 
 #. module: purchase_stock
 #: model:ir.model.fields,field_description:purchase_stock.field_stock_rule__action
@@ -152,11 +159,10 @@ msgstr "Motsvarande kvitto hittades inte."
 #. module: purchase_stock
 #: model:ir.model.fields,field_description:purchase_stock.field_stock_move__created_purchase_line_ids
 msgid "Created Purchase Order Lines"
-msgstr ""
+msgstr "Skapade inköpsorderrader"
 
 #. module: purchase_stock
 #. odoo-python
-#: code:addons/purchase_stock/models/stock_move.py:0
 #: code:addons/purchase_stock/models/stock_move.py:0
 #, python-format
 msgid "Currency exchange rate difference"
@@ -219,7 +225,7 @@ msgstr "Visningsnamn"
 #. module: purchase_stock
 #: model:ir.model.fields,field_description:purchase_stock.field_purchase_order_line__move_dest_ids
 msgid "Downstream moves alt"
-msgstr ""
+msgstr "Nedströms flyttar alt"
 
 #. module: purchase_stock
 #: model:ir.model.fields,field_description:purchase_stock.field_purchase_order__dest_address_id
@@ -257,12 +263,12 @@ msgstr "Undantag:"
 #: code:addons/purchase_stock/models/purchase_order_line.py:0
 #, python-format
 msgid ""
-"For the product %s, the warehouse of the operation type (%s) is inconsistent"
-" with the location (%s) of the reordering rule (%s). Change the operation "
+"For the product %s, the warehouse of the operation type (%s) is inconsistent "
+"with the location (%s) of the reordering rule (%s). Change the operation "
 "type or cancel the request for quotation."
 msgstr ""
-"För produkten %s, lagret av operationstypen (%s) är inkonsistent med platsen"
-" (%s) av ombeställningsregeln (%s). Ändra operationstypen eller avbryt "
+"För produkten %s, lagret av operationstypen (%s) är inkonsistent med platsen "
+"(%s) av ombeställningsregeln (%s). Ändra operationstypen eller avbryt "
 "offertförfrågan."
 
 #. module: purchase_stock
@@ -322,7 +328,7 @@ msgstr "Är skickat"
 #. module: purchase_stock
 #: model:ir.model.fields,field_description:purchase_stock.field_res_config_settings__is_installed_sale
 msgid "Is the Sale Module Installed"
-msgstr "Är försäljningsmodulen installerad?"
+msgstr "Är försäljningsmodulen installerad"
 
 #. module: purchase_stock
 #: model:ir.model,name:purchase_stock.model_account_move
@@ -358,8 +364,8 @@ msgstr "Manuella åtgärder kan behövas."
 #: model_terms:ir.ui.view,arch_db:purchase_stock.res_config_settings_view_form_stock
 msgid ""
 "Margin of error for vendor lead times. When the system generates Purchase "
-"Orders for reordering products,they will be scheduled that many days earlier"
-" to cope with unexpected vendor delays."
+"Orders for reordering products,they will be scheduled that many days earlier "
+"to cope with unexpected vendor delays."
 msgstr ""
 "Felmarginal för leverantörers ledtider. När systemet genererar inköpsordrar "
 "för ombeställning av produkter kommer de att schemaläggas så många dagar "
@@ -395,8 +401,8 @@ msgstr "Ej mottagen"
 #: code:addons/purchase_stock/models/stock_move.py:0
 #, python-format
 msgid ""
-"Odoo is not able to generate the anglo saxon entries. The total valuation of"
-" %s is zero."
+"Odoo is not able to generate the anglo saxon entries. The total valuation of "
+"%s is zero."
 msgstr ""
 "Odoo kan inte generera de anglo-saxiska posterna. Den totala värderingen av "
 "%s är noll."
@@ -440,10 +446,13 @@ msgstr "Beställningspunkt"
 #: model:ir.model.fields,help:purchase_stock.field_res_partner__on_time_rate
 #: model:ir.model.fields,help:purchase_stock.field_res_users__on_time_rate
 msgid ""
-"Over the past x days; the number of products received on time divided by the"
-" number of ordered products.x is either the System Parameter "
+"Over the past x days; the number of products received on time divided by the "
+"number of ordered products.x is either the System Parameter "
 "purchase_stock.on_time_delivery_days or the default 365"
 msgstr ""
+"Under de senaste x dagarna; antalet produkter som mottagits i tid dividerat "
+"med antalet beställda produkter.x är antingen systemparametern "
+"purchase_stock.on_time_delivery_days eller standardvärdet 365"
 
 #. module: purchase_stock
 #: model:ir.model.fields,field_description:purchase_stock.field_product_product__purchase_order_line_ids
@@ -641,7 +650,7 @@ msgstr "Visa Ställ in Leverantör Knapp"
 #. module: purchase_stock
 #: model:ir.model.fields,field_description:purchase_stock.field_product_replenish__show_vendor
 msgid "Show Vendor"
-msgstr ""
+msgstr "Visa leverantör"
 
 #. module: purchase_stock
 #: model:ir.model.fields,field_description:purchase_stock.field_stock_warehouse_orderpoint__show_supplier
@@ -728,9 +737,9 @@ msgstr ""
 #: code:addons/purchase_stock/models/stock_rule.py:0
 #, python-format
 msgid ""
-"There is no matching vendor price to generate the purchase order for product"
-" %s (no vendor defined, minimum quantity not reached, dates not valid, ...)."
-" Go on the product form and complete the list of vendors."
+"There is no matching vendor price to generate the purchase order for product "
+"%s (no vendor defined, minimum quantity not reached, dates not valid, ...). "
+"Go on the product form and complete the list of vendors."
 msgstr ""
 "Det finns inget matchande leverantörspris för att generera inköpsordern för "
 "produkt %s (ingen leverantör definierad, minimiantal inte uppnått, ogiltiga "
@@ -745,8 +754,8 @@ msgid ""
 "validating this vendor bill."
 msgstr ""
 "Det här kontot används vid automatisk lagervärdering för att registrera "
-"prisskillnaden mellan en inköpsorder och dess tillhörande leverantörsfaktura"
-" vid valideringen av leverantörsfakturan."
+"prisskillnaden mellan en inköpsorder och dess tillhörande leverantörsfaktura "
+"vid valideringen av leverantörsfakturan."
 
 #. module: purchase_stock
 #: model:ir.model.fields,help:purchase_stock.field_product_category__property_account_creditor_price_difference_categ
@@ -754,22 +763,23 @@ msgid ""
 "This account will be used to value price difference between purchase price "
 "and accounting cost."
 msgstr ""
+"Detta konto kommer att användas för att värdera prisskillnaden mellan "
+"inköpspris och bokfört anskaffningsvärde."
 
 #. module: purchase_stock
 #: model_terms:ir.ui.view,arch_db:purchase_stock.res_config_settings_view_form_purchase
 msgid ""
-"This adds a dropshipping route to apply on products in order to request your"
-" vendors to deliver to your customers. A product to dropship will generate a"
-" purchase request for quotation once the sales order confirmed. This is a "
-"on-demand flow. The requested delivery address will be the customer delivery"
-" address and not your warehouse."
+"This adds a dropshipping route to apply on products in order to request your "
+"vendors to deliver to your customers. A product to dropship will generate a "
+"purchase request for quotation once the sales order confirmed. This is a on-"
+"demand flow. The requested delivery address will be the customer delivery "
+"address and not your warehouse."
 msgstr ""
 "Detta lägger till en dropshipping-rutt att tillämpa på produkter för att "
 "begära att dina leverantörer levererar till dina kunder. En produkt för "
 "dropshipping kommer att generera en inköpsbegäran om offert när "
-"försäljningsordern har bekräftats. Detta är ett on-demand-flöde. Den begärda"
-" leveransadressen kommer att vara kundens leveransadress och inte ditt "
-"lager."
+"försäljningsordern har bekräftats. Detta är ett on-demand-flöde. Den begärda "
+"leveransadressen kommer att vara kundens leveransadress och inte ditt lager."
 
 #. module: purchase_stock
 #: model:ir.model.fields,help:purchase_stock.field_purchase_order__picking_type_id
@@ -809,8 +819,7 @@ msgstr "Flytt"
 #: code:addons/purchase_stock/models/purchase_order.py:0
 #, python-format
 msgid ""
-"Unable to cancel purchase order %s as some receptions have already been "
-"done."
+"Unable to cancel purchase order %s as some receptions have already been done."
 msgstr ""
 "Det går inte att avbryta inköpsorder %s eftersom vissa mottagningar redan "
 "har utförts."
@@ -874,8 +883,8 @@ msgstr "När produkter köps in kan de levereras till detta lager"
 #, python-format
 msgid ""
 "When products are needed in <b>%s</b>, <br/> a request for quotation is "
-"created to fulfill the need.<br/>Note: This rule will be used in combination"
-" with the rules<br/>of the reception route(s)"
+"created to fulfill the need.<br/>Note: This rule will be used in combination "
+"with the rules<br/>of the reception route(s)"
 msgstr ""
 "När produkter behövs i <b>%s</b>, <br/> skapas en begäran om offert för att "
 "tillgodose behovet.<br/>Obs: Denna regel kommer att användas i kombination "
@@ -889,7 +898,8 @@ msgid ""
 "You cannot decrease the ordered quantity below the received quantity.\n"
 "Create a return first."
 msgstr ""
-"Du kan inte minska den beställda kvantiteten under den mottagna kvantiteten.\n"
+"Du kan inte minska den beställda kvantiteten under den mottagna "
+"kvantiteten.\n"
 "Skapa en returnering först."
 
 #. module: purchase_stock

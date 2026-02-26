@@ -670,6 +670,36 @@ class TestQWebNS(TransactionCase):
         with self.assertRaises(QWebException, msg=error_msg):
             self.env['ir.qweb']._render(view1.id)
 
+
+    def test_render_static_xml_with_void_element(self):
+        """ Test the rendering on a namespaced view with dynamic URI (need default namespace uri).
+        """
+        tempate = """
+            <rss xmlns:g="http://base.google.com/ns/1.0" version="2.0">
+                <g:brand>Odoo</g:brand>
+                <g:link>My Link</g:link>
+            </rss>
+        """
+        expected_result = """
+            <rss xmlns:g="http://base.google.com/ns/1.0" version="2.0">
+                <g:brand>Odoo</g:brand>
+                <g:link>My Link</g:link>
+            </rss>
+
+        """
+
+        view1 = self.env['ir.ui.view'].create({
+            'name': "dummy",
+            'type': 'qweb',
+            'arch': """
+                <t t-name="base.dummy">%s</t>
+            """ % tempate
+        })
+
+        rendering = self.env['ir.qweb']._render(view1.id)
+
+        self.assertEqual(etree.fromstring(rendering), etree.fromstring(expected_result))
+
 class TestQWebBasic(TransactionCase):
     def test_compile_expr(self):
         tests = [
@@ -702,6 +732,11 @@ class TestQWebBasic(TransactionCase):
             ("['test_' + x for x in ['a', 'b']]",       {},                             ['test_a', 'test_b']),
             ("""1 and 2 and 0
                 or 9""",                                {},                             9),
+            ('[x for x in (1,2)]',                      {},                             [1, 2]),  # LOAD_FAST_AND_CLEAR
+            ('list(x for x in (1,2))',                  {},                             [1, 2]),  # END_FOR, CALL_INTRINSIC_1
+            ('v if v is None else w',                   {'v': False, 'w': 'foo'},       'foo'),  # POP_JUMP_IF_NONE
+            ('v if v is not None else w',               {'v': None, 'w': 'foo'},        'foo'),  # POP_JUMP_IF_NOT_NONE
+            ('{a for a in (1, 2)}',                     {},                             {1, 2}),  # RERAISE
         ]
 
         IrQweb = self.env['ir.qweb']
@@ -1318,6 +1353,50 @@ class TestQWebBasic(TransactionCase):
                     10
                     12
                     13
+                </div>
+            """
+        rendered = str(self.env['ir.qweb']._render(t.id))
+        self.assertEqual(rendered.strip(), result.strip())
+
+    def test_if_comment(self):
+        t = self.env['ir.ui.view'].create({
+            'name': 'test',
+            'type': 'qweb',
+            'arch_db': '''<t t-name="test">
+                <div>
+                    <!-- comment 0 -->
+                    0
+                    <div>1</div>
+                    <!-- comment 1 -->
+                    <div t-if="True">2 (t-if)</div>
+                    <!-- comment 2 -->
+                    <div t-else="">3 (t-else)</div>
+                    <!-- comment 3 -->
+                    <div>4</div>
+                    <!-- comment 4 -->
+                    <div t-if="False">5 (t-if)</div>
+                    <!-- comment 5 -->
+                    <div t-else="">6 (t-else)</div>
+                    <!-- comment 6 -->
+                    <div>7</div>
+                </div>
+            </t>'''
+        })
+        result = """
+                <div>
+                    
+                    0
+                    <div>1</div>
+                    
+                    <div>2 (t-if)</div>
+                    
+                    
+                    <div>4</div>
+                    
+                    <div>6 (t-else)</div>
+                    
+                    
+                    <div>7</div>
                 </div>
             """
         rendered = str(self.env['ir.qweb']._render(t.id))

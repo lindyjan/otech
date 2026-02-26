@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* sale_project
-# 
+# * sale_project
+#
 # Translators:
 # Sepehr Khoshnood <sepehr.kho@gmail.com>, 2023
 # M.Hossein S.Farvashani <Farvashani@gmail.com>, 2023
@@ -9,23 +9,27 @@
 # odooers ir, 2023
 # Hamid Darabi, 2023
 # Martin Trigaux, 2023
-# Hamed Mohammadi <hamed@dehongi.com>, 2023
 # Morovat Guivi <tarjomac@gmail.com>, 2023
-# Hanna Kheradroosta, 2023
-# 
+# Hanna Kheradroosta, 2024
+# Mostafa Barmshory <mostafa.barmshory@gmail.com>, 2024
+# Naser mars, 2025
+# Hamed Mohammadi <hamed@dehongi.com>, 2025
+# Weblate <noreply-mt-weblate@weblate.org>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-26 21:55+0000\n"
-"PO-Revision-Date: 2023-10-26 23:09+0000\n"
-"Last-Translator: Hanna Kheradroosta, 2023\n"
-"Language-Team: Persian (https://app.transifex.com/odoo/teams/41243/fa/)\n"
+"POT-Creation-Date: 2026-02-20 18:37+0000\n"
+"PO-Revision-Date: 2026-02-21 17:02+0000\n"
+"Last-Translator: Weblate <noreply-mt-weblate@weblate.org>\n"
+"Language-Team: Persian <https://translate.odoo.com/projects/odoo-17/"
+"sale_project/fa/>\n"
+"Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: fa\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 5.14.3\n"
 
 #. module: sale_project
 #. odoo-python
@@ -36,10 +40,18 @@ msgid ""
 "                <p class=\"o_view_nocontent_smiling_face\">\n"
 "                    No milestones found. Let's create one!\n"
 "                </p><p>\n"
-"                    Track major progress points that must be reached to achieve success.\n"
+"                    Track major progress points that must be reached to "
+"achieve success.\n"
 "                </p>\n"
 "            "
 msgstr ""
+"\n"
+"<p class=\"o_view_nocontent_smiling_face\">\n"
+"    هیچ مرحله مهمی یافت نشد. بیایید یکی ایجاد کنیم!\n"
+"</p><p>\n"
+"    نقاط پیشرفت مهمی را پیگیری کنید که باید برای دستیابی به موفقیت به آنها "
+"رسید.\n"
+"</p>"
 
 #. module: sale_project
 #. odoo-python
@@ -56,17 +68,11 @@ msgid "%(name)s's Sales Orders"
 msgstr ""
 
 #. module: sale_project
-#: model_terms:ir.ui.view,arch_db:sale_project.product_template_form_view_invoice_policy_inherit_sale_project
-msgid ""
-"<span class=\"fa fa-lg fa-building-o fa-fw\" title=\"Values set here are "
-"company-specific.\" groups=\"base.group_multi_company\"/>"
-msgstr ""
-
-#. module: sale_project
 #: model_terms:ir.ui.view,arch_db:sale_project.view_edit_project_inherit_form
 msgid ""
 "<span class=\"o_stat_text\">\n"
-"                            <span class=\"o_stat_value\">0</span> Sales Order\n"
+"                            <span class=\"o_stat_value\">0</span> Sales "
+"Order\n"
 "                        </span>\n"
 "                        <span class=\"o_stat_text\">\n"
 "                            Make Billable\n"
@@ -96,12 +102,22 @@ msgstr ""
 #. module: sale_project
 #: model:ir.model.fields,help:sale_project.field_sale_order_line__qty_delivered_method
 msgid ""
-"According to product configuration, the delivered quantity can be automatically computed by mechanism:\n"
+"According to product configuration, the delivered quantity can be "
+"automatically computed by mechanism:\n"
 "  - Manual: the quantity is set manually on the line\n"
-"  - Analytic From expenses: the quantity is the quantity sum from posted expenses\n"
-"  - Timesheet: the quantity is the sum of hours recorded on tasks linked to this sale line\n"
+"  - Analytic From expenses: the quantity is the quantity sum from posted "
+"expenses\n"
+"  - Timesheet: the quantity is the sum of hours recorded on tasks linked to "
+"this sale line\n"
 "  - Stock Moves: the quantity comes from confirmed pickings\n"
 msgstr ""
+"باتوجه به پیکربندی محصول، مقدار تحویل شده می‌تواند به طور خودکار با مکانیزم "
+"محاسبه شود:\n"
+" - دستی: کمیت به صورت دستی روی خط تنظیم می‌شود\n"
+" - تحلیلی از هزینه‌ها: کمیت مجموع مقدار از هزینه‌های ثبت شده است\n"
+" - برگه کارکرد: مقدار عبارت است از مجموع ساعات ضبط شده بر روی وظایف مربوط به "
+"این سطر فروش است\n"
+" - انتقال موجودی: کمیت از برداشت‌های تاییدشده بدست می‌آید.\n"
 
 #. module: sale_project
 #. odoo-python
@@ -137,6 +153,20 @@ msgid "Config Settings"
 msgstr "تنظیمات پیکربندی"
 
 #. module: sale_project
+#. odoo-python
+#: code:addons/sale_project/models/project.py:0
+#, python-format
+msgid "Cost of Goods Sold"
+msgstr "هزینه کالاهای فروخته شده"
+
+#. module: sale_project
+#. odoo-python
+#: code:addons/sale_project/models/project.py:0
+#, python-format
+msgid "Cost of Goods Sold Items"
+msgstr ""
+
+#. module: sale_project
 #: model_terms:ir.ui.view,arch_db:sale_project.view_order_form_inherit_sale_project
 msgid "Create Project"
 msgstr ""
@@ -145,7 +175,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_project.field_product_product__service_tracking
 #: model:ir.model.fields,field_description:sale_project.field_product_template__service_tracking
 msgid "Create on Order"
-msgstr ""
+msgstr "ایجاد روی سفارش"
 
 #. module: sale_project
 #: model:ir.model.fields,field_description:sale_project.field_project_milestone__project_partner_id
@@ -240,9 +270,8 @@ msgstr "به محض فروش این سرویس، مقادیر سفارش داد�
 #: code:addons/sale_project/models/product.py:0
 #, python-format
 msgid ""
-"Invoice ordered quantities as soon as this service is sold. Create a project"
-" for the order with a task for each sales order line to track the time "
-"spent."
+"Invoice ordered quantities as soon as this service is sold. Create a project "
+"for the order with a task for each sales order line to track the time spent."
 msgstr ""
 
 #. module: sale_project
@@ -250,8 +279,8 @@ msgstr ""
 #: code:addons/sale_project/models/product.py:0
 #, python-format
 msgid ""
-"Invoice ordered quantities as soon as this service is sold. Create a task in"
-" an existing project to track the time spent."
+"Invoice ordered quantities as soon as this service is sold. Create a task in "
+"an existing project to track the time spent."
 msgstr ""
 
 #. module: sale_project
@@ -352,7 +381,6 @@ msgstr "فاکتور شده"
 #. module: sale_project
 #. odoo-python
 #: code:addons/sale_project/models/project.py:0
-#: code:addons/sale_project/models/project.py:0
 #, python-format
 msgid "Invoices"
 msgstr "فاکتورها"
@@ -383,20 +411,26 @@ msgstr "بارگذاری بیشتر"
 #: model:ir.model.fields,help:sale_project.field_product_product__service_type
 #: model:ir.model.fields,help:sale_project.field_product_template__service_type
 msgid ""
-"Manually set quantities on order: Invoice based on the manually entered quantity, without creating an analytic account.\n"
-"Timesheets on contract: Invoice based on the tracked hours on the related timesheet.\n"
-"Create a task and track hours: Create a task on the sales order validation and track the work hours."
+"Manually set quantities on order: Invoice based on the manually entered "
+"quantity, without creating an analytic account.\n"
+"Timesheets on contract: Invoice based on the tracked hours on the related "
+"timesheet.\n"
+"Create a task and track hours: Create a task on the sales order validation "
+"and track the work hours."
 msgstr ""
-"تنظیم دستی مقادیر بر اساس سفارش: فاکتور بر اساس مقدار شده به صورت دستی، بدون ایجاد یک حساب تحلیلی. \n"
-"برگه‌های ساعت کارکرد در قرارداد: فاکتور بر اساس ساعات ردیابی شده بر روی برگه ساعت کارکرد زمانی مربوطه. \n"
-"ایجاد یک وظیفه و ردیابی ساعت: ایجاد یک وظیفه در ارزشیابی سفارش فروش و پیگیری ساعات کار."
+"تنظیم دستی مقادیر بر اساس سفارش: فاکتور بر اساس مقدار شده به صورت دستی، بدون "
+"ایجاد یک حساب تحلیلی. \n"
+"برگه‌های ساعت کارکرد در قرارداد: فاکتور بر اساس ساعات ردیابی شده بر روی برگه "
+"ساعت کارکرد زمانی مربوطه. \n"
+"ایجاد یک وظیفه و ردیابی ساعت: ایجاد یک وظیفه در ارزشیابی سفارش فروش و پیگیری "
+"ساعات کار."
 
 #. module: sale_project
 #. odoo-python
 #: code:addons/sale_project/models/project.py:0
 #, python-format
 msgid "Materials"
-msgstr ""
+msgstr "مواد"
 
 #. module: sale_project
 #: model:ir.model.fields,field_description:sale_project.field_sale_order_line__qty_delivered_method
@@ -406,7 +440,7 @@ msgstr "روش بروز رسانی تعداد تحویل شده"
 #. module: sale_project
 #: model:ir.model.fields,field_description:sale_project.field_sale_order__milestone_count
 msgid "Milestone Count"
-msgstr ""
+msgstr "تعداد مایلستون‌ها"
 
 #. module: sale_project
 #. odoo-python
@@ -434,7 +468,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:sale_project.project_milestone_view_tree
 #: model_terms:ir.ui.view,arch_db:sale_project.view_sale_project_inherit_form
 msgid "Non-billable"
-msgstr ""
+msgstr "غیرقابل پرداخت"
 
 #. module: sale_project
 #: model_terms:ir.ui.view,arch_db:sale_project.portal_tasks_list_inherit
@@ -444,29 +478,27 @@ msgstr ""
 #. module: sale_project
 #: model:ir.model.fields.selection,name:sale_project.selection__product_template__service_tracking__no
 msgid "Nothing"
-msgstr ""
+msgstr "هیچ چیز"
 
 #. module: sale_project
 #: model:ir.model.fields,field_description:sale_project.field_sale_order__project_count
 msgid "Number of Projects"
-msgstr ""
+msgstr "تعداد پروژه‌ها"
 
 #. module: sale_project
 #: model:ir.model.fields,help:sale_project.field_product_product__service_tracking
 #: model:ir.model.fields,help:sale_project.field_product_template__service_tracking
 msgid ""
-"On Sales order confirmation, this product can generate a project and/or task.         From those, you can track the service you are selling.\n"
-"         'In sale order's project': Will use the sale order's configured project if defined or fallback to         creating a new project based on the selected template."
+"On Sales order confirmation, this product can generate a project and/or "
+"task.         From those, you can track the service you are selling.\n"
+"         'In sale order's project': Will use the sale order's configured "
+"project if defined or fallback to         creating a new project based on "
+"the selected template."
 msgstr ""
-"در تایید سفارش فروش، این محصول می‌تواند یک پروژه و / یا وظیفه تولید کند. از آن‌ها، شما می‌توانید خدماتی را که می‌فروشید را دنبال کنید.\n"
-"در پروژه سفارش فروش: در صورت تعریف و یا پشتیبان برای ایجاد یک پروژه جدید براساس الگوی انتخاب‌شده از پروژه پیکربندی شده فروش استفاده کنید."
-
-#. module: sale_project
-#. odoo-python
-#: code:addons/sale_project/models/sale_order.py:0
-#, python-format
-msgid "Operation not supported"
-msgstr "عملیات پشتیبانی نمی شود"
+"در تایید سفارش فروش، این محصول می‌تواند یک پروژه و / یا وظیفه تولید کند. از "
+"آن‌ها، شما می‌توانید خدماتی را که می‌فروشید را دنبال کنید.\n"
+"در پروژه سفارش فروش: در صورت تعریف و یا پشتیبان برای ایجاد یک پروژه جدید "
+"براساس الگوی انتخاب‌شده از پروژه پیکربندی شده فروش استفاده کنید."
 
 #. module: sale_project
 #. odoo-python
@@ -478,8 +510,15 @@ msgstr "سرویس‌های دیگر"
 #. module: sale_project
 #: model:ir.model.fields,help:sale_project.field_project_milestone__quantity_percentage
 msgid ""
-"Percentage of the ordered quantity that will automatically be delivered once"
-" the milestone is reached."
+"Percentage of the ordered quantity that will automatically be delivered once "
+"the milestone is reached."
+msgstr ""
+
+#. module: sale_project
+#. odoo-python
+#: code:addons/sale_project/models/project.py:0
+#, python-format
+msgid "Portal Sale Order"
 msgstr ""
 
 #. module: sale_project
@@ -516,7 +555,7 @@ msgstr ""
 #. module: sale_project
 #: model:ir.model,name:sale_project.model_project_milestone
 msgid "Project Milestone"
-msgstr ""
+msgstr "پروژه مایل‌استون"
 
 #. module: sale_project
 #: model:ir.model.fields.selection,name:sale_project.selection__product_template__service_type__milestones
@@ -630,20 +669,24 @@ msgstr ""
 #. module: sale_project
 #: model:ir.model.fields,help:sale_project.field_project_task__sale_line_id
 msgid ""
-"Sales Order Item to which the time spent on this task will be added in order to be invoiced to your customer.\n"
-"By default the sales order item set on the project will be selected. In the absence of one, the last prepaid sales order item that has time remaining will be used.\n"
-"Remove the sales order item in order to make this task non billable. You can also change or remove the sales order item of each timesheet entry individually."
+"Sales Order Item to which the time spent on this task will be added in order "
+"to be invoiced to your customer.\n"
+"By default the sales order item set on the project will be selected. In the "
+"absence of one, the last prepaid sales order item that has time remaining "
+"will be used.\n"
+"Remove the sales order item in order to make this task non billable. You can "
+"also change or remove the sales order item of each timesheet entry "
+"individually."
 msgstr ""
 
 #. module: sale_project
-#. odoo-python
 #. odoo-javascript
-#: code:addons/sale_project/models/project.py:0
+#. odoo-python
 #: code:addons/sale_project/models/project.py:0
 #: code:addons/sale_project/static/src/components/project_right_side_panel/project_right_side_panel.xml:0
 #, python-format
 msgid "Sales Order Items"
-msgstr ""
+msgstr "آیتم‌های سفارش فروش"
 
 #. module: sale_project
 #: model:ir.model,name:sale_project.model_sale_order_line
@@ -660,8 +703,11 @@ msgstr "سفارشات فروش"
 #. module: sale_project
 #: model:ir.model.fields,help:sale_project.field_project_project__sale_line_id
 msgid ""
-"Sales order item that will be selected by default on the tasks and timesheets of this project, except if the employee set on the timesheets is explicitely linked to another sales order item on the project.\n"
-"It can be modified on each task and timesheet entry individually if necessary."
+"Sales order item that will be selected by default on the tasks and "
+"timesheets of this project, except if the employee set on the timesheets is "
+"explicitely linked to another sales order item on the project.\n"
+"It can be modified on each task and timesheet entry individually if "
+"necessary."
 msgstr ""
 
 #. module: sale_project
@@ -837,13 +883,17 @@ msgid "Unit of Measure"
 msgstr "واحد اندازه‌گیری"
 
 #. module: sale_project
+#: model_terms:ir.ui.view,arch_db:sale_project.product_template_form_view_invoice_policy_inherit_sale_project
+msgid "Values set here are company-specific."
+msgstr "مقادیر تنظیم شده در اینجا خاص شرکت هستند."
+
+#. module: sale_project
 #: model:ir.model.fields,field_description:sale_project.field_project_project__vendor_bill_count
 msgid "Vendor Bill Count"
 msgstr "تعداد صورتحساب فروشنده"
 
 #. module: sale_project
 #. odoo-python
-#: code:addons/sale_project/models/project.py:0
 #: code:addons/sale_project/models/project.py:0
 #, python-format
 msgid "Vendor Bills"
@@ -864,3 +914,10 @@ msgid ""
 msgstr ""
 "شما نمی توانید آیتم سفارش %(order_id)s - %(product_id)s را به این کار پیوند "
 "دهید زیرا هزینه ای است که مجدداً صورتحساب می شود."
+
+#~ msgid ""
+#~ "<span class=\"fa fa-lg fa-building-o fa-fw\" title=\"Values set here are "
+#~ "company-specific.\" groups=\"base.group_multi_company\"/>"
+#~ msgstr ""
+#~ "<span class=\"fa fa-lg fa-building-o fa-fw\" title=\"Values set here are "
+#~ "company-specific.\" groups=\"base.group_multi_company\"/>"

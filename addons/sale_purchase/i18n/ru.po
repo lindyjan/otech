@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # 	* sale_purchase
-# 
+#
 # Translators:
 # Sergey Vilizhanin, 2023
 # Константин Коровин <korovin74@gmail.com>, 2023
@@ -9,20 +9,24 @@
 # Martin Trigaux, 2023
 # Ivan Kropotkin <yelizariev@itpp.dev>, 2023
 # Wil Odoo, 2024
-# 
+# Nadia Martynova, 2024
+# Ilya Rozhkov, 2024
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-26 21:55+0000\n"
+"POT-Creation-Date: 2026-02-20 18:37+0000\n"
 "PO-Revision-Date: 2023-10-26 23:09+0000\n"
-"Last-Translator: Wil Odoo, 2024\n"
+"Last-Translator: Ilya Rozhkov, 2024\n"
 "Language-Team: Russian (https://app.transifex.com/odoo/teams/41243/ru/)\n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: ru\n"
-"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
+"(n%100>=11 && n%100<=14)? 2 : 3);\n"
 
 #. module: sale_purchase
 #: model_terms:ir.ui.view,arch_db:sale_purchase.exception_purchase_on_sale_cancellation
@@ -36,8 +40,10 @@ msgstr ""
 
 #. module: sale_purchase
 #: model_terms:ir.ui.view,arch_db:sale_purchase.product_template_form_view_inherit
-msgid "<span class=\"fa fa-lg fa-building-o fa-fw\" title=\"Service to Purchase\"/>"
-msgstr "<span class=\"fa fa-lg fa-building-o fa-fw\" title=\"Service to Purchase\"/>"
+msgid ""
+"<span class=\"fa fa-lg fa-building-o fa-fw\" title=\"Service to Purchase\"/>"
+msgstr ""
+"<span class=\"fa fa-lg fa-building-o fa-fw\" title=\"Service to Purchase\"/>"
 
 #. module: sale_purchase
 #: model_terms:ir.ui.view,arch_db:sale_purchase.sale_order_inherited_form_purchase
@@ -48,21 +54,6 @@ msgstr "<span class=\"o_stat_text\">Приобрести</span>"
 #: model_terms:ir.ui.view,arch_db:sale_purchase.purchase_order_inherited_form_sale
 msgid "<span class=\"o_stat_text\">Sale</span>"
 msgstr "<span class=\"o_stat_text\">Продажа</span>"
-
-#. module: sale_purchase
-#: model_terms:ir.ui.view,arch_db:sale_purchase.sale_order_cancel_view_form
-msgid ""
-"<span id=\"display_invoice_alert\" position=\"after\">\n"
-"                <span id=\"display_purchase_orders_alert\" invisible=\"not display_purchase_orders_alert\">\n"
-"                    There are active purchase orders linked to this sale order that are not cancelled automatically! <br/>\n"
-"                </span>\n"
-"            </span>"
-msgstr ""
-"<span id=\"display_invoice_alert\" position=\"after\">\n"
-"                <span id=\"display_purchase_orders_alert\" invisible=\"not display_purchase_orders_alert\">\n"
-"                    С этим заказом на продажу связаны активные заказы на покупку, которые не отменяются автоматически! <br/>\n"
-"                </span>\n"
-"            </span>"
 
 #. module: sale_purchase
 #: model_terms:ir.ui.view,arch_db:sale_purchase.exception_sale_on_purchase_cancellation
@@ -95,8 +86,8 @@ msgid ""
 "automatically created to buy the product. Tip: don't forget to set a vendor "
 "on the product."
 msgstr ""
-"Если флажок установлен, каждый раз, когда вы продаете этот продукт через СЦ,"
-" автоматически создается RfQ для покупки продукта. Совет: не забудьте "
+"Если флажок установлен, каждый раз, когда вы продаете этот продукт через СЦ, "
+"автоматически создается RfQ для покупки продукта. Совет: не забудьте "
 "установить продавца для продукта."
 
 #. module: sale_purchase
@@ -157,7 +148,7 @@ msgstr "Продукт, который не является услугой, н�
 #. module: sale_purchase
 #: model:ir.model,name:sale_purchase.model_purchase_order
 msgid "Purchase Order"
-msgstr "Заказа на покупку"
+msgstr "Заказ на покупку"
 
 #. module: sale_purchase
 #: model:ir.model.fields,field_description:sale_purchase.field_sale_order_cancel__display_purchase_orders_alert
@@ -224,6 +215,13 @@ msgid "Subcontract Service"
 msgstr "Субподрядные услуги"
 
 #. module: sale_purchase
+#: model_terms:ir.ui.view,arch_db:sale_purchase.sale_order_cancel_view_form
+msgid ""
+"There are active purchase orders linked to this sale order that are not "
+"cancelled automatically! <br/>"
+msgstr ""
+
+#. module: sale_purchase
 #. odoo-python
 #: code:addons/sale_purchase/models/sale_order_line.py:0
 #, python-format
@@ -262,3 +260,22 @@ msgstr "из"
 #: model_terms:ir.ui.view,arch_db:sale_purchase.exception_purchase_on_sale_quantity_decreased
 msgid "ordered instead of"
 msgstr "заказано вместо"
+
+#~ msgid ""
+#~ "<span id=\"display_invoice_alert\" position=\"after\">\n"
+#~ "                <span id=\"display_purchase_orders_alert\" "
+#~ "invisible=\"not display_purchase_orders_alert\" "
+#~ "groups=\"purchase.group_purchase_user\">\n"
+#~ "                    There are active purchase orders linked to this sale "
+#~ "order that are not cancelled automatically! <br/>\n"
+#~ "                </span>\n"
+#~ "            </span>"
+#~ msgstr ""
+#~ "<span id=\"display_invoice_alert\" position=\"after\">\n"
+#~ "                <span id=\"display_purchase_orders_alert\" "
+#~ "invisible=\"not display_purchase_orders_alert\" "
+#~ "groups=\"purchase.group_purchase_user\">\n"
+#~ "                   К этому заказу на продажу привязаны активные заказы на "
+#~ "закупку, которые не отменяются автоматически! <br/>\n"
+#~ "                </span>\n"
+#~ "            </span>"

@@ -1,6 +1,11 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
+import datetime
+from freezegun import freeze_time
+
 from odoo.addons.account.tests.common import AccountTestInvoicingCommon
+from odoo import fields
+from odoo.fields import Command
 from odoo.tests import Form, tagged
 
 
@@ -237,3 +242,65 @@ class StockMoveInvoice(AccountTestInvoicingCommon):
         done_delivery = sale_order.picking_ids.filtered(lambda p: p.state == "done")
         self.assertFalse(done_delivery.carrier_id.id, "The shipping method should not be set in done deliveries.")
         self.assertFalse(return_picking.carrier_id.id, "The shipping method should not set in return pickings")
+
+    def test_picking_weight(self):
+        """Test if the picking weight is correctly computed when the product of the move changes."""
+        self.product_cable_management_box.weight = 1.0
+        self.product_a.weight = 2.0
+        so = self.SaleOrder.create({
+            "partner_id": self.partner_18.id,
+            "order_line": [(0, 0, {
+                "name": "Cable Management Box",
+                "product_id": self.product_cable_management_box.id,
+                "product_uom_qty": 1,
+                "product_uom": self.product_uom_unit.id,
+                "price_unit": 750.00,
+            })],
+        })
+        so.action_confirm()
+        picking = so.picking_ids
+        self.assertEqual(picking.weight, 1.0, "The weight of the picking should be 1.0")
+        self.product_cable_management_box.weight = 2.0
+        self.assertEqual(picking.weight, 1.0, "The weight of the picking should not change")
+        picking.move_ids.product_id = self.product_a
+        self.assertEqual(picking.weight, 2.0, "The weight of the picking should be 2.0")
+
+    @freeze_time("2024-06-06 11:00")
+    def test_picking_change_scheduled_date(self):
+        """
+        Check that changing the scheduled date of a move can affect the scheduled date
+        of the picking but not its sibling moves.
+        """
+        wh = self.env['stock.warehouse'].search([('company_id', '=', self.env.company.id)], limit=1)
+        receipt = self.env['stock.picking'].create({
+            'picking_type_id': wh.in_type_id.id,
+            'location_id': self.ref('stock.stock_location_customers'),
+            'location_dest_id': wh.lot_stock_id.id,
+            'move_ids': [
+                Command.create({
+                    'name': self.product_a.name,
+                    'product_id': self.product_a.id,
+                    'product_uom_qty': 1,
+                    'location_id': self.ref('stock.stock_location_customers'),
+                    'location_dest_id': wh.lot_stock_id.id,
+                }),
+                Command.create({
+                    'name': self.product_b.name,
+                    'product_id': self.product_b.id,
+                    'product_uom_qty': 1,
+                    'location_id': self.ref('stock.stock_location_customers'),
+                    'location_dest_id': wh.lot_stock_id.id,
+                }),
+            ],
+        })
+        receipt.action_confirm()
+        today, yesterday = fields.Datetime.now(), fields.Datetime.now() - datetime.timedelta(days=1)
+        self.assertEqual(receipt.scheduled_date, today)
+        with Form(receipt) as picking_form:
+            with picking_form.move_ids_without_package.edit(0) as move:
+                move.date = yesterday
+        self.assertEqual(receipt.scheduled_date, yesterday)
+        self.assertRecordValues(receipt.move_ids, [
+            {'date': yesterday},
+            {'date': today},
+        ])

@@ -1,29 +1,29 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # 	* website_twitter
-# 
+#
 # Translators:
 # Wil Odoo, 2023
-# Thi Huong Nguyen, 2023
-# 
+# Thi Huong Nguyen, 2025
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-26 21:56+0000\n"
+"POT-Creation-Date: 2025-12-29 18:38+0000\n"
 "PO-Revision-Date: 2023-10-26 23:10+0000\n"
-"Last-Translator: Thi Huong Nguyen, 2023\n"
+"Last-Translator: Thi Huong Nguyen, 2025\n"
 "Language-Team: Vietnamese (https://app.transifex.com/odoo/teams/41243/vi/)\n"
+"Language: vi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: vi\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: website_twitter
 #: model_terms:ir.ui.view,arch_db:website_twitter.res_config_settings_view_form
 msgid ", <strong>create a project</strong> with the following information:"
-msgstr ""
+msgstr ", <strong>tạo một dự án</strong> với thông tin sau:"
 
 #. module: website_twitter
 #: model_terms:ir.ui.view,arch_db:website_twitter.res_config_settings_view_form
@@ -31,18 +31,24 @@ msgid ""
 ", click on <strong>Elevated</strong> then on <strong>Apply</strong> and "
 "finally complete the form."
 msgstr ""
+", nhấp vào <strong>Nâng cao</strong> rồi nhấp vào <strong>Áp dụng</strong> "
+"và cuối cùng là hoàn thành biểu mẫu."
 
 #. module: website_twitter
 #: model_terms:ir.ui.view,arch_db:website_twitter.res_config_settings_view_form
 msgid ""
 "<i class=\"oi oi-arrow-right\"/>\n"
-"                            Show me how to obtain the Twitter API key and Twitter API secret"
+"                            Show me how to obtain the Twitter API key and "
+"Twitter API secret"
 msgstr ""
+"<i class=\"oi oi-arrow-right\"/>\n"
+"                            Chỉ cho tôi cách lấy mã khóa Twitter API và mã "
+"bí mật Twitter API"
 
 #. module: website_twitter
 #: model_terms:ir.ui.view,arch_db:website_twitter.res_config_settings_view_form
 msgid "<strong>App Name: </strong> choose a unique name"
-msgstr ""
+msgstr "<strong>Tên ứng dụng: </strong> chọn tên duy nhất"
 
 #. module: website_twitter
 #: model_terms:ir.ui.view,arch_db:website_twitter.res_config_settings_view_form
@@ -57,7 +63,7 @@ msgstr "<strong>Tên: </strong> Odoo tích hợp Twitter "
 #. module: website_twitter
 #: model_terms:ir.ui.view,arch_db:website_twitter.res_config_settings_view_form
 msgid "<strong>Use Case: </strong> Embedding Tweets in a website"
-msgstr ""
+msgstr "<strong>Trường hợp sử dụng: </strong> Chèn Tweet vào trang web"
 
 #. module: website_twitter
 #: model:ir.model.fields,field_description:website_twitter.field_res_config_settings__twitter_api_key
@@ -69,7 +75,7 @@ msgstr "Khóa API"
 #: model:ir.model.fields,field_description:website_twitter.field_res_config_settings__twitter_api_secret
 #: model_terms:ir.ui.view,arch_db:website_twitter.res_config_settings_view_form
 msgid "API secret"
-msgstr "Mật khẩu API"
+msgstr "Mã bí mật API"
 
 #. module: website_twitter
 #. odoo-python
@@ -91,6 +97,8 @@ msgstr "Cài đặt cấu hình"
 #: model_terms:ir.ui.view,arch_db:website_twitter.res_config_settings_view_form
 msgid "Copy/Paste the API Key and API Key Secret values into the above fields"
 msgstr ""
+"Sao chép/Dán các giá trị Mã khóa API và Bí mật mã khoá API vào các trường "
+"trên"
 
 #. module: website_twitter
 #: model:ir.model.fields,field_description:website_twitter.field_website_twitter_tweet__create_uid
@@ -116,7 +124,7 @@ msgstr "Yêu thích từ"
 #. module: website_twitter
 #: model_terms:ir.ui.view,arch_db:website_twitter.res_config_settings_view_form
 msgid "Get Elevated access by going to"
-msgstr ""
+msgstr "Nhận quyền truy cập nâng cao bằng cách truy cập"
 
 #. module: website_twitter
 #: model:ir.model.fields,field_description:website_twitter.field_website__twitter_screen_name
@@ -145,8 +153,7 @@ msgstr "ID"
 #: code:addons/website_twitter/models/res_config_settings.py:0
 #, python-format
 msgid "Internet connection refused: We failed to reach a twitter server."
-msgstr ""
-"Kết nối Internet bị từ chối: Kết nối với máy chủ twitter bị thất bại. "
+msgstr "Kết nối Internet bị từ chối: Kết nối với máy chủ twitter bị thất bại. "
 
 #. module: website_twitter
 #: model:ir.model.fields,field_description:website_twitter.field_website_twitter_tweet__write_uid
@@ -161,7 +168,7 @@ msgstr "Cập nhật lần cuối vào"
 #. module: website_twitter
 #: model_terms:ir.ui.view,arch_db:website_twitter.res_config_settings_view_form
 msgid "Log in or create an account on"
-msgstr ""
+msgstr "Đăng nhập hoặc tạo tài khoản trên"
 
 #. module: website_twitter
 #: model_terms:ir.ui.view,arch_db:website_twitter.res_config_settings_view_form
@@ -174,6 +181,8 @@ msgid ""
 "Once connected, and if not already done, complete the Twitter portal access "
 "process on"
 msgstr ""
+"Sau khi kết nối và nếu chưa hoàn tất, hãy hoàn thành quy trình truy cập cổng "
+"Twitter trên"
 
 #. module: website_twitter
 #. odoo-python
@@ -250,8 +259,8 @@ msgstr ""
 #: code:addons/website_twitter/models/res_config_settings.py:0
 #, python-format
 msgid ""
-"The request is understood, but it has been refused or access is not allowed."
-" Please check your Twitter API Key and Secret."
+"The request is understood, but it has been refused or access is not allowed. "
+"Please check your Twitter API Key and Secret."
 msgstr ""
 "Yêu cầu được tiếp nhận nhưng bị từ chối hoặc truy cập không được phép. Vui "
 "lòng kiểm tra API Key và Secret của Twitter. "
@@ -287,7 +296,7 @@ msgstr "Tweet"
 #. module: website_twitter
 #: model_terms:ir.ui.view,arch_db:website_twitter.res_config_settings_view_form
 msgid "Twitter API Credentials"
-msgstr "Mã định danh API Twitter"
+msgstr "Thông tin xác thực API Twitter"
 
 #. module: website_twitter
 #: model:ir.model.fields,help:website_twitter.field_website__twitter_api_key
@@ -329,12 +338,12 @@ msgstr "Cấu hình Twitter"
 #. module: website_twitter
 #: model_terms:ir.ui.view,arch_db:website_twitter.res_config_settings_view_form
 msgid "Twitter Portal"
-msgstr ""
+msgstr "Cổng thông tin Twitter"
 
 #. module: website_twitter
 #: model_terms:ir.ui.view,arch_db:website_twitter.res_config_settings_view_form
 msgid "Twitter Roller"
-msgstr ""
+msgstr "Twitter Roller"
 
 #. module: website_twitter
 #: model_terms:ir.ui.view,arch_db:website_twitter.website_twitter_snippet
@@ -385,11 +394,11 @@ msgstr "Hướng dẫn Twitter"
 #: code:addons/website_twitter/controllers/main.py:0
 #, python-format
 msgid ""
-"Twitter user @%(username)s has less than 12 favorite tweets. Please add more"
-" or choose a different screen name."
+"Twitter user @%(username)s has less than 12 favorite tweets. Please add more "
+"or choose a different screen name."
 msgstr ""
-"Người dùng Twitter @%(username)s có ít hơn 12 tweet yêu thích. Vui lòng thêm"
-" hoặc chọn một tên hiển thị khác. "
+"Người dùng Twitter @%(username)s có ít hơn 12 tweet yêu thích. Vui lòng thêm "
+"hoặc chọn một tên hiển thị khác. "
 
 #. module: website_twitter
 #. odoo-javascript
@@ -417,14 +426,14 @@ msgstr "Website Twitter"
 #. module: website_twitter
 #: model_terms:ir.ui.view,arch_db:website_twitter.res_config_settings_view_form
 msgid "https://developer.twitter.com/"
-msgstr ""
+msgstr "https://developer.twitter.com/"
 
 #. module: website_twitter
 #: model_terms:ir.ui.view,arch_db:website_twitter.res_config_settings_view_form
 msgid "https://developer.twitter.com/en/portal/products"
-msgstr ""
+msgstr "https://developer.twitter.com/en/portal/products"
 
 #. module: website_twitter
 #: model_terms:ir.ui.view,arch_db:website_twitter.res_config_settings_view_form
 msgid "https://developer.twitter.com/portal/"
-msgstr ""
+msgstr "https://developer.twitter.com/portal/"

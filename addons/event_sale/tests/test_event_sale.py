@@ -232,6 +232,42 @@ class TestEventSale(TestEventSaleCommon):
         self.assertEqual(editor_action['res_model'], 'registration.editor')
 
     @users('user_sales_salesman')
+    def test_registration_state_on_so_confirmation(self):
+        """Test that registration stays in draft after SO confirmation
+        and only moves to open after registration editor confirmation.
+        """
+        customer_so = self.customer_so.with_user(self.env.user)
+        ticket = self.event_0.event_ticket_ids[0]
+
+        # Create SO in draft with a ticket
+        customer_so.write({
+            'order_line': [(0, 0, {
+                'event_id': self.event_0.id,
+                'event_ticket_id': ticket.id,
+                'product_id': ticket.product_id.id,
+                'product_uom_qty': 1,
+                'price_unit': 10,
+            })]
+        })
+        customer_so.action_confirm()
+
+        registrations = self.env['event.registration'].search([
+            ('sale_order_id', '=', customer_so.id)
+        ])
+        self.assertEqual(registrations.state, 'draft')
+
+        editor = self.env['registration.editor'].with_context({
+            'default_sale_order_id': customer_so.id
+        }).create({})
+        editor.action_make_registration()
+
+        registrations = self.env['event.registration'].search([
+            ('sale_order_id', '=', customer_so.id)
+        ])
+        self.assertEqual(len(registrations), 1)
+        self.assertEqual(registrations.state, 'open')
+
+    @users('user_sales_salesman')
     def test_event_sale_free_confirm(self):
         """Check that free registrations are immediately
         confirmed if the seats are available.
@@ -265,6 +301,13 @@ class TestEventSale(TestEventSaleCommon):
         editor.action_make_registration()
         self.assertEqual(len(self.event_0.registration_ids), TICKET_COUNT)
         self.assertTrue(all(reg.state == "open" for reg in self.event_0.registration_ids))
+
+    def test_event_sale_free_no_saleorder(self):
+        registration = self.env['event.registration'].create({
+            'event_id': self.event_0.id,
+            'partner_id': self.event_customer2.id,
+        })
+        self.assertEqual(registration.sale_status, 'free')
 
     @users('user_sales_salesman')
     def test_event_sale_free_full_event_no_confirm(self):
@@ -506,3 +549,15 @@ class TestEventSale(TestEventSaleCommon):
         self.sale_order._action_cancel()
         self.assertEqual(len(event.registration_ids), 1)
         self.assertEqual(event.registration_ids.state, 'cancel')
+
+    @users('user_salesman')
+    def test_compute_sale_status(self):
+        self.register_person.action_make_registration()
+        registration = self.event_0.registration_ids
+        self.assertEqual(registration.sale_status, 'to_pay')
+        registration.sale_order_line_id.price_total = 0.0
+        self.assertEqual(registration.sale_status, 'free', "Price of $0.00 should be free")
+        registration.sale_order_line_id.price_total = 0.01
+        self.assertEqual(registration.sale_status, 'to_pay', "Price of $0.01 should be paid")
+        registration.sale_order_id.action_confirm()
+        self.assertEqual(registration.sale_status, 'sold')

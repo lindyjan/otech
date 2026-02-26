@@ -2,12 +2,16 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 from datetime import datetime, timedelta
 from hashlib import sha256
-from json import dumps
+from json import dumps, loads
+import logging
 
 from odoo import models, api, fields
 from odoo.fields import Datetime
 from odoo.tools.translate import _, _lt
 from odoo.exceptions import UserError
+from collections import defaultdict
+
+_logger = logging.getLogger(__name__)
 
 
 class pos_config(models.Model):
@@ -21,6 +25,9 @@ class pos_config(models.Model):
                 if config.current_session_id:
                     config.current_session_id._check_session_timing()
         return super(pos_config, self).open_ui()
+
+    def _config_sequence_implementation(self):
+        return 'no_gap' if self.env.company._is_accounting_unalterable() else super()._config_sequence_implementation()
 
 
 class pos_session(models.Model):
@@ -63,7 +70,15 @@ class pos_order(models.Model):
                _('An error occurred when computing the inalterability. Impossible to get the unique previous posted point of sale order.'))
 
         #build and return the hash
-        return self._compute_hash(prev_order.l10n_fr_hash if prev_order else u'')
+        computed_hash = self._compute_hash(prev_order.l10n_fr_hash if prev_order else '')
+        _logger.info(
+            'Computed hash for order ID %s: %s \n String to hash: %s \n Previous hash: %s',
+            self.id,
+            computed_hash,
+            dumps(loads(self.l10n_fr_string_to_hash), indent=2),
+            prev_order.l10n_fr_hash
+        )
+        return computed_hash
 
     def _compute_hash(self, previous_hash):
         """ Computes the hash of the browse_record given as self, based on the hash
@@ -73,23 +88,76 @@ class pos_order(models.Model):
         return hash_string.hexdigest()
 
     def _compute_string_to_hash(self):
-        def _getattrstring(obj, field_str):
-            field_value = obj[field_str]
-            if obj._fields[field_str].type == 'many2one':
-                field_value = field_value.id
-            if obj._fields[field_str].type in ['many2many', 'one2many']:
-                field_value = field_value.sorted().ids
+        def _getattrstring(field_value, field_type, model_name=None):
+            if field_type in ('many2many', 'one2many'):
+                if field_value:
+                    sorted_ids = sorted_relational_ids.get(model_name, [])
+                    value_set = set(field_value)
+                    field_value = [id for id in sorted_ids if id in value_set]
+                else:
+                    field_value = []
             return str(field_value)
+
+        def collect_sorted_relational_ids(orders_data, lines_data, order_field_defs, line_field_defs):
+            relational_ids = defaultdict(set)
+
+            for data_list, field_names, field_defs in (
+                (orders_data, ORDER_FIELDS, order_field_defs),
+                (lines_data, LINE_FIELDS, line_field_defs),
+            ):
+                for record in data_list:
+                    for field in field_names:
+                        field_def = field_defs.get(field)
+                        if field_def and field_def['type'] in ('many2many', 'one2many'):
+                            ids = record.get(field) or []
+                            relational_ids[field_def['comodel']].update(ids)
+
+            sorted_relational_ids = {}
+            for model_name, ids in relational_ids.items():
+                if ids:
+                    # Use search() to get IDs sorted by _order the same way Odoo ORM does for relational fields
+                    sorted_relational_ids[model_name] = self.env[model_name].search([('id', 'in', list(ids))]).ids
+
+            return sorted_relational_ids
+
+        orders_data = self.read(ORDER_FIELDS + ['id'], load='')
+        lines_data = self.lines.read(LINE_FIELDS + ['id', 'order_id'], load='')
+
+        orders_by_id = {order['id']: order for order in orders_data}
+        lines_by_order = defaultdict(list)
+        for line in lines_data:
+            lines_by_order[line['order_id']].append(line)
+        order_field_defs = {
+            field: {
+                'type': self._fields[field].type,
+                'comodel': self._fields[field].comodel_name if hasattr(self._fields[field], 'comodel_name') else None
+            }
+            for field in ORDER_FIELDS
+        }
+        line_field_defs = {
+            field: {
+                'type': self.lines._fields[field].type,
+                'comodel': self.lines._fields[field].comodel_name if hasattr(self.lines._fields[field], 'comodel_name') else None
+            }
+            for field in LINE_FIELDS
+        }
+
+        sorted_relational_ids = collect_sorted_relational_ids(orders_data, lines_data, order_field_defs, line_field_defs)
 
         for order in self:
             values = {}
-            for field in ORDER_FIELDS:
-                values[field] = _getattrstring(order, field)
+            order_data = orders_by_id[order.id]
 
-            for line in order.lines:
+            for field in ORDER_FIELDS:
+                field_def = order_field_defs[field]
+                values[field] = _getattrstring(order_data.get(field), field_def['type'], field_def['comodel'])
+
+            for line in lines_by_order[order.id]:
                 for field in LINE_FIELDS:
-                    k = 'line_%d_%s' % (line.id, field)
-                    values[k] = _getattrstring(line, field)
+                    k = 'line_%d_%s' % (line['id'], field)
+                    field_def = line_field_defs[field]
+                    values[k] = _getattrstring(line.get(field), field_def['type'], field_def['comodel'])
+
             #make the json serialization canonical
             #  (https://tools.ietf.org/html/draft-staykov-hu-json-canonical-form-00)
             order.l10n_fr_string_to_hash = dumps(values, sort_keys=True,

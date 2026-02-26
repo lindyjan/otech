@@ -10,6 +10,7 @@ from odoo.exceptions import UserError, ValidationError
 
 from odoo.addons.payment import utils as payment_utils
 from odoo.addons.payment_stripe import const
+from odoo.addons.payment_stripe import utils as stripe_utils
 from odoo.addons.payment_stripe.controllers.main import StripeController
 
 
@@ -41,6 +42,18 @@ class PaymentTransaction(models.Model):
                 f'{StripeController._return_url}?{url_encode({"reference": self.reference})}',
             ),
         }
+
+    def _get_specific_secret_keys(self):
+        """ Override of payment to return Stripe-specific secret keys.
+
+        Note: self.ensure_one() from `_get_processing_values`
+
+        :return: The provider-specific secret keys
+        :rtype: dict_keys
+        """
+        if self.provider_code == 'stripe':
+            return {'client_secret': None}.keys()
+        return super()._get_specific_secret_keys()
 
     def _send_payment_request(self):
         """ Override of payment to send a payment request to Stripe with a confirmed PaymentIntent.
@@ -123,14 +136,16 @@ class PaymentTransaction(models.Model):
         :rtype: dict
         """
         customer = self._stripe_create_customer()
-        return {
+        setup_intent_payload = {
             'customer': customer['id'],
             'description': self.reference,
             'payment_method_types[]': const.PAYMENT_METHODS_MAPPING.get(
                 self.payment_method_code, self.payment_method_code
             ),
-            **self._stripe_prepare_mandate_options(),
         }
+        if self.currency_id.name in const.INDIAN_MANDATES_SUPPORTED_CURRENCIES:
+            setup_intent_payload.update(**self._stripe_prepare_mandate_options())
+        return setup_intent_payload
 
     def _stripe_prepare_payment_intent_payload(self):
         """ Prepare the payload for the creation of a PaymentIntent object in Stripe format.
@@ -143,7 +158,11 @@ class PaymentTransaction(models.Model):
         ppm_code = self.payment_method_id.primary_payment_method_id.code
         payment_method_type = ppm_code or self.payment_method_code
         payment_intent_payload = {
-            'amount': payment_utils.to_minor_currency_units(self.amount, self.currency_id),
+            'amount': payment_utils.to_minor_currency_units(
+                self.amount,
+                self.currency_id,
+                arbitrary_decimal_number=const.CURRENCY_DECIMALS.get(self.currency_id.name),
+            ),
             'currency': self.currency_id.name.lower(),
             'description': self.reference,
             'capture_method': 'manual' if self.provider_id.capture_manually else 'automatic',
@@ -151,6 +170,7 @@ class PaymentTransaction(models.Model):
                 payment_method_type, payment_method_type
             ),
             'expand[]': 'payment_method',
+            **stripe_utils.include_shipping_address(self),
         }
         if self.operation in ['online_token', 'offline']:
             if not self.token_id.stripe_payment_method:  # Pre-SCA token, migrate it.
@@ -167,10 +187,9 @@ class PaymentTransaction(models.Model):
             customer = self._stripe_create_customer()
             payment_intent_payload['customer'] = customer['id']
             if self.tokenize:
-                payment_intent_payload.update(
-                    setup_future_usage='off_session',
-                    **self._stripe_prepare_mandate_options(),
-                )
+                payment_intent_payload['setup_future_usage'] = 'off_session'
+                if self.currency_id.name in const.INDIAN_MANDATES_SUPPORTED_CURRENCIES:
+                    payment_intent_payload.update(**self._stripe_prepare_mandate_options())
         return payment_intent_payload
 
     def _stripe_create_customer(self):
@@ -207,7 +226,9 @@ class PaymentTransaction(models.Model):
             f'{OPTION_PATH_PREFIX}[reference]': self.reference,
             f'{OPTION_PATH_PREFIX}[amount_type]': 'maximum',
             f'{OPTION_PATH_PREFIX}[amount]': payment_utils.to_minor_currency_units(
-                mandate_values.get('amount', 15000), self.currency_id
+                mandate_values.get('amount', 15000),
+                self.currency_id,
+                arbitrary_decimal_number=const.CURRENCY_DECIMALS.get(self.currency_id.name),
             ),  # Use the specified amount, if any, or define the maximum amount of 15.000 INR.
             f'{OPTION_PATH_PREFIX}[start_date]': int(round(
                 (mandate_values.get('start_datetime') or fields.Datetime.now()).timestamp()
@@ -225,7 +246,9 @@ class PaymentTransaction(models.Model):
                 f'{OPTION_PATH_PREFIX}[interval_count]': mandate_values['recurrence_duration'],
             })
         if self.operation == 'validation':
-            currency_name = self.provider_id._get_validation_currency().name.lower()
+            currency_name = self.provider_id.with_context(
+                validation_pm=self.payment_method_id  # Will be converted to a kwarg in master.
+            )._get_validation_currency().name.lower()
             mandate_options[f'{OPTION_PATH_PREFIX}[currency]'] = currency_name
 
         return mandate_options
@@ -250,6 +273,7 @@ class PaymentTransaction(models.Model):
                 'amount': payment_utils.to_minor_currency_units(
                     -refund_tx.amount,  # Refund transactions' amount is negative, inverse it.
                     refund_tx.currency_id,
+                    arbitrary_decimal_number=const.CURRENCY_DECIMALS.get(refund_tx.currency_id.name)
                 ),
             }
         )
@@ -369,7 +393,9 @@ class PaymentTransaction(models.Model):
             payment_method_type = payment_method.get('type')
             if self.payment_method_id.code == payment_method_type == 'card':
                 payment_method_type = notification_data['payment_method']['card']['brand']
-            payment_method = self.env['payment.method']._get_from_code(payment_method_type)
+            payment_method = self.env['payment.method']._get_from_code(
+                payment_method_type, mapping=const.PAYMENT_METHODS_MAPPING
+            )
             self.payment_method_id = payment_method or self.payment_method_id
 
         # Update the provider reference and the payment state.
