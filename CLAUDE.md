@@ -39,11 +39,11 @@ This is a multi-website, multi-company Odoo deployment. Each website belongs to 
 └── venv/     ← Python virtual environment
 ```
 
-| Server Path | GitHub Repo | Contains |
-|---|---|---|
-| `/opt/odoo/odoo18/` | `lindyjan/otech` | Odoo 18 core source, `odoo-bin`, standard `addons/` |
-| `/opt/odoo/ovoco/` | `lindyjan/ovoco` | `custom_addons/` (custom modules), `deploy/` (config templates) |
-| `/opt/odoo/venv/` | — | Python virtual environment for Odoo |
+| Server Path | GitHub Repo | Branch | Contains |
+|---|---|---|---|
+| `/opt/odoo/odoo18/` | `lindyjan/otech` | `17.0` | Odoo 18 core source, `odoo-bin`, standard `addons/` |
+| `/opt/odoo/ovoco/` | `lindyjan/ovoco` | `main` | `custom_addons/` (custom modules), `deploy/` (config templates) |
+| `/opt/odoo/venv/` | — | — | Python virtual environment for Odoo |
 
 ### VPS Maintenance Commands
 ```bash
