@@ -9,9 +9,18 @@ This is a multi-website, multi-company Odoo deployment. Each website belongs to 
 2. **Website → Configuration → Settings → Website Info → Company** → assign each website to its company
 3. Assign users to the appropriate company
 
-### Websites / Companies
-- ovoco.co
-- i84mobile.com
+### Websites / Companies (Multi-Company, Single Database)
+
+| Company | Domain | Business | Key Odoo Modules |
+|---------|--------|----------|-----------------|
+| Ovoco | ovoco.co | Federal PM, marketing, proposals | Project, CRM, Sales, Invoicing, Documents, Timesheet |
+| Ovoco Property | property.ovoco.co | Tax deed buying/selling, rentals, construction/rehab | Construction suite (pragtech_ppc + all custom modules), Sales, Invoicing, Rental |
+| Morel Media Studios | morelmediastudios.com | Media & creative agency | Project, Timesheet, Sales, Invoicing, CRM |
+| i84 Mobile | i84mobile.com | Diesel repair shop | Field Service, Inventory, Sales, Invoicing |
+
+- **books.ovoco.co** — Separate accounting app that interfaces with Odoo via API (JSON-RPC / REST)
+- All companies share one Odoo instance and one database (`ovoco.co`)
+- Each domain gets its own Nginx server block → Odoo website → company
 
 ### Database
 - **Database name: `ovoco.co`**
