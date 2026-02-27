@@ -1,25 +1,34 @@
-# Ovoco Project Notes
+# Ovoco Project Notes — otech repo
+
+This repo contains the Odoo 18 core source code (`odoo-bin`, standard `addons/`).
+It is a fork of `odoo/odoo` tracking the `18.0` branch, deployed to `/opt/odoo/odoo18/` on the VPS.
+
+Custom modules live in the **ovoco** repo (`lindyjan/ovoco`), NOT here.
+
+## VPS
+- **IP**: 108.175.12.143
+- **SSH**: `ssh root@108.175.12.143`
+- **Odoo core path**: `/opt/odoo/odoo18`
+- **Custom modules path**: `/opt/odoo/ovoco/custom_addons`
 
 ## Odoo Multi-Website Setup
 
-This is a multi-website, multi-company Odoo deployment. Each website belongs to a different company.
+This is a multi-website, multi-company Odoo 18 deployment. Each website belongs to a different company.
+All companies share one Odoo instance and one PostgreSQL database (`ovoco.co`).
 
-### Setup Steps
-1. **Settings → Users & Companies → Companies** → create a company per website
-2. **Website → Configuration → Settings → Website Info → Company** → assign each website to its company
-3. Assign users to the appropriate company
+### Websites / Companies
 
-### Websites / Companies (Multi-Company, Single Database)
+| ID | Company | Domain | Business | Key Odoo Modules |
+|----|---------|--------|----------|-----------------|
+| 1 | Ovoco | ovoco.co | Federal PM, marketing, proposals | Project, CRM, Sales, Invoicing, Documents, Timesheet |
+| 2 | Morel Media Studio | morelmediastudio.com | Media & creative agency | Project, Timesheet, Sales, Invoicing, CRM |
+| — | Ovoco Property | property.ovoco.co | Tax deed buying/selling, rentals, construction/rehab | Construction suite (pragtech_ppc + all custom modules), Sales, Invoicing, Rental |
+| — | i84 Mobile | i84mobile.com | Diesel repair shop | Field Service, Inventory, Sales, Invoicing |
 
-| Company | Domain | Business | Key Odoo Modules |
-|---------|--------|----------|-----------------|
-| Ovoco | ovoco.co | Federal PM, marketing, proposals | Project, CRM, Sales, Invoicing, Documents, Timesheet |
-| Ovoco Property | property.ovoco.co | Tax deed buying/selling, rentals, construction/rehab | Construction suite (pragtech_ppc + all custom modules), Sales, Invoicing, Rental |
-| Morel Media Studios | morelmediastudios.com | Media & creative agency | Project, Timesheet, Sales, Invoicing, CRM |
-| i84 Mobile | i84mobile.com | Diesel repair shop | Field Service, Inventory, Sales, Invoicing |
-
+- **Website ID 1** = Ovoco (the default website, XML ID `website.default_website`)
+- **Website ID 2** = Morel Media Studio
+- Ovoco Property and i84 Mobile websites have not been created yet
 - **books.ovoco.co** — Separate accounting app that interfaces with Odoo via API (JSON-RPC / REST)
-- All companies share one Odoo instance and one database (`ovoco.co`)
 - Each domain gets its own Nginx server block → Odoo website → company
 
 ### Database
@@ -43,7 +52,7 @@ This is a multi-website, multi-company Odoo deployment. Each website belongs to 
 ### Server Directory Structure
 ```
 /opt/odoo/
-├── odoo18/   ← otech repo (Odoo 18 core + standard addons)
+├── odoo18/   ← THIS REPO (otech — Odoo 18 core + standard addons)
 ├── ovoco/    ← ovoco repo (custom_addons/ + deploy/)
 └── venv/     ← Python virtual environment
 ```
@@ -51,7 +60,7 @@ This is a multi-website, multi-company Odoo deployment. Each website belongs to 
 | Server Path | GitHub Repo | Branch | Contains |
 |---|---|---|---|
 | `/opt/odoo/odoo18/` | `lindyjan/otech` | `18.0` | Odoo 18 core source, `odoo-bin`, standard `addons/` |
-| `/opt/odoo/ovoco/` | `lindyjan/ovoco` | `claude/setup-odoo-windows-dev-fGEfs` | `custom_addons/` (custom modules), `deploy/` (config templates) |
+| `/opt/odoo/ovoco/` | `lindyjan/ovoco` | `main` | `custom_addons/` (custom modules), `deploy/` (config templates) |
 | `/opt/odoo/venv/` | — | — | Python virtual environment for Odoo |
 
 ### Git Authentication
@@ -66,13 +75,13 @@ This is a multi-website, multi-company Odoo deployment. Each website belongs to 
 
 ### Git Push Commands
 ```bash
-# Push otech (Odoo core)
+# Push otech (Odoo core — this repo)
 cd /opt/odoo/odoo18
 git push -u origin 18.0
 
-# Push ovoco (custom modules)
+# Push ovoco (custom modules — other repo)
 cd /opt/odoo/ovoco
-git push -u origin claude/setup-odoo-windows-dev-fGEfs
+git push -u origin main
 ```
 
 ### Updating Odoo 18 Core
@@ -100,6 +109,12 @@ git push -u origin 18.0
 sudo systemctl stop odoo
 sudo systemctl start odoo
 
+# Update a single module
+sudo systemctl stop odoo
+sudo -u odoo /opt/odoo/venv/bin/python /opt/odoo/odoo18/odoo-bin \
+    -c /etc/odoo.conf -d ovoco.co -u <module_name> --stop-after-init
+sudo systemctl start odoo
+
 # Update base module (fixes asset caching issues)
 sudo -u odoo /opt/odoo/venv/bin/python /opt/odoo/odoo18/odoo-bin -c /etc/odoo.conf -u base --stop-after-init
 
@@ -112,12 +127,13 @@ sudo -u odoo /opt/odoo/venv/bin/python /opt/odoo/odoo18/odoo-bin -c /etc/odoo.co
 /opt/odoo/venv/bin/pip install <package>
 ```
 
-### Custom Modules (in ovoco/custom_addons/)
+### Custom Modules (in the ovoco repo, NOT this repo)
 
-Install **pragtech_ppc first** — everything else depends on it.
+Custom modules are in `lindyjan/ovoco` → `custom_addons/`. Key modules:
 
 | Module | Technical Name | Purpose |
 |--------|---------------|---------|
+| Morel Media Studio Theme | `website_morel` | Custom website theme + portfolio for morelmediastudio.com (website ID 2) |
 | Project Planning & Controlling | `pragtech_ppc` | **Install first.** Core WBS, budgeting, material/labour estimation |
 | Gantt Chart | `pragtech_ppc_ganttchart` | Visual Gantt chart for project timelines (depends on pragtech_ppc) |
 | Sub-Contracting | `pragtech_contracting` | Work orders, RA billing, retention (depends on pragtech_ppc) |
@@ -125,16 +141,16 @@ Install **pragtech_ppc first** — everything else depends on it.
 | Land Acquisition | `odoo_pragtech_construction_land_acquisition` | Property records, proposals, sales |
 | Project Expenses | `odoo_pragtech_construction_project_expenses` | Links HR expenses to projects |
 
-See `custom_addons/CONSTRUCTION_SUITE_GUIDE.md` for detailed usage instructions.
-
-### Custom Module Fixes Applied
-- **land_acquisition `action_confirm`**: Added guard for `self.acquisition_id` so non-property sale orders (including demo data) don't crash. File: `custom_addons/odoo_pragtech_construction_land_acquisition/models/sale.py`
-
 ### Default Odoo Credentials (fresh install)
 - **Login**: `admin`
 - **Password**: `admin`
+- After running setup script (`deploy/setup_odoo.py` in ovoco repo), admin login changes to `admin@ovoco.co`
 
-### Email (IONOS)
-- SMTP: `smtp.ionos.com` port `465` SSL/TLS
-- IMAP: `imap.ionos.com` port `993` SSL/TLS
-- Username: full IONOS email address
+### Email Servers
+
+| Company | Email | Provider | SMTP | IMAP |
+|---------|-------|----------|------|------|
+| Ovoco | admin@ovoco.co | Gmail | smtp.gmail.com:465 SSL | imap.gmail.com:993 SSL |
+| Ovoco Property | *(shares Ovoco)* | Gmail | *(shares Ovoco)* | *(shares Ovoco)* |
+| Morel Media Studio | info@morelmediastudio.com | IONOS | smtp.ionos.com:465 SSL | imap.ionos.com:993 SSL |
+| i84 Mobile | tech@i84mobile.com | Gmail | smtp.gmail.com:465 SSL | imap.gmail.com:993 SSL |
