@@ -49,9 +49,11 @@ This is a multi-website, multi-company Odoo deployment. Each website belongs to 
 - **Method**: SSH keys (password auth is not supported by GitHub)
 - **SSH key**: ed25519 key at `~/.ssh/id_ed25519` on the VPS
 - **Remote URLs** (SSH format):
-  - otech: `git@github.com:lindyjan/otech.git`
-  - ovoco: `git@github.com:lindyjan/ovoco.git`
+  - otech origin: `git@github.com:lindyjan/otech.git`
+  - otech upstream: `https://github.com/odoo/odoo.git` (official Odoo repo)
+  - ovoco origin: `git@github.com:lindyjan/ovoco.git`
 - **GitHub user**: `lindyjan`
+- **Git identity on VPS**: `lindyjan` / `lindyjan@users.noreply.github.com`
 
 ### Git Push Commands
 ```bash
@@ -100,6 +102,28 @@ sudo -u odoo /opt/odoo/venv/bin/python /opt/odoo/odoo18/odoo-bin -c /etc/odoo.co
 # Install Python dependencies (use the venv!)
 /opt/odoo/venv/bin/pip install <package>
 ```
+
+### Custom Modules (in ovoco/custom_addons/)
+
+Install **pragtech_ppc first** — everything else depends on it.
+
+| Module | Technical Name | Purpose |
+|--------|---------------|---------|
+| Project Planning & Controlling | `pragtech_ppc` | **Install first.** Core WBS, budgeting, material/labour estimation |
+| Gantt Chart | `pragtech_ppc_ganttchart` | Visual Gantt chart for project timelines (depends on pragtech_ppc) |
+| Sub-Contracting | `pragtech_contracting` | Work orders, RA billing, retention (depends on pragtech_ppc) |
+| Tender Management | `pragtech_tender_management` | Publish tenders, collect bids (depends on pragtech_ppc) |
+| Land Acquisition | `odoo_pragtech_construction_land_acquisition` | Property records, proposals, sales |
+| Project Expenses | `odoo_pragtech_construction_project_expenses` | Links HR expenses to projects |
+
+See `custom_addons/CONSTRUCTION_SUITE_GUIDE.md` for detailed usage instructions.
+
+### Custom Module Fixes Applied
+- **land_acquisition `action_confirm`**: Added guard for `self.acquisition_id` so non-property sale orders (including demo data) don't crash. File: `custom_addons/odoo_pragtech_construction_land_acquisition/models/sale.py`
+
+### Default Odoo Credentials (fresh install)
+- **Login**: `admin`
+- **Password**: `admin`
 
 ### Email (IONOS)
 - SMTP: `smtp.ionos.com` port `465` SSL/TLS
