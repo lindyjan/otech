@@ -64,6 +64,25 @@ cd /opt/odoo/ovoco
 git push -u origin claude/setup-odoo-windows-dev-fGEfs
 ```
 
+### Updating Odoo 18 Core
+```bash
+cd /opt/odoo/odoo18
+git fetch upstream 18.0
+git merge upstream/18.0
+# Re-apply project_todo bug fix after every core update (see below)
+sudo sed -i 's/GROUP BY is_task, states, act.res_model, act.res_id/GROUP BY t.project_id, states, act.res_model, act.res_id/' /opt/odoo/odoo18/addons/project_todo/models/res_users.py
+sudo systemctl stop odoo
+sudo -u odoo /opt/odoo/venv/bin/python /opt/odoo/odoo18/odoo-bin -c /etc/odoo.conf -u base --stop-after-init
+sudo systemctl start odoo
+git push -u origin 18.0
+```
+
+### Known Core Bugs (fix after each upstream pull)
+- **project_todo GROUP BY bug**: `addons/project_todo/models/res_users.py` uses `GROUP BY is_task` (an alias) which PostgreSQL rejects. Fix: replace `is_task` with `t.project_id` in the GROUP BY clause.
+  ```bash
+  sudo sed -i 's/GROUP BY is_task, states, act.res_model, act.res_id/GROUP BY t.project_id, states, act.res_model, act.res_id/' /opt/odoo/odoo18/addons/project_todo/models/res_users.py
+  ```
+
 ### VPS Maintenance Commands
 ```bash
 # Stop/start Odoo
