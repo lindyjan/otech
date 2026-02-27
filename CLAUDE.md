@@ -41,7 +41,7 @@ This is a multi-website, multi-company Odoo deployment. Each website belongs to 
 
 | Server Path | GitHub Repo | Branch | Contains |
 |---|---|---|---|
-| `/opt/odoo/odoo18/` | `lindyjan/otech` | `17.0` | Odoo 18 core source, `odoo-bin`, standard `addons/` |
+| `/opt/odoo/odoo18/` | `lindyjan/otech` | `18.0` | Odoo 18 core source, `odoo-bin`, standard `addons/` |
 | `/opt/odoo/ovoco/` | `lindyjan/ovoco` | `claude/setup-odoo-windows-dev-fGEfs` | `custom_addons/` (custom modules), `deploy/` (config templates) |
 | `/opt/odoo/venv/` | — | — | Python virtual environment for Odoo |
 
@@ -57,7 +57,7 @@ This is a multi-website, multi-company Odoo deployment. Each website belongs to 
 ```bash
 # Push otech (Odoo core)
 cd /opt/odoo/odoo18
-git push -u origin 17.0
+git push -u origin 18.0
 
 # Push ovoco (custom modules)
 cd /opt/odoo/ovoco
